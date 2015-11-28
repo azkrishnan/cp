@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div class="navbar-fixed" >
+		<nav class="white" role="navigation">
+			<div class="nav-wrapper container">
+				<a id="logo-container" href="<?php echo BASE; ?>" class="brand-logo"  >
+						<img src='photo/mylogo1.png' class="circle responsive-img " style="vertical-align:middle" />
+				</a>
+				<ul class="right hide-on-med-and-down">
+					<?php
+						disptabs(gi("toplinks"));
+					?>
+				</ul>
+
+				<ul id="nav-mobile" class="side-nav">
+					<?php
+						disptabs(gi("toplinks"));
+					?>
+				</ul>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+			</div>
+		</nav>
+	</div>
+
+
+	<div id="home" ></div>
+
+	<div id="index-banner" class="parallax-container"  >
+
+		<div class="slider">
+			<ul class="slides" >
+				<li>
+					<img src="http://lorempixel.com/580/250/nature/1" />
+					<!-- random image -->
+					<div class="caption center-align">
+						<h3>
+							A cool <b>Responsive</b> front-end developer.
+						</h3>
+						<h5 class="light grey-text text-lighten-3">
+							Will help you in your business.
+						</h5>
+					</div>
+				</li>
+				<li>
+					<img src="http://lorempixel.com/580/250/nature/2" />
+					<!-- random image -->
+					<div class="caption left-align">
+						<h3>
+							Spontaneous and immediate reply to your requests.
+						</h3>
+						<h5 class="light grey-text text-lighten-3">
+							Just mail me your project requirement and I will help you.
+						</h5>
+					</div>
+				</li>
+				<li>
+					<img src="http://lorempixel.com/580/250/nature/3" />
+					<!-- random image -->
+					<div class="caption right-align">
+						<h3>
+							Properly documented code.
+						</h3>
+						<h5 class="light grey-text text-lighten-3">
+							I write versatile codes, which are easy to the hand over to somebody else and can be understood easily.
+						</h5>
+					</div>
+				</li>
+				<li>
+					<img src="http://lorempixel.com/580/250/nature/4" />
+					<!-- random image -->
+					<div class="caption center-align">
+						<h3>
+							Design from Customer point of view.
+						</h3>
+						<h5 class="light grey-text text-lighten-3">
+							When I design, I think through the user's point of view. That's why my designs are versatile and appealing.
+						</h5>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+<!-- 
+
+		<div class="section no-pad-bot">
+			<div class="container">
+				<br><br>
+				<h1 class="header center teal-text text-lighten-2">A Cool Fronend Developer</h1>
+				<div class="row center">
+					<h5 class="header col s12 light" style="color:white;" >Never Look back, because you can't do anything other then looking.</h5>
+				</div>
+				<div class="row center hide">
+					<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+				</div>
+				<br><br>
+
+			</div>
+		</div>
+		<div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background1.jpg" alt="Unsplashed background img 1"></div>
+
+ -->
+	</div>
+
+
+	<div class="container" id="aboutme" >
+		<div class="section">
+
+			<div class="row"  >
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">person_pin</i></h3>
+					<h4>Who Am I ?</h4>
+					<div class="row" >
+						<div class="col s12 l3" >
+							<img src="photo/rahul.jpg" class="circle responsive-img materialboxed" >
+						</div>
+						<div class="col s12 l9" >
+							<p class="left-align light flow-text">I am the guy, you are searching for as a front-end developer. My name is <?php echo gi("myname"); ?>. I am a cool front-end developer. I can do graphic designing, HTML, CSS and basic JavaScript. I design websites wonderfully and am a hard working designing geek. </p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="container">
+		<div class="section">
+
+			<!--   Icon Section   -->
+			<div class="row">
+				<div class="col s12 m4">
+					<div class="icon-block">
+						<h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+						<h5 class="center">Speeds up development</h5>
+
+						<p class="light">I am very passionate about learning new things. So I learn things very rapidly and in less time. I started development merely 2 months ago & I fell in love with it's beauty.</p>
+					</div>
+				</div>
+
+				<div class="col s12 m4">
+					<div class="icon-block">
+						<h2 class="center brown-text"><i class="material-icons">group</i></h2>
+						<h5 class="center">User Experience Focused</h5>
+
+						<p class="light">When ever I make a website, I care about the user's needs and desires.</p>
+					</div>
+				</div>
+
+				<div class="col s12 m4">
+					<div class="icon-block">
+						<h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+						<h5 class="center">Easy to work</h5>
+
+						<p class="light">My code is properly documented. So it is very easy for someone else to comprehend, understand and work on it.</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<div class="parallax-container valign-wrapper">
+		<div class="section no-pad-bot">
+			<div class="container">
+				<div class="row center">
+					<h5 class="header col s12 light">Responsive front-end designing is my food.</h5>
+				</div>
+			</div>
+		</div>
+		<div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background2.jpg" alt="Unsplashed background img 2"></div>
+	</div>
+
+
+
+	<div class="container" id="education" >
+		<div class="section">
+
+			<div class="row">
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">school</i></h3>
+					<h4>Education and Qualifications</h4>
+					<p class="left-align light">I have pursued Diploma in Computer Science Department from Birla Technical Training Institute, pilani.
+					<br>
+					<span style='color:#000000;font-weight:400;' >Internship: </span> Aditya birla training & research center,pilani. I worked on linux console application.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="divider" ></div>
+
+	<div class="container" id="projects" >
+		<div class="section">
+
+			<div class="row">
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">code</i></h3>
+					<h4>Front end projects</h4>
+					<p class="left-align light">I am just entered in this industry 2 months back. I am learning HTML, CSS, Basic JavaScript, BootStrap, Materialize CSS. Using that, I have designed my home page. I do not have much professional experience but I believe that I am a quick learner. I am willing to undertake freelance projects to work on. </p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="divider" ></div>
+
+	<div class="container" id="hiring" >
+		<div class="section">
+
+			<div class="row">
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">business</i></h3>
+					<h4>Hiring & Freelancing</h4>
+					<p class="left-align light">I am available full time, so you can hire me as a full-time developer. I can also work on freelancing projects. Since I am beginner, so I can provide work at a comparatively lower price. </p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="divider" ></div>
+
+
+	<div class="container" id="personal" >
+		<div class="section">
+
+			<div class="row">
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">person_pin</i></h3>
+					<h4>Personal Life</h4>
+					<p class="left-align light">I am from Neem ka thana, in Sikar district in Rajasthan. I came to Delhi to explore web-designing. Most of the time I design & research about new things. I also love to play cricket.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="divider" ></div>
+
+
+
+<!-- 	<div class="parallax-container valign-wrapper">
+		<div class="section no-pad-bot">
+			<div class="container">
+				<div class="row center">
+					<h5 class="header col s12 light">Responsive front-end designing is my food.</h5>
+				</div>
+			</div>
+		</div>
+		<div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background2.jpg" alt="Unsplashed background img 2"></div>
+	</div>
+ -->
+
+
+	<div class="container" id="contactme" >
+		<div class="section">
+
+			<div class="row">
+				<div class="col s12 center">
+					<h3><i class="material-icons medium brown-text">contacts</i></h3>
+					<h4>Contact Me</h4>
+							<div class="row">
+								<div class="col s6">
+									<h6 class="brown-text text-darken-1">
+										Address
+										<i class="material-icons tiny">
+											navigation
+										</i>
+									</h6>
+									<div class="grey-text">
+										165,
+										Near Choupal,<br>
+										Ghitorni<br>
+										New delhi - 110030<br>
+										India
+									</div>
+								</div>
+								<div class="col s6">
+									<h6 class="brown-text text-darken-1">
+										Mail
+										<i class="material-icons tiny">
+											mail
+										</i>
+									</h6>
+									<div class="grey-text">
+										rahulsainicrw@gmail.com
+									</div>
+									<h6 class="brown-text text-darken-1">
+										Call
+										<i class="material-icons tiny">
+											call
+										</i>
+									</h6>
+									<div class="grey-text">
+										+91 810 432 6911
+									</div>
+								</div>
+							</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<footer class="page-footer teal">
+		<div class="container" style="padding-bottom:0px;" >
+			<div class="row" style="margin-bottom:0px;padding-bottom:0px;" >
+				<div class="col l6 s12">
+					<h5 class="white-text">About my life</h5>
+					<p class="grey-text text-lighten-4">I just want to live my life in a fulfilling and wonderful manner and keep doing all the things I love.</p>
+
+
+				</div>
+				<div class="col l3 s12">
+					<h5 class="white-text">Help</h5>
+					<ul>
+						<li><a class="white-text" href="#aboutme">About me</a></li>
+						<li><a class="white-text" href="#contactme">Contact me</a></li>
+						<li><a class="white-text" href="#hiring">Hire me</a></li>
+					</ul>
+				</div>
+				<div class="col l3 s12">
+					<h5 class="white-text">Experience</h5>
+					<ul>
+						<li><a class="white-text" href="#education">Education</a></li>
+						<li><a class="white-text" href="#projects">Projects</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+			&copy;Copyright 2015 <a class="white-text text-lighten-3" href="#home"><?php echo gi("myname"); ?></a>
+			</div>
+		</div>
+	</footer>
+
+
+
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.raty.js"></script>
+	<script  type='text/javascript'  src='js/lib.js'  ></script>
+	<script  type='text/javascript'  src='js/mohit.js'  ></script>
+	<script  type='text/javascript'  src='js/mohitlib.js'  ></script>
+	<script  type='text/javascript'  src='js/main.js'  ></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript">
+
+//		var myCenter = new google.maps.LatLng(28.535545, 77.207110);
+		function initialize() {
+		  var mapCanvas = document.getElementById('map-canvas');
+		  var mapOptions = {
+		    center:myCenter,
+		    zoom: 17,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		  }
+		  var map = new google.maps.Map(mapCanvas, mapOptions);
+		  var marker=new google.maps.Marker({
+		    position:myCenter,
+		  });
+		  marker.setMap(map);
+		}
+//		google.maps.event.addDomListener(window, 'load', initialize);
+
+		$(document).ready(function(){
+			$('a[href^="#"]').click(function(){
+				if($($(this).attr("href")).length>0) {
+					var topheight = $($(this).attr("href")).offset().top-100;
+					$("html,body").animate({
+						scrollTop:topheight
+					}, 1000);
+				}
+				return false;
+			});
+		});
+
+
+	</script>
+	</body>
+</html>

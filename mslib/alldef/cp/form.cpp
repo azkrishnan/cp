@@ -1,0 +1,133 @@
+define cp_contactus_form() {
+	div(class: "row") {
+		div(class: "col s12 l12 m12") {
+			h3(class: "grey-text text-darken-4") {
+				p("Contact US");
+			}
+		}
+		div(class: "col s12 l6 m6") {
+			h5(class: "grey-text text-darken-2") {
+				p("Address");
+				icon(name: "navigation", aclass: "tiny");
+			}
+			div(class: "grey-text") {
+				p("58/1 2nd Floor,<br> Kalu Sarai<br>  Near Hauz Khas Metro Station<br> New Delhi - 110016<br>India");
+			}
+		}
+		div(class: "col s12 l6 m6") {
+			h5(class: "grey-text text-darken-2") {
+				p("Mail");
+				icon(name: "mail", aclass: "tiny");
+			}
+			div(class: "grey-text") {
+				p("mohitsaini1196@gmail.com");
+			}
+			h5(class: "grey-text text-darken-2") {
+				p("Call");
+				icon(name: "call", aclass: "tiny");
+			}
+			div(class: "grey-text") {
+				p("+91 750 375 9053");
+			}
+		}
+	}
+}
+
+
+define cp_our_story() {
+	div(class: "card-content") {
+		h3(class: "card-title") {
+			p("Our Story");
+		}
+		div() {
+			p(our_story_content);
+		}
+	}
+}
+
+
+define headertabs_cp() {
+	li() {
+		a1(name: "MyFav", attr:{onclick: '$("#myfavlist").openModal();'});
+	}
+	li() {
+		a1(name: "Contact Us", attr:{onclick: '$("#contactusform").openModal();'});
+	}
+	li() {
+		a1(name: "Our Story", attr:{onclick: '$("#ourstory").openModal();'});
+	}
+	li() {
+		a1(name: "Provider Form", attr:{onclick: '$("#providerform").openModal();'});
+	}
+}
+
+
+define cp_filterform() {
+	div(class: "row") {
+		div("class": "col l11 s11 m11", id: "mainfilter") {
+			div(style:{"padding": "8px", "margin-bottom": "4px"}, class: "card-panel") {
+				input(attr:{placeholder: "Search Location", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc");
+			}
+			div(style:{"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, class: "card-panel") {
+				form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
+					input(attr:{placeholder: "Search keywords", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
+					button(attr: {type: "submit"}, style: {display: "none"});
+				}
+			}
+			if(false) {
+				ul(class: "collapsible", attr:{"data-collapsible": "accordion"}) {
+					for(i, ii, catg) {
+						li() {
+							div(class: "collapsible-header") {
+								icon1(img: i["icon"]);
+								// icon(name: "filter_drama");
+								p(i["name"]);
+							}
+							div(class: "collapsible-body") {
+								div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
+									ul(class: "collapsible_sub", attr:{"data-collapsible": "accordion"}) {
+										for(j, jj, i["child"]) {
+											li(class: "") {
+												div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
+													p(j["name"]);
+													// checkbox1(label: j["name"], id: "catsubcat"+ii+"_"+jj);
+												}
+												div(class: "collapsible-body") {
+													div(class: "subcats2", style:{"padding-left": "30px"}) {
+														ul() {
+															li() {
+																div() {
+																	checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall", aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]} );
+																}
+															}
+															for(k, kk, j["child"]) {
+																li() {
+																	div() {
+																		checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"});
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					div(style: {"background-color": "white", padding: "5px"}) {
+						a1(name: "See All Cats", attr:{onclick: '$("#commoncats").openModal();'});
+					}
+				}
+			}
+		}
+		div(class: "col l1 s1 m1") {
+			div(style:{"padding": "8px", "margin-bottom": "4px", "padding-left": "0px", "margin-left": "-20px"}) {
+				icon1(img: "photo/minimize1.png", class: "pointer", attr:{onclick: 'minimaxifilter(1);'});
+			}
+		}
+	}
+}
+

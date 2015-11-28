@@ -1,0 +1,7 @@
+python script.py compile
+
+
+function f() {
+	chmod 755 js/ css/ images/ font/ templates/ py/  *.php -R 
+}
+

@@ -1,0 +1,109 @@
+Pending:
+
+0. Move to my AWS, Please...I am unable to make any changes at this time :-)
+1. Adding cat/subcat details on business card.
+#####2. Minimize button - mobile optimized
+####3. Ability for the home to be pinned anywhere.
+4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
+#####5. Ability to extend or lessen radius
+6. Upload my data (will send it over to you) 
+7. Select All Cats: (1) Use Squares for cats, and circles for subcats (2) Smaller font sizes for subcats
+8. Upload new logo (you will have to work to make sure this looks good) 
+######9. Clustering of map markers within a close range
+10. Datamodel and database - excel sheets won't scale
+######11. Our Story and Contact Us pages -- Will provide you content for Our Story
+12. Show favorites in a different color map marker.
+13. Search Results: 
+Right now we say "X locations found in your area (x km)"
+
+Let's change it to:
+
+"X locations; Y classes found in your area (within x miles)"
+
+Where X = Number of Unique Provider + Addresses
+Where Y = Total number of classes (subcats for all matching cats found) for these X providers
+
+x mi = let's default the ring to x = 25 miles initially.
+
+
+So example: Let's say search results are as follows...then display:
+
+"1 Location; 7 classes found in your area (within 25 miles)"
+
+Tabs	Category	Sub-Category	Name of Provider
+Kids	Music	Piano	Fremont Mission Music Institute
+Kids	Music	Flute	Fremont Mission Music Institute
+Kids	Music	Clarinet	Fremont Mission Music Institute
+Kids	Music	Saxophone	Fremont Mission Music Institute
+Kids	Music	Violin	Fremont Mission Music Institute
+Kids	Music	Guitar	Fremont Mission Music Institute
+Kids	Music	Vocal	Fremont Mission Music Institute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Done Last Time
+
+** Creating a page with header, top links, logo { Designing }
+
+** rendering map on the whole page except header
+
+** Adding controllers in left side for tab, cat, subcat search. Adding a multiple select button with them. Adding collapsable feature to them.
+
+** Reading excell sheet & dumping it to database, creating a efficient data structure to store them in database based on unique id for each provider { location based }, each tab, subcat etc.
+
+** Calculating lat,lng of all providers using google's geolocation API { We just have address of providers}
+
+** Loading all the providers when loading the website and showing them on map, Showing current location, showing 50 KM radius, finding current location 1. Based on IP, 2. Based on google's API.
+Displaying the current focus of map on current location.
+
+** Redraw markers ( Show and Hide ) when ticked/unticked from some category.
+
+** Handling complecated selections like some providers can be there in multiple cat/subcat/tabs combination.
+
+** An input for location search, autocomplete using google's geolocation API, focus on diffrent location when searched, & display a message with number of matching.
+
+** An Input for keyword search, which can search anything ( Tab, Cat, Subcat, Provider's name, provider's Address, website, phone etc.), When search result comes, only shortlisted markers will be shown on map.
+
+** A bigger cat search popup, containing all cat, subcats in 3 tabs, Adding select all button for all cat, checkbox for all subcats.
+
+** Minimize icon for left search bar.
+
+** A unique id for provider, Which is google searchable, having provider's information, business url
+
+** Can view provider's info when clicked on corrosponding marker at bottom of the page.
+
+** Can add as Fav. to any provider, can see the whole list of myFav. anytime. Can open the business profile of all providers which are there in myFav list. Stored the myFav. list for every user in JavaScript Cookie. Which will be loaded when next time a user open the website.
+
+** 2. The number of searches that you show on the right within x km is brilliant.  But I think it's calculating incorrectly -- I think it's going by cats/subcats instead of unique names of providers :-) So maybe add it based on number of unique provider IDs maybe?
+#####For Unique location, there is only one marker { Which may come in multiple cat/subcat }.
+
+** 7.  Maybe we can remove the labels "Address" and "Call" and just have the icons - they are self-explanatory and beautiful at the same time will give space for more details?
+
+** 8. I am guessing you're going to move the business card to the right or bottom?
+
+** 9. Most importantly, make sure every provider has a unique URL that points to the map + business card of theirs.  Make it like classpundit.com/provider123 and also make sure they are completely indexable and searchable via Search Engines.
+
