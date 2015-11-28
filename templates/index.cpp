@@ -16,52 +16,11 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 			}
 		}
 	}
-	// div(class: "modal", id: "commoncats") {
-	// 	div(class: "modal-content") {
-	// 		div(class: "row") {
-	// 			div(class: "col s6 l6 m6") {
-	// 				p("Select The Cats");
-	// 			}
-	// 			div(class: "col s6 l6 m6") {
-	// 				button1(name: "OK", attr:{onclick: ' $("#commoncats").closeModal();'});
-	// 			}
-	// 		}
-	// 		div(class: "row") {
-	// 			ul(class: "tabs") {
-	// 				for(i, ii, catg) {
-	// 					li(class: "tab col l4 m4 s4") {
-	// 						a1(href: "#modal"+i["name"], name: i["name"]);
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 		div(class: "row") {
-	// 			for(i, ii, catg) {
-	// 				div(id: "modal"+i["name"], class: "row") {
-	// 					for(j, 4) {
-	// 						div(class: "col l3 m3 s6") {
-	// 							for(k, kk, commoncats[ii][j]) {
-	// 								div() {
-	// 									checkbox1(label: k[0], id: "commoncats_"+ii+"_"+j+"_"+kk, lstyle: {"color": "black", "font-size": "20px"}, data:{onclick: "selectall"});
-	// 									div(style:{ "font-wight": 700, "font-size": "18px" }) {
-	// 										//p(k[0]);
-	// 									}
-	// 									for(l, ll, k) {
-	// 										if(ll != 0) {
-	// 											div() {
-	// 												checkbox1(label: l, id: "commoncats_"+ii+"_"+j+"_"+kk+"_"+ll);
-	// 											}
-	// 										}
-	// 									}
-	// 								}
-	// 							}
-	// 						}
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
+	div(class: "modal", id: "commoncats") {
+		div(class: "modal-content") {
+			cp_selectallcatgs();
+		}
+	}
 	// div(id: "bcard1", class: "modal bottom-sheet") {
 	// 	div(class: "modal-content") {
 	// 		p("Mohit");

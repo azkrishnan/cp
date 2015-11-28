@@ -74,7 +74,7 @@ define cp_filterform() {
 					button(attr: {type: "submit"}, style: {display: "none"});
 				}
 			}
-			if(false) {
+			if(true) {
 				ul(class: "collapsible", attr:{"data-collapsible": "accordion"}) {
 					for(i, ii, catg) {
 						li() {
@@ -97,13 +97,13 @@ define cp_filterform() {
 														ul() {
 															li() {
 																div() {
-																	checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall", aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]} );
+																	checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall", aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]}, labels:{"font-size": "12px"});
 																}
 															}
 															for(k, kk, j["child"]) {
 																li() {
 																	div() {
-																		checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"});
+																		checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"}, labels:{"font-size": "12px"});
 																	}
 																}
 															}
@@ -131,3 +131,51 @@ define cp_filterform() {
 	}
 }
 
+
+
+
+
+define cp_selectallcatgs() {
+	div(class: "row") {
+		div(class: "col s6 l6 m6") {
+			p("Select The Cats");
+		}
+		div(class: "col s6 l6 m6") {
+			button1(name: "OK", attr:{onclick: ' $("#commoncats").closeModal();'});
+		}
+	}
+	div(class: "row") {
+		ul(class: "tabs") {
+			for(i, ii, catg) {
+				li(class: "tab col l4 m4 s4") {
+					a1(href: "#modal"+i["name"], name: i["name"]);
+				}
+			}
+		}
+	}
+	div(class: "row") {
+		for(i, ii, catg) {
+			div(id: "modal"+i["name"], class: "row") {
+				for(j, 4) {
+					div(class: "col l3 m3 s6") {
+						for(k, kk, commoncats[ii][j]) {
+							div() {
+								checkbox1(label: k[0], id: "commoncats_"+ii+"_"+j+"_"+kk, lstyle: {"color": "black", "font-size": "20px"}, data:{onclick: "selectall"}, labels:{"color": "black"});
+								div(style:{ "font-wight": 700, "font-size": "18px" }) {
+									//p(k[0]);
+								}
+								for(l, ll, k) {
+									if(ll != 0) {
+										div() {
+											checkbox1(label: l, id: "commoncats_"+ii+"_"+j+"_"+kk+"_"+ll, labels:{"font-size": "12px"});
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

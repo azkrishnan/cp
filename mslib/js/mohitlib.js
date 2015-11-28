@@ -526,9 +526,13 @@ var inpmultiple={
 
 
 function selectAll(obj) { //good one.
-	var cur;
-	for(cur=$(obj); cur.find("input[type=checkbox]").length<=1; cur=cur.parent() );
-	var cblist = cur.find("input[type=checkbox]");
+	var getchecboxs = function (cur) {
+		return merge1(tolist(cur.find("input[type=checkbox]")), tolist(cur.find("input[type=radio]")));
+	}
+	var cur = lookontop(obj, function(x){
+		return (getchecboxs(x).length > 1);
+	});
+	var cblist = getchecboxs($(cur));
 	for(var i=1; i< cblist.length; i++ ) {
 		cblist[i].checked = obj.checked;
 	}
@@ -1127,3 +1131,40 @@ function indexedlist(l) {
 	}, l);
 }
 
+
+
+
+
+
+
+
+
+function push1(l1, x) {
+	return r1(l1.push(x), l1);
+}
+
+function inlist(l, e) {
+	return (l.indexOf(e)!=-1);
+}
+
+function push2(l, x) {
+	return inlist(l,x) ? l: push1(l, x);
+}
+
+function merge_f(l1, l2, push_style) {
+	return fold(function(x,y) { return push_style(x,y); }, l2, l1);
+}
+
+function merge1(l1, l2) {
+	return merge_f(l1, l2, push1);
+}
+
+function merge2(l1, l2) {
+	return merge_f(l1, l2, push2);
+}
+
+function tolist(l) {
+	return map(function(x){
+		return l[x];
+	}, range(l.length));
+}

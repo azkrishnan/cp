@@ -230,15 +230,24 @@ define icon1() {
 }
 
 
-define checkbox1(checked: None, label:"Check", aclass:"") {
+define checkbox1(checked: None, label:"Check", aclass:"", labels:{}) {
 	span() {
 		input(attr:{type: "checkbox", id: id, checked: checked}, class: "filled-in "+aclass, data: data);
-		label(attr:{"for": id}) {
+		label(attr:{"for": id}, style: labels) {
 			p(label);
 		}
 	}
 }
 
+
+define checkbox2(checked: None, label:"Check", aclass:"", labels:{}) {
+	span() {
+		input(attr:{type: "radio", id: id, checked: checked}, class: "with-gap "+aclass, data: data);
+		label(attr:{"for": id}, style: labels) {
+			p(label);
+		}
+	}
+}
 
 define bigf(font: "65px") {
 	span(style:{"font-size": font, "text-shadow": "3px 3px 3px #000, 2px 2px 2px blue"}, color: color) {

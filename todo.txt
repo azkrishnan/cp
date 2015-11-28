@@ -7,7 +7,9 @@ Pending:
 4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
 #####5. Ability to extend or lessen radius
 6. Upload my data (will send it over to you) 
-7. Select All Cats: (1) Use Squares for cats, and circles for subcats (2) Smaller font sizes for subcats
+7. Select All Cats: (1) Use Squares for cats, and circles for subcats 
+######(2) Smaller font sizes for subcats
+>>>>>I am getting problem in (coding) making it circle.
 8. Upload new logo (you will have to work to make sure this looks good) 
 ######9. Clustering of map markers within a close range
 10. Datamodel and database - excel sheets won't scale
