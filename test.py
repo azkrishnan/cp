@@ -1,4 +1,4 @@
-import xlrd, requests, urllib
+#import xlrd, requests, urllib
 
 _agent = "gcl";
 
