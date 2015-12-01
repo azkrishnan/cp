@@ -9,5 +9,6 @@ class server_action:
 		return tnow();
 
 	def query(self, cmd):
-		return "Saini";
+		_sql;
+		return "This is query output";
 

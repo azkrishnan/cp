@@ -185,8 +185,8 @@ class mtmlparser:
 				mergeifunset(inattr["style"], {"color": geta("color", inattr)}, True, True);
 				inattr["attr"]["style"] = inattr["style"];
 
-				mifu(inattr["attr"], l2dict(("data-"+i, inattr["data"][i]) for i in inattr["data"]));
-				mifu(inattr["attr"], l2dict(("data-send"+i, inattr["datas"][i]) for i in inattr["datas"]));
+				mifu(inattr["attr"], dict(("data-"+i, inattr["data"][i]) for i in inattr["data"]));
+				mifu(inattr["attr"], dict(("data-send"+i, inattr["datas"][i]) for i in inattr["datas"]));
 
 				innerHTML = expend(t[3], gamma, funcs, depth+1)[0];
 				if(funcs.has_key(tagname)):

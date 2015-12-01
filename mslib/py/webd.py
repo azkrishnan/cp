@@ -1,3 +1,9 @@
+execfile(_mslib+"py/config.py");
+
+def mprint(*x):
+	global _printout;
+	_printout += (", ".join(str(i) for i in x));
+
 
 def msgdummy(phone, msg):
 	msgfile = "data/msgf";

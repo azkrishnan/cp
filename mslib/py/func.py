@@ -39,9 +39,6 @@ def mapp(f, l, filt=None, keyf=None): #preserve the order for simple list.( Chil
 def mappl(f, l, filt=None, keyf=None):
 	return mapp(f, l, filt, keyf).values();
 
-def mprint(*x):
-	global _printout;
-	_printout += (", ".join(str(i) for i in x));
 
 def gkeys(a):
 	return range(len(a)) if type(a) == list else a.keys();

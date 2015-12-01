@@ -19,7 +19,7 @@ try:
 	s.connect((HOST, PORT))
 	for i in range(5):
 		print "%f"%time.time();
-		my_send(s, json.dumps({"action": "tnow"}));
+		my_send(s, json.dumps({"action": "sql", "query": ["select * from users", {}, {}, "g"] }));
 		my_recv(s)+";";
 	my_send(s, json.dumps({"isclose": True}));
 	s.close()

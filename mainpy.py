@@ -1,15 +1,15 @@
+_agent = "poorvi";
 execfile("includes/setting.py");
 
-_printout = ""
+import time;
 
-execfile(_mslib+"py/func.py");
+from msl import *
+from msl.help import *
+from msl.sql import *
+from msl.mtime import *;
+
 execfile(_mslib+"ocaml/run.py");
 
-#mprint("%.10f" % time.time());
-
-_agent = "poorvi";
-_toresize = {};
-_phpheader = "";
 try:
 	inpdata = udicttostr(json.loads(sys.argv[1]));
 	_session = inpdata["session"];
@@ -22,12 +22,9 @@ except:
 	print "Error in reading php vars";
 	(_session, _get, _post, _urlpath, _file, _addinfo) = ({}, {}, {}, '', {}, {});
 
-
 execfile(_mslib+"py/webd.py");
 
-
 exec(read_file(ROOT+"py/main.py"));
-
 
 filename = ("index" if _urlpath == "" else _urlpath);
 
@@ -37,10 +34,11 @@ else:
 	pageh = pagehandler(filename).call();
 	maincontent = mtmlparser();
 	maincontent.readcompiled(filename+".cpp");
-	mprint(maincontent.disp( mifu(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True) ));
+#	write_file("cache_mainpage.html", maincontent.disp(mifu(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True) ));
+	mprint(read_file("cache_mainpage.html"));
+
+
 
 _sql.close_db();
-
-#mprint("%.10f" % time.time());
 
 print json.dumps({"printout": _printout, "_SESSION": _session, "_header": _phpheader, "toresize": _toresize});

@@ -1,0 +1,3736 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href='http://privateweb.iitd.ac.in/~cs1120233/cp/' >
+    <title>
+      Class Pundit
+    </title>
+    <link href='css/materialize.min.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/lib.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/materialize.min.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/custom-stylesheet.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/jquery.bxslider.css'  type='text/css'  rel='stylesheet' >
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons'  type='text/css'  rel='stylesheet' >
+    <link href='css/lib.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/main.css'  type='text/css'  rel='stylesheet' >
+    <link href='css/style.css'  type='text/css'  rel='stylesheet' >
+  </head>
+  <body>
+  <div class='navbar-fixed ' >
+    <nav role='container'  class='white' >
+      <div class='nav-wrapper container' >
+        <a href='http://privateweb.iitd.ac.in/~cs1120233/cp/'  id='logo-container'  class='brand-logo' >
+          <img src='photo/mylogo1.png'  class='circle responsive-img'  style='vertical-align:middle' >
+        </a>
+        <ul class='right hide-on-med-and-down' >
+          <li>
+            <a name='MyFav'  onclick='$("#myfavlist").openModal();' >
+              MyFav
+            </a>
+          </li>
+          <li>
+            <a name='Contact Us'  onclick='$("#contactusform").openModal();' >
+              Contact Us
+            </a>
+          </li>
+          <li>
+            <a name='Our Story'  onclick='$("#ourstory").openModal();' >
+              Our Story
+            </a>
+          </li>
+          <li>
+            <a name='Provider Form'  onclick='$("#providerform").openModal();' >
+              Provider Form
+            </a>
+          </li>
+        </ul>
+        <ul class='side-nav'  id='nav-mobile' >
+          <li>
+            <a name='MyFav'  onclick='$("#myfavlist").openModal();' >
+              MyFav
+            </a>
+          </li>
+          <li>
+            <a name='Contact Us'  onclick='$("#contactusform").openModal();' >
+              Contact Us
+            </a>
+          </li>
+          <li>
+            <a name='Our Story'  onclick='$("#ourstory").openModal();' >
+              Our Story
+            </a>
+          </li>
+          <li>
+            <a name='Provider Form'  onclick='$("#providerform").openModal();' >
+              Provider Form
+            </a>
+          </li>
+        </ul>
+        <a class='button-collapse'  data-activates='nav-mobile' >
+          <i class='material-icons ' >
+            menu
+          </i>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div id='map'  style='height:100%' >
+  </div>
+  <div class='catgselect' >
+    <div id='maincontrol' >
+      <div class='row' >
+        <div class='col l11 s11 m11'  id='mainfilter' >
+          <div class='card-panel'  style='padding:8px;margin-bottom:4px' >
+            <input autofocus='true'  placeholder='Search Location'  class='inputplaceholder mainsearch'  id='searchloc'  style='border-radius:0px;font-size:13px;border:solid black 0px' >
+          </div>
+          <div class='card-panel'  style='padding:8px;margin-top:0px;margin-bottom:-5px' >
+            <form data-onsubmit='sreq'  data-action='search'  data-res='draw_points(data.data);'  data-bobj='' >
+              <input placeholder='Search keywords'  name='keyw'  class='inputplaceholder mainsearch'  style='border-radius:0px;font-size:13px;border:solid black 0px' >
+              <button type='submit'  style='display:none' >
+              </button>
+            </form>
+          </div>
+<ul data-collapsible='accordion'  class='collapsible' >
+  <li>
+    <div class='collapsible-header' >
+      <img src='photo/kid1.png'  style='margin-bottom:-5px' >
+      Kids
+    </div>
+    <div class='collapsible-body' >
+      <div class='subcats1'  style='padding:5px;padding-top:0px;padding-left:20px;padding-bottom:0px' >
+        <ul data-collapsible='accordion'  class='collapsible_sub' >
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Music
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_0_selectall' >
+                        <label for='catsubcat0_0_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_1'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_0' >
+                        <label for='catsubcat0_0_0'  style='font-size:12px' >
+                          Piano
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_2'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_1' >
+                        <label for='catsubcat0_0_1'  style='font-size:12px' >
+                          Flute
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_3'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_2' >
+                        <label for='catsubcat0_0_2'  style='font-size:12px' >
+                          Clarinet
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_4'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_3' >
+                        <label for='catsubcat0_0_3'  style='font-size:12px' >
+                          Saxophone
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_5'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_4' >
+                        <label for='catsubcat0_0_4'  style='font-size:12px' >
+                          Violin
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_6'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_5' >
+                        <label for='catsubcat0_0_5'  style='font-size:12px' >
+                          Guitar
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_7'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_6' >
+                        <label for='catsubcat0_0_6'  style='font-size:12px' >
+                          Vocal
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_8'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_7' >
+                        <label for='catsubcat0_0_7'  style='font-size:12px' >
+                          Viola
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_1_9'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_0_8' >
+                        <label for='catsubcat0_0_8'  style='font-size:12px' >
+                          Cello
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Gym
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_2'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_1_selectall' >
+                        <label for='catsubcat0_1_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_2_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_1_0' >
+                        <label for='catsubcat0_1_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Body, Health & Fitness
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_3'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_2_selectall' >
+                        <label for='catsubcat0_2_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_3_11'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_2_0' >
+                        <label for='catsubcat0_2_0'  style='font-size:12px' >
+                          Gym
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Arts
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_4'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_3_selectall' >
+                        <label for='catsubcat0_3_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_4_12'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_3_0' >
+                        <label for='catsubcat0_3_0'  style='font-size:12px' >
+                          Arts
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_4_13'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_3_1' >
+                        <label for='catsubcat0_3_1'  style='font-size:12px' >
+                          Ceramics
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_4_14'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_3_2' >
+                        <label for='catsubcat0_3_2'  style='font-size:12px' >
+                          Pottery Painting
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Foreign Languages
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_4_selectall' >
+                        <label for='catsubcat0_4_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_16'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_0' >
+                        <label for='catsubcat0_4_0'  style='font-size:12px' >
+                          Tamil
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_17'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_1' >
+                        <label for='catsubcat0_4_1'  style='font-size:12px' >
+                          Malayalam
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_18'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_2' >
+                        <label for='catsubcat0_4_2'  style='font-size:12px' >
+                          Kannada
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_19'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_3' >
+                        <label for='catsubcat0_4_3'  style='font-size:12px' >
+                          Telugu
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_20'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_4' >
+                        <label for='catsubcat0_4_4'  style='font-size:12px' >
+                          Sanskrit
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_5_15'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_4_5' >
+                        <label for='catsubcat0_4_5'  style='font-size:12px' >
+                          Hindi
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Music1
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_10'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat0_5_selectall' >
+                        <label for='catsubcat0_5_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='1_10_2'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat0_5_0' >
+                        <label for='catsubcat0_5_0'  style='font-size:12px' >
+                          Flute
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class='collapsible-header' >
+      <img src='photo/adult1.png'  style='margin-bottom:-5px' >
+      Adults
+    </div>
+    <div class='collapsible-body' >
+      <div class='subcats1'  style='padding:5px;padding-top:0px;padding-left:20px;padding-bottom:0px' >
+        <ul data-collapsible='accordion'  class='collapsible_sub' >
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Music
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat1_0_selectall' >
+                        <label for='catsubcat1_0_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_1'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_0' >
+                        <label for='catsubcat1_0_0'  style='font-size:12px' >
+                          Piano
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_2'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_1' >
+                        <label for='catsubcat1_0_1'  style='font-size:12px' >
+                          Flute
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_3'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_2' >
+                        <label for='catsubcat1_0_2'  style='font-size:12px' >
+                          Clarinet
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_4'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_3' >
+                        <label for='catsubcat1_0_3'  style='font-size:12px' >
+                          Saxophone
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_5'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_4' >
+                        <label for='catsubcat1_0_4'  style='font-size:12px' >
+                          Violin
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_6'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_5' >
+                        <label for='catsubcat1_0_5'  style='font-size:12px' >
+                          Guitar
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_7'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_6' >
+                        <label for='catsubcat1_0_6'  style='font-size:12px' >
+                          Vocal
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_8'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_7' >
+                        <label for='catsubcat1_0_7'  style='font-size:12px' >
+                          Viola
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_1_9'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_0_8' >
+                        <label for='catsubcat1_0_8'  style='font-size:12px' >
+                          Cello
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Gym
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_2'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat1_1_selectall' >
+                        <label for='catsubcat1_1_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_2_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_1_0' >
+                        <label for='catsubcat1_1_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Body, Health & Fitness
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_3'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat1_2_selectall' >
+                        <label for='catsubcat1_2_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_3_11'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_2_0' >
+                        <label for='catsubcat1_2_0'  style='font-size:12px' >
+                          Gym
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Foreign Languages
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat1_3_selectall' >
+                        <label for='catsubcat1_3_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_16'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_0' >
+                        <label for='catsubcat1_3_0'  style='font-size:12px' >
+                          Tamil
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_17'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_1' >
+                        <label for='catsubcat1_3_1'  style='font-size:12px' >
+                          Malayalam
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_18'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_2' >
+                        <label for='catsubcat1_3_2'  style='font-size:12px' >
+                          Kannada
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_19'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_3' >
+                        <label for='catsubcat1_3_3'  style='font-size:12px' >
+                          Telugu
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_20'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_4' >
+                        <label for='catsubcat1_3_4'  style='font-size:12px' >
+                          Sanskrit
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='2_5_15'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat1_3_5' >
+                        <label for='catsubcat1_3_5'  style='font-size:12px' >
+                          Hindi
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class='collapsible-header' >
+      <img src='photo/dog1.png'  style='margin-bottom:-5px' >
+      Pets
+    </div>
+    <div class='collapsible-body' >
+      <div class='subcats1'  style='padding:5px;padding-top:0px;padding-left:20px;padding-bottom:0px' >
+        <ul data-collapsible='accordion'  class='collapsible_sub' >
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Pet Walking
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_8'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat2_0_selectall' >
+                        <label for='catsubcat2_0_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_8_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat2_0_0' >
+                        <label for='catsubcat2_0_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Pet Walking1
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_9'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat2_1_selectall' >
+                        <label for='catsubcat2_1_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_9_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat2_1_0' >
+                        <label for='catsubcat2_1_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Pet Training
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_6'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat2_2_selectall' >
+                        <label for='catsubcat2_2_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_6_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat2_2_0' >
+                        <label for='catsubcat2_2_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class='' >
+            <div class='collapsible-header'  style='border-top:1px solid #DDD;border-bottom:solid black 0px' >
+              Pet Sitting
+            </div>
+            <div class='collapsible-body' >
+              <div class='subcats2'  style='padding-left:30px' >
+                <ul>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_7'  class='filled-in selectall'  data-onclick='selectall redraw'  type='checkbox'  id='catsubcat2_3_selectall' >
+                        <label for='catsubcat2_3_selectall'  style='font-size:12px' >
+                          Select All
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <span>
+                        <input data-catgtid='3_7_10'  class='filled-in '  data-onclick='redraw'  type='checkbox'  id='catsubcat2_3_0' >
+                        <label for='catsubcat2_3_0'  style='font-size:12px' >
+                          Miscellaneous
+                        </label>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <div style='padding:5px;background-color:white' >
+    <a name='See All Cats'  onclick='$("#commoncats").openModal();' >
+      See All Cats
+    </a>
+  </div>
+</ul>
+        </div>
+        <div class='col l1 s1 m1' >
+          <div style='padding:8px;padding-left:0px;margin-bottom:4px;margin-left:-20px' >
+            <img src='photo/minimize1.png'  class='pointer'  onclick='minimaxifilter(1);'  style='margin-bottom:-5px' >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id='maincontrol1'  style='display:none' >
+      <div class='row' >
+        <div class='col l1 s1 m1' >
+          <div style='padding:8px;padding-left:0px;margin-bottom:4px;margin-left:-20px' >
+            <img src='photo/plus1.png'  class='pointer'  onclick='minimaxifilter(2);'  style='margin-bottom:-5px' >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='modal'  id='commoncats' >
+    <div class='modal-content' >
+      <div class='row' >
+        <div class='col s6 l6 m6' >
+          Select The Cats
+        </div>
+        <div class='col s6 l6 m6' >
+          <button name='OK'  onclick=' $("#commoncats").closeModal();'  class='btn waves-effect waves-light btn ' >
+            OK
+          </button>
+        </div>
+      </div>
+      <div class='row' >
+        <ul class='tabs' >
+          <li class='tab col l4 m4 s4' >
+            <a href='#modalKids'  name='Kids' >
+              Kids
+            </a>
+          </li>
+          <li class='tab col l4 m4 s4' >
+            <a href='#modalAdults'  name='Adults' >
+              Adults
+            </a>
+          </li>
+          <li class='tab col l4 m4 s4' >
+            <a href='#modalPets'  name='Pets' >
+              Pets
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class='row' >
+        <div class='row'  id='modalKids' >
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_0_0' >
+                <label for='commoncats_0_0_0'  style='color:black' >
+                  Outdoor Activity
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_1'  class='filled-in ' >
+    <label for='commoncats_0_0_0_1'  style='font-size:12px' >
+      Auditorium
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_2'  class='filled-in ' >
+    <label for='commoncats_0_0_0_2'  style='font-size:12px' >
+      Boating
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_3'  class='filled-in ' >
+    <label for='commoncats_0_0_0_3'  style='font-size:12px' >
+      Botanical Garden
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_4'  class='filled-in ' >
+    <label for='commoncats_0_0_0_4'  style='font-size:12px' >
+      Cycling
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_5'  class='filled-in ' >
+    <label for='commoncats_0_0_0_5'  style='font-size:12px' >
+      Farm
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_6'  class='filled-in ' >
+    <label for='commoncats_0_0_0_6'  style='font-size:12px' >
+      Hiking
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_7'  class='filled-in ' >
+    <label for='commoncats_0_0_0_7'  style='font-size:12px' >
+      Museum
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_8'  class='filled-in ' >
+    <label for='commoncats_0_0_0_8'  style='font-size:12px' >
+      Park
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_9'  class='filled-in ' >
+    <label for='commoncats_0_0_0_9'  style='font-size:12px' >
+      Playground
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_10'  class='filled-in ' >
+    <label for='commoncats_0_0_0_10'  style='font-size:12px' >
+      Recreation Center
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_11'  class='filled-in ' >
+    <label for='commoncats_0_0_0_11'  style='font-size:12px' >
+      Train Ride
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_0_12'  class='filled-in ' >
+    <label for='commoncats_0_0_0_12'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_0_1' >
+                <label for='commoncats_0_0_1'  style='color:black' >
+                  Academic Enrichment
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_1'  class='filled-in ' >
+    <label for='commoncats_0_0_1_1'  style='font-size:12px' >
+      Coding
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_2'  class='filled-in ' >
+    <label for='commoncats_0_0_1_2'  style='font-size:12px' >
+      Debating
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_3'  class='filled-in ' >
+    <label for='commoncats_0_0_1_3'  style='font-size:12px' >
+      Administration of Justice
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_4'  class='filled-in ' >
+    <label for='commoncats_0_0_1_4'  style='font-size:12px' >
+      Biological Sciences
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_5'  class='filled-in ' >
+    <label for='commoncats_0_0_1_5'  style='font-size:12px' >
+      Anthropology
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_6'  class='filled-in ' >
+    <label for='commoncats_0_0_1_6'  style='font-size:12px' >
+      Sprinkler Fitte
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_7'  class='filled-in ' >
+    <label for='commoncats_0_0_1_7'  style='font-size:12px' >
+      Architecture
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_8'  class='filled-in ' >
+    <label for='commoncats_0_0_1_8'  style='font-size:12px' >
+      Chemistry
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_9'  class='filled-in ' >
+    <label for='commoncats_0_0_1_9'  style='font-size:12px' >
+      Communication
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_10'  class='filled-in ' >
+    <label for='commoncats_0_0_1_10'  style='font-size:12px' >
+      Foreign Languages
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_11'  class='filled-in ' >
+    <label for='commoncats_0_0_1_11'  style='font-size:12px' >
+      Journalism
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_12'  class='filled-in ' >
+    <label for='commoncats_0_0_1_12'  style='font-size:12px' >
+      Lego
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_13'  class='filled-in ' >
+    <label for='commoncats_0_0_1_13'  style='font-size:12px' >
+      Math
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_14'  class='filled-in ' >
+    <label for='commoncats_0_0_1_14'  style='font-size:12px' >
+      Public Speaking
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_15'  class='filled-in ' >
+    <label for='commoncats_0_0_1_15'  style='font-size:12px' >
+      Reading
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_16'  class='filled-in ' >
+    <label for='commoncats_0_0_1_16'  style='font-size:12px' >
+      Robotics
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_17'  class='filled-in ' >
+    <label for='commoncats_0_0_1_17'  style='font-size:12px' >
+      STEM
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_18'  class='filled-in ' >
+    <label for='commoncats_0_0_1_18'  style='font-size:12px' >
+      Test Prep
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_19'  class='filled-in ' >
+    <label for='commoncats_0_0_1_19'  style='font-size:12px' >
+      Writing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_1_20'  class='filled-in ' >
+    <label for='commoncats_0_0_1_20'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_0_2' >
+                <label for='commoncats_0_0_2'  style='color:black' >
+                  After School
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_2_1'  class='filled-in ' >
+    <label for='commoncats_0_0_2_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_0_3' >
+                <label for='commoncats_0_0_3'  style='color:black' >
+                  Pre-School 
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_3_1'  class='filled-in ' >
+    <label for='commoncats_0_0_3_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_0_4' >
+                <label for='commoncats_0_0_4'  style='color:black' >
+                  Middle School 
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_0_4_1'  class='filled-in ' >
+    <label for='commoncats_0_0_4_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_1_0' >
+                <label for='commoncats_0_1_0'  style='color:black' >
+                  Arts & Crafts
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_1'  class='filled-in ' >
+    <label for='commoncats_0_1_0_1'  style='font-size:12px' >
+      Arts
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_2'  class='filled-in ' >
+    <label for='commoncats_0_1_0_2'  style='font-size:12px' >
+      Ceramics
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_3'  class='filled-in ' >
+    <label for='commoncats_0_1_0_3'  style='font-size:12px' >
+      Pottery Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_4'  class='filled-in ' >
+    <label for='commoncats_0_1_0_4'  style='font-size:12px' >
+      Claywork
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_5'  class='filled-in ' >
+    <label for='commoncats_0_1_0_5'  style='font-size:12px' >
+      Cooking
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_6'  class='filled-in ' >
+    <label for='commoncats_0_1_0_6'  style='font-size:12px' >
+      Crafts
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_7'  class='filled-in ' >
+    <label for='commoncats_0_1_0_7'  style='font-size:12px' >
+      Photography
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_8'  class='filled-in ' >
+    <label for='commoncats_0_1_0_8'  style='font-size:12px' >
+      Oil Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_9'  class='filled-in ' >
+    <label for='commoncats_0_1_0_9'  style='font-size:12px' >
+      Acrylic Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_10'  class='filled-in ' >
+    <label for='commoncats_0_1_0_10'  style='font-size:12px' >
+      Art History
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_11'  class='filled-in ' >
+    <label for='commoncats_0_1_0_11'  style='font-size:12px' >
+      Astronomy
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_12'  class='filled-in ' >
+    <label for='commoncats_0_1_0_12'  style='font-size:12px' >
+      Automotive Technology
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_13'  class='filled-in ' >
+    <label for='commoncats_0_1_0_13'  style='font-size:12px' >
+      Stained Glass
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_14'  class='filled-in ' >
+    <label for='commoncats_0_1_0_14'  style='font-size:12px' >
+      Cake Decoration
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_15'  class='filled-in ' >
+    <label for='commoncats_0_1_0_15'  style='font-size:12px' >
+      Painting & Drawing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_16'  class='filled-in ' >
+    <label for='commoncats_0_1_0_16'  style='font-size:12px' >
+      Jewelry Making
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_17'  class='filled-in ' >
+    <label for='commoncats_0_1_0_17'  style='font-size:12px' >
+      Paper Crafting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_18'  class='filled-in ' >
+    <label for='commoncats_0_1_0_18'  style='font-size:12px' >
+      Knitting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_19'  class='filled-in ' >
+    <label for='commoncats_0_1_0_19'  style='font-size:12px' >
+      Crochetting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_20'  class='filled-in ' >
+    <label for='commoncats_0_1_0_20'  style='font-size:12px' >
+      Theater
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_0_21'  class='filled-in ' >
+    <label for='commoncats_0_1_0_21'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_1_1' >
+                <label for='commoncats_0_1_1'  style='color:black' >
+                  Dance
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_1'  class='filled-in ' >
+    <label for='commoncats_0_1_1_1'  style='font-size:12px' >
+      Ballet
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_2'  class='filled-in ' >
+    <label for='commoncats_0_1_1_2'  style='font-size:12px' >
+      Ballroom Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_3'  class='filled-in ' >
+    <label for='commoncats_0_1_1_3'  style='font-size:12px' >
+      Bhangra
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_4'  class='filled-in ' >
+    <label for='commoncats_0_1_1_4'  style='font-size:12px' >
+      Bharathnatyam
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_5'  class='filled-in ' >
+    <label for='commoncats_0_1_1_5'  style='font-size:12px' >
+      Bollywood
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_6'  class='filled-in ' >
+    <label for='commoncats_0_1_1_6'  style='font-size:12px' >
+      Chinese Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_7'  class='filled-in ' >
+    <label for='commoncats_0_1_1_7'  style='font-size:12px' >
+      Contemporary
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_8'  class='filled-in ' >
+    <label for='commoncats_0_1_1_8'  style='font-size:12px' >
+      Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_9'  class='filled-in ' >
+    <label for='commoncats_0_1_1_9'  style='font-size:12px' >
+      Devotional Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_10'  class='filled-in ' >
+    <label for='commoncats_0_1_1_10'  style='font-size:12px' >
+      Hawaiian
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_11'  class='filled-in ' >
+    <label for='commoncats_0_1_1_11'  style='font-size:12px' >
+      HipHop
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_12'  class='filled-in ' >
+    <label for='commoncats_0_1_1_12'  style='font-size:12px' >
+      Hula
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_13'  class='filled-in ' >
+    <label for='commoncats_0_1_1_13'  style='font-size:12px' >
+      Indian Classical Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_14'  class='filled-in ' >
+    <label for='commoncats_0_1_1_14'  style='font-size:12px' >
+      Indian Folk Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_15'  class='filled-in ' >
+    <label for='commoncats_0_1_1_15'  style='font-size:12px' >
+      Irish Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_16'  class='filled-in ' >
+    <label for='commoncats_0_1_1_16'  style='font-size:12px' >
+      Toddler Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_17'  class='filled-in ' >
+    <label for='commoncats_0_1_1_17'  style='font-size:12px' >
+      Jazz Piano
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_18'  class='filled-in ' >
+    <label for='commoncats_0_1_1_18'  style='font-size:12px' >
+      Kathak
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_19'  class='filled-in ' >
+    <label for='commoncats_0_1_1_19'  style='font-size:12px' >
+      Kuchipudi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_20'  class='filled-in ' >
+    <label for='commoncats_0_1_1_20'  style='font-size:12px' >
+      Lyrical
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_21'  class='filled-in ' >
+    <label for='commoncats_0_1_1_21'  style='font-size:12px' >
+      Mohiniyaattam
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_22'  class='filled-in ' >
+    <label for='commoncats_0_1_1_22'  style='font-size:12px' >
+      Rabindra Nritya
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_23'  class='filled-in ' >
+    <label for='commoncats_0_1_1_23'  style='font-size:12px' >
+      Tahitian Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_24'  class='filled-in ' >
+    <label for='commoncats_0_1_1_24'  style='font-size:12px' >
+      Foxtrot
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_25'  class='filled-in ' >
+    <label for='commoncats_0_1_1_25'  style='font-size:12px' >
+      Salsa
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_26'  class='filled-in ' >
+    <label for='commoncats_0_1_1_26'  style='font-size:12px' >
+      Tango
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_27'  class='filled-in ' >
+    <label for='commoncats_0_1_1_27'  style='font-size:12px' >
+      Tap
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_28'  class='filled-in ' >
+    <label for='commoncats_0_1_1_28'  style='font-size:12px' >
+      Samba
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_1_1_29'  class='filled-in ' >
+    <label for='commoncats_0_1_1_29'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_2_0' >
+                <label for='commoncats_0_2_0'  style='color:black' >
+                  Music
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_1'  class='filled-in ' >
+    <label for='commoncats_0_2_0_1'  style='font-size:12px' >
+      Acoustic Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_2'  class='filled-in ' >
+    <label for='commoncats_0_2_0_2'  style='font-size:12px' >
+      Alto Sax
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_3'  class='filled-in ' >
+    <label for='commoncats_0_2_0_3'  style='font-size:12px' >
+      Bass Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_4'  class='filled-in ' >
+    <label for='commoncats_0_2_0_4'  style='font-size:12px' >
+      Bassoon
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_5'  class='filled-in ' >
+    <label for='commoncats_0_2_0_5'  style='font-size:12px' >
+      Bhajan
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_6'  class='filled-in ' >
+    <label for='commoncats_0_2_0_6'  style='font-size:12px' >
+      Brass
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_7'  class='filled-in ' >
+    <label for='commoncats_0_2_0_7'  style='font-size:12px' >
+      Cello
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_8'  class='filled-in ' >
+    <label for='commoncats_0_2_0_8'  style='font-size:12px' >
+      Choir
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_9'  class='filled-in ' >
+    <label for='commoncats_0_2_0_9'  style='font-size:12px' >
+      Clarinet
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_10'  class='filled-in ' >
+    <label for='commoncats_0_2_0_10'  style='font-size:12px' >
+      Classical Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_11'  class='filled-in ' >
+    <label for='commoncats_0_2_0_11'  style='font-size:12px' >
+      Dhol
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_12'  class='filled-in ' >
+    <label for='commoncats_0_2_0_12'  style='font-size:12px' >
+      Dholak
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_13'  class='filled-in ' >
+    <label for='commoncats_0_2_0_13'  style='font-size:12px' >
+      Drums
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_14'  class='filled-in ' >
+    <label for='commoncats_0_2_0_14'  style='font-size:12px' >
+      Electric Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_15'  class='filled-in ' >
+    <label for='commoncats_0_2_0_15'  style='font-size:12px' >
+      Erhu
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_16'  class='filled-in ' >
+    <label for='commoncats_0_2_0_16'  style='font-size:12px' >
+      Flute
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_17'  class='filled-in ' >
+    <label for='commoncats_0_2_0_17'  style='font-size:12px' >
+      Folk
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_18'  class='filled-in ' >
+    <label for='commoncats_0_2_0_18'  style='font-size:12px' >
+      French Horn
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_19'  class='filled-in ' >
+    <label for='commoncats_0_2_0_19'  style='font-size:12px' >
+      Flugel Horn
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_20'  class='filled-in ' >
+    <label for='commoncats_0_2_0_20'  style='font-size:12px' >
+      Fusion
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_21'  class='filled-in ' >
+    <label for='commoncats_0_2_0_21'  style='font-size:12px' >
+      Ghuzeng
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_22'  class='filled-in ' >
+    <label for='commoncats_0_2_0_22'  style='font-size:12px' >
+      Gospel
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_23'  class='filled-in ' >
+    <label for='commoncats_0_2_0_23'  style='font-size:12px' >
+      Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_24'  class='filled-in ' >
+    <label for='commoncats_0_2_0_24'  style='font-size:12px' >
+      Harmonium
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_25'  class='filled-in ' >
+    <label for='commoncats_0_2_0_25'  style='font-size:12px' >
+      Indian Classical - Vocal
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_26'  class='filled-in ' >
+    <label for='commoncats_0_2_0_26'  style='font-size:12px' >
+      Indian Folk Music
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_27'  class='filled-in ' >
+    <label for='commoncats_0_2_0_27'  style='font-size:12px' >
+      Jazz Piano
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_28'  class='filled-in ' >
+    <label for='commoncats_0_2_0_28'  style='font-size:12px' >
+      Keyboard
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_29'  class='filled-in ' >
+    <label for='commoncats_0_2_0_29'  style='font-size:12px' >
+      Mandolin
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_30'  class='filled-in ' >
+    <label for='commoncats_0_2_0_30'  style='font-size:12px' >
+      Mridangam
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_31'  class='filled-in ' >
+    <label for='commoncats_0_2_0_31'  style='font-size:12px' >
+      Music
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_32'  class='filled-in ' >
+    <label for='commoncats_0_2_0_32'  style='font-size:12px' >
+      Music for Special Needs
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_33'  class='filled-in ' >
+    <label for='commoncats_0_2_0_33'  style='font-size:12px' >
+      Naal
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_34'  class='filled-in ' >
+    <label for='commoncats_0_2_0_34'  style='font-size:12px' >
+      Percussion
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_35'  class='filled-in ' >
+    <label for='commoncats_0_2_0_35'  style='font-size:12px' >
+      Performing Arts
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_36'  class='filled-in ' >
+    <label for='commoncats_0_2_0_36'  style='font-size:12px' >
+      Piano
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_37'  class='filled-in ' >
+    <label for='commoncats_0_2_0_37'  style='font-size:12px' >
+      Piccolo
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_38'  class='filled-in ' >
+    <label for='commoncats_0_2_0_38'  style='font-size:12px' >
+      Pipa
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_39'  class='filled-in ' >
+    <label for='commoncats_0_2_0_39'  style='font-size:12px' >
+      Rabindra Sangeet
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_40'  class='filled-in ' >
+    <label for='commoncats_0_2_0_40'  style='font-size:12px' >
+      Saxophone
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_41'  class='filled-in ' >
+    <label for='commoncats_0_2_0_41'  style='font-size:12px' >
+      Semi Classical
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_42'  class='filled-in ' >
+    <label for='commoncats_0_2_0_42'  style='font-size:12px' >
+      Sitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_43'  class='filled-in ' >
+    <label for='commoncats_0_2_0_43'  style='font-size:12px' >
+      Tabla
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_44'  class='filled-in ' >
+    <label for='commoncats_0_2_0_44'  style='font-size:12px' >
+      Tenor Sax
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_45'  class='filled-in ' >
+    <label for='commoncats_0_2_0_45'  style='font-size:12px' >
+      Toddler Music
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_46'  class='filled-in ' >
+    <label for='commoncats_0_2_0_46'  style='font-size:12px' >
+      Trombone
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_47'  class='filled-in ' >
+    <label for='commoncats_0_2_0_47'  style='font-size:12px' >
+      Trumpet
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_48'  class='filled-in ' >
+    <label for='commoncats_0_2_0_48'  style='font-size:12px' >
+      Ukulele
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_49'  class='filled-in ' >
+    <label for='commoncats_0_2_0_49'  style='font-size:12px' >
+      Upright Bass
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_50'  class='filled-in ' >
+    <label for='commoncats_0_2_0_50'  style='font-size:12px' >
+      Veena
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_51'  class='filled-in ' >
+    <label for='commoncats_0_2_0_51'  style='font-size:12px' >
+      Viola
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_52'  class='filled-in ' >
+    <label for='commoncats_0_2_0_52'  style='font-size:12px' >
+      Violin
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_53'  class='filled-in ' >
+    <label for='commoncats_0_2_0_53'  style='font-size:12px' >
+      Vocal
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_54'  class='filled-in ' >
+    <label for='commoncats_0_2_0_54'  style='font-size:12px' >
+      Voice
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_2_0_55'  class='filled-in ' >
+    <label for='commoncats_0_2_0_55'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_0' >
+                <label for='commoncats_0_3_0'  style='color:black' >
+                  Sports
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_1'  class='filled-in ' >
+    <label for='commoncats_0_3_0_1'  style='font-size:12px' >
+      Archery
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_2'  class='filled-in ' >
+    <label for='commoncats_0_3_0_2'  style='font-size:12px' >
+      Badminton
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_3'  class='filled-in ' >
+    <label for='commoncats_0_3_0_3'  style='font-size:12px' >
+      Basketball
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_4'  class='filled-in ' >
+    <label for='commoncats_0_3_0_4'  style='font-size:12px' >
+      Bowling
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_5'  class='filled-in ' >
+    <label for='commoncats_0_3_0_5'  style='font-size:12px' >
+      Boxing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_6'  class='filled-in ' >
+    <label for='commoncats_0_3_0_6'  style='font-size:12px' >
+      Chess
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_7'  class='filled-in ' >
+    <label for='commoncats_0_3_0_7'  style='font-size:12px' >
+      Cricket
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_8'  class='filled-in ' >
+    <label for='commoncats_0_3_0_8'  style='font-size:12px' >
+      Crosscountry
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_9'  class='filled-in ' >
+    <label for='commoncats_0_3_0_9'  style='font-size:12px' >
+      Driving School
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_10'  class='filled-in ' >
+    <label for='commoncats_0_3_0_10'  style='font-size:12px' >
+      Fast Pitch Softball
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_11'  class='filled-in ' >
+    <label for='commoncats_0_3_0_11'  style='font-size:12px' >
+      Slow Pitch Softball
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_12'  class='filled-in ' >
+    <label for='commoncats_0_3_0_12'  style='font-size:12px' >
+      Fencing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_13'  class='filled-in ' >
+    <label for='commoncats_0_3_0_13'  style='font-size:12px' >
+      Flight Training
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_14'  class='filled-in ' >
+    <label for='commoncats_0_3_0_14'  style='font-size:12px' >
+      Fitness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_15'  class='filled-in ' >
+    <label for='commoncats_0_3_0_15'  style='font-size:12px' >
+      Flag Football
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_16'  class='filled-in ' >
+    <label for='commoncats_0_3_0_16'  style='font-size:12px' >
+      Golf
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_17'  class='filled-in ' >
+    <label for='commoncats_0_3_0_17'  style='font-size:12px' >
+      Horseriding
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_18'  class='filled-in ' >
+    <label for='commoncats_0_3_0_18'  style='font-size:12px' >
+      Ice-skating
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_19'  class='filled-in ' >
+    <label for='commoncats_0_3_0_19'  style='font-size:12px' >
+      Kickboxing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_20'  class='filled-in ' >
+    <label for='commoncats_0_3_0_20'  style='font-size:12px' >
+      Kids Sports
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_21'  class='filled-in ' >
+    <label for='commoncats_0_3_0_21'  style='font-size:12px' >
+      Lacrosse
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_22'  class='filled-in ' >
+    <label for='commoncats_0_3_0_22'  style='font-size:12px' >
+      Martial Arts
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_23'  class='filled-in ' >
+    <label for='commoncats_0_3_0_23'  style='font-size:12px' >
+      Rockclimbing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_24'  class='filled-in ' >
+    <label for='commoncats_0_3_0_24'  style='font-size:12px' >
+      Sailing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_25'  class='filled-in ' >
+    <label for='commoncats_0_3_0_25'  style='font-size:12px' >
+      Skydiving
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_26'  class='filled-in ' >
+    <label for='commoncats_0_3_0_26'  style='font-size:12px' >
+      Soccer
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_27'  class='filled-in ' >
+    <label for='commoncats_0_3_0_27'  style='font-size:12px' >
+      Swimming
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_28'  class='filled-in ' >
+    <label for='commoncats_0_3_0_28'  style='font-size:12px' >
+      Table Tennis
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_29'  class='filled-in ' >
+    <label for='commoncats_0_3_0_29'  style='font-size:12px' >
+      T-Ball
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_30'  class='filled-in ' >
+    <label for='commoncats_0_3_0_30'  style='font-size:12px' >
+      Tennis
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_31'  class='filled-in ' >
+    <label for='commoncats_0_3_0_31'  style='font-size:12px' >
+      Track-n-Field
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_32'  class='filled-in ' >
+    <label for='commoncats_0_3_0_32'  style='font-size:12px' >
+      Volleyball
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_33'  class='filled-in ' >
+    <label for='commoncats_0_3_0_33'  style='font-size:12px' >
+      Yoga
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_34'  class='filled-in ' >
+    <label for='commoncats_0_3_0_34'  style='font-size:12px' >
+      Zumba
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_0_35'  class='filled-in ' >
+    <label for='commoncats_0_3_0_35'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_1' >
+                <label for='commoncats_0_3_1'  style='color:black' >
+                  Foreign Languages
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_1'  class='filled-in ' >
+    <label for='commoncats_0_3_1_1'  style='font-size:12px' >
+      Russian
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_2'  class='filled-in ' >
+    <label for='commoncats_0_3_1_2'  style='font-size:12px' >
+      Spanish
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_3'  class='filled-in ' >
+    <label for='commoncats_0_3_1_3'  style='font-size:12px' >
+      French
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_4'  class='filled-in ' >
+    <label for='commoncats_0_3_1_4'  style='font-size:12px' >
+      Tamil
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_5'  class='filled-in ' >
+    <label for='commoncats_0_3_1_5'  style='font-size:12px' >
+      Thai
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_6'  class='filled-in ' >
+    <label for='commoncats_0_3_1_6'  style='font-size:12px' >
+      Hindi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_7'  class='filled-in ' >
+    <label for='commoncats_0_3_1_7'  style='font-size:12px' >
+      Korean
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_8'  class='filled-in ' >
+    <label for='commoncats_0_3_1_8'  style='font-size:12px' >
+      Chinese
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_1_9'  class='filled-in ' >
+    <label for='commoncats_0_3_1_9'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_2' >
+                <label for='commoncats_0_3_2'  style='color:black' >
+                  Body, Health & Fitness
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_1'  class='filled-in ' >
+    <label for='commoncats_0_3_2_1'  style='font-size:12px' >
+      Yoga
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_2'  class='filled-in ' >
+    <label for='commoncats_0_3_2_2'  style='font-size:12px' >
+      Cardiokickboxing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_3'  class='filled-in ' >
+    <label for='commoncats_0_3_2_3'  style='font-size:12px' >
+      Cardiodance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_4'  class='filled-in ' >
+    <label for='commoncats_0_3_2_4'  style='font-size:12px' >
+      Fitness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_5'  class='filled-in ' >
+    <label for='commoncats_0_3_2_5'  style='font-size:12px' >
+      Gym
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_6'  class='filled-in ' >
+    <label for='commoncats_0_3_2_6'  style='font-size:12px' >
+      Meditation
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_7'  class='filled-in ' >
+    <label for='commoncats_0_3_2_7'  style='font-size:12px' >
+      Tang Soo Do
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_8'  class='filled-in ' >
+    <label for='commoncats_0_3_2_8'  style='font-size:12px' >
+      Qigong
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_9'  class='filled-in ' >
+    <label for='commoncats_0_3_2_9'  style='font-size:12px' >
+      Ayurveda
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_10'  class='filled-in ' >
+    <label for='commoncats_0_3_2_10'  style='font-size:12px' >
+      Zumba
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_11'  class='filled-in ' >
+    <label for='commoncats_0_3_2_11'  style='font-size:12px' >
+      Mindfulness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_12'  class='filled-in ' >
+    <label for='commoncats_0_3_2_12'  style='font-size:12px' >
+      Tai Chi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_2_13'  class='filled-in ' >
+    <label for='commoncats_0_3_2_13'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_3' >
+                <label for='commoncats_0_3_3'  style='color:black' >
+                  Computer Education
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_1'  class='filled-in ' >
+    <label for='commoncats_0_3_3_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_2'  class='filled-in ' >
+    <label for='commoncats_0_3_3_2'  style='font-size:12px' >
+      Microsoft Excel
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_3'  class='filled-in ' >
+    <label for='commoncats_0_3_3_3'  style='font-size:12px' >
+      Visual Basic
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_4'  class='filled-in ' >
+    <label for='commoncats_0_3_3_4'  style='font-size:12px' >
+      C++
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_5'  class='filled-in ' >
+    <label for='commoncats_0_3_3_5'  style='font-size:12px' >
+      Data Structures
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_6'  class='filled-in ' >
+    <label for='commoncats_0_3_3_6'  style='font-size:12px' >
+      Web Development
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_7'  class='filled-in ' >
+    <label for='commoncats_0_3_3_7'  style='font-size:12px' >
+      Video Editing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_3_8'  class='filled-in ' >
+    <label for='commoncats_0_3_3_8'  style='font-size:12px' >
+      Coding
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_4' >
+                <label for='commoncats_0_3_4'  style='color:black' >
+                  STEM
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_4_1'  class='filled-in ' >
+    <label for='commoncats_0_3_4_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_0_3_5' >
+                <label for='commoncats_0_3_5'  style='color:black' >
+                  Gym
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_0_3_5_1'  class='filled-in ' >
+    <label for='commoncats_0_3_5_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class='row'  id='modalAdults' >
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_0_0' >
+                <label for='commoncats_1_0_0'  style='color:black' >
+                  Enrichment
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_0_1'  class='filled-in ' >
+    <label for='commoncats_1_0_0_1'  style='font-size:12px' >
+      Public Speaking
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_0_2'  class='filled-in ' >
+    <label for='commoncats_1_0_0_2'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_0_1' >
+                <label for='commoncats_1_0_1'  style='color:black' >
+                  Arts & Crafts
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_1'  class='filled-in ' >
+    <label for='commoncats_1_0_1_1'  style='font-size:12px' >
+      Acrylic Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_2'  class='filled-in ' >
+    <label for='commoncats_1_0_1_2'  style='font-size:12px' >
+      Art Studio Workshop 
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_3'  class='filled-in ' >
+    <label for='commoncats_1_0_1_3'  style='font-size:12px' >
+      Art Though Illumination  
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_4'  class='filled-in ' >
+    <label for='commoncats_1_0_1_4'  style='font-size:12px' >
+      Bobbin Lace Making
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_5'  class='filled-in ' >
+    <label for='commoncats_1_0_1_5'  style='font-size:12px' >
+      Watercolor and Acrylic Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_6'  class='filled-in ' >
+    <label for='commoncats_1_0_1_6'  style='font-size:12px' >
+      Stained Glass
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_7'  class='filled-in ' >
+    <label for='commoncats_1_0_1_7'  style='font-size:12px' >
+      Cake Decoration
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_8'  class='filled-in ' >
+    <label for='commoncats_1_0_1_8'  style='font-size:12px' >
+      Painting & Drawing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_9'  class='filled-in ' >
+    <label for='commoncats_1_0_1_9'  style='font-size:12px' >
+      Jewelry Making
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_10'  class='filled-in ' >
+    <label for='commoncats_1_0_1_10'  style='font-size:12px' >
+      Paper Crafting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_11'  class='filled-in ' >
+    <label for='commoncats_1_0_1_11'  style='font-size:12px' >
+      Knitting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_12'  class='filled-in ' >
+    <label for='commoncats_1_0_1_12'  style='font-size:12px' >
+      Crochetting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_13'  class='filled-in ' >
+    <label for='commoncats_1_0_1_13'  style='font-size:12px' >
+      Mosaics
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_14'  class='filled-in ' >
+    <label for='commoncats_1_0_1_14'  style='font-size:12px' >
+      Oil Painting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_15'  class='filled-in ' >
+    <label for='commoncats_1_0_1_15'  style='font-size:12px' >
+      Cooking
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_1_16'  class='filled-in ' >
+    <label for='commoncats_1_0_1_16'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_0_2' >
+                <label for='commoncats_1_0_2'  style='color:black' >
+                  Dance
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_1'  class='filled-in ' >
+    <label for='commoncats_1_0_2_1'  style='font-size:12px' >
+      Tap Dance
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_2'  class='filled-in ' >
+    <label for='commoncats_1_0_2_2'  style='font-size:12px' >
+      Ballet
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_3'  class='filled-in ' >
+    <label for='commoncats_1_0_2_3'  style='font-size:12px' >
+      Salsa
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_4'  class='filled-in ' >
+    <label for='commoncats_1_0_2_4'  style='font-size:12px' >
+      Ballroom
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_5'  class='filled-in ' >
+    <label for='commoncats_1_0_2_5'  style='font-size:12px' >
+      Line Dancing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_6'  class='filled-in ' >
+    <label for='commoncats_1_0_2_6'  style='font-size:12px' >
+      Hula
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_7'  class='filled-in ' >
+    <label for='commoncats_1_0_2_7'  style='font-size:12px' >
+      Zumba
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_0_2_8'  class='filled-in ' >
+    <label for='commoncats_1_0_2_8'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_1_0' >
+                <label for='commoncats_1_1_0'  style='color:black' >
+                  Music
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_0_1'  class='filled-in ' >
+    <label for='commoncats_1_1_0_1'  style='font-size:12px' >
+      Drums
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_0_2'  class='filled-in ' >
+    <label for='commoncats_1_1_0_2'  style='font-size:12px' >
+      Guitar
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_0_3'  class='filled-in ' >
+    <label for='commoncats_1_1_0_3'  style='font-size:12px' >
+      Voice
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_0_4'  class='filled-in ' >
+    <label for='commoncats_1_1_0_4'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_1_1' >
+                <label for='commoncats_1_1_1'  style='color:black' >
+                  Photography
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_1_1'  class='filled-in ' >
+    <label for='commoncats_1_1_1_1'  style='font-size:12px' >
+      Digital Photography
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_1_2'  class='filled-in ' >
+    <label for='commoncats_1_1_1_2'  style='font-size:12px' >
+      Matting and Cutting 
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_1_3'  class='filled-in ' >
+    <label for='commoncats_1_1_1_3'  style='font-size:12px' >
+      Photographing Artwork  
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_1_4'  class='filled-in ' >
+    <label for='commoncats_1_1_1_4'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_1_2' >
+                <label for='commoncats_1_1_2'  style='color:black' >
+                  Sports
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_1'  class='filled-in ' >
+    <label for='commoncats_1_1_2_1'  style='font-size:12px' >
+      Badminton
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_2'  class='filled-in ' >
+    <label for='commoncats_1_1_2_2'  style='font-size:12px' >
+      Sailing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_3'  class='filled-in ' >
+    <label for='commoncats_1_1_2_3'  style='font-size:12px' >
+      Quadskating
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_4'  class='filled-in ' >
+    <label for='commoncats_1_1_2_4'  style='font-size:12px' >
+      Fencing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_5'  class='filled-in ' >
+    <label for='commoncats_1_1_2_5'  style='font-size:12px' >
+      Fitness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_6'  class='filled-in ' >
+    <label for='commoncats_1_1_2_6'  style='font-size:12px' >
+      Cardio Kickboxing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_7'  class='filled-in ' >
+    <label for='commoncats_1_1_2_7'  style='font-size:12px' >
+      Tai Chi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_8'  class='filled-in ' >
+    <label for='commoncats_1_1_2_8'  style='font-size:12px' >
+      Yoga
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_9'  class='filled-in ' >
+    <label for='commoncats_1_1_2_9'  style='font-size:12px' >
+      Golf
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_10'  class='filled-in ' >
+    <label for='commoncats_1_1_2_10'  style='font-size:12px' >
+      Swimming
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_11'  class='filled-in ' >
+    <label for='commoncats_1_1_2_11'  style='font-size:12px' >
+      Tennis
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_1_2_12'  class='filled-in ' >
+    <label for='commoncats_1_1_2_12'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_2_0' >
+                <label for='commoncats_1_2_0'  style='color:black' >
+                  Computer Education
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_1'  class='filled-in ' >
+    <label for='commoncats_1_2_0_1'  style='font-size:12px' >
+      Photoshop
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_2'  class='filled-in ' >
+    <label for='commoncats_1_2_0_2'  style='font-size:12px' >
+      Microsoft Excel
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_3'  class='filled-in ' >
+    <label for='commoncats_1_2_0_3'  style='font-size:12px' >
+      Visual Basic
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_4'  class='filled-in ' >
+    <label for='commoncats_1_2_0_4'  style='font-size:12px' >
+      C++
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_5'  class='filled-in ' >
+    <label for='commoncats_1_2_0_5'  style='font-size:12px' >
+      Data Structures
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_6'  class='filled-in ' >
+    <label for='commoncats_1_2_0_6'  style='font-size:12px' >
+      Web Development
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_7'  class='filled-in ' >
+    <label for='commoncats_1_2_0_7'  style='font-size:12px' >
+      Video Editing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_8'  class='filled-in ' >
+    <label for='commoncats_1_2_0_8'  style='font-size:12px' >
+      Basic Computer Skills
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_9'  class='filled-in ' >
+    <label for='commoncats_1_2_0_9'  style='font-size:12px' >
+      Keyboarding
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_10'  class='filled-in ' >
+    <label for='commoncats_1_2_0_10'  style='font-size:12px' >
+      PowerPoint
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_11'  class='filled-in ' >
+    <label for='commoncats_1_2_0_11'  style='font-size:12px' >
+      Smart Phones
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_12'  class='filled-in ' >
+    <label for='commoncats_1_2_0_12'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_13'  class='filled-in ' >
+    <label for='commoncats_1_2_0_13'  style='font-size:12px' >
+      Web Design
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_14'  class='filled-in ' >
+    <label for='commoncats_1_2_0_14'  style='font-size:12px' >
+      Word Processing
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_0_15'  class='filled-in ' >
+    <label for='commoncats_1_2_0_15'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_2_1' >
+                <label for='commoncats_1_2_1'  style='color:black' >
+                  Business
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_1_1'  class='filled-in ' >
+    <label for='commoncats_1_2_1_1'  style='font-size:12px' >
+      Accounting
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_1_2'  class='filled-in ' >
+    <label for='commoncats_1_2_1_2'  style='font-size:12px' >
+      Business Law
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_1_3'  class='filled-in ' >
+    <label for='commoncats_1_2_1_3'  style='font-size:12px' >
+      Business Communication
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_1_4'  class='filled-in ' >
+    <label for='commoncats_1_2_1_4'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_2_2' >
+                <label for='commoncats_1_2_2'  style='color:black' >
+                  CPR & First Aid
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_2_1'  class='filled-in ' >
+    <label for='commoncats_1_2_2_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_2_3' >
+                <label for='commoncats_1_2_3'  style='color:black' >
+                  Personal Finance
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_3_1'  class='filled-in ' >
+    <label for='commoncats_1_2_3_1'  style='font-size:12px' >
+      Retirement Planning
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_2_3_2'  class='filled-in ' >
+    <label for='commoncats_1_2_3_2'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_3_0' >
+                <label for='commoncats_1_3_0'  style='color:black' >
+                  Parenting
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_0_1'  class='filled-in ' >
+    <label for='commoncats_1_3_0_1'  style='font-size:12px' >
+      General
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_0_2'  class='filled-in ' >
+    <label for='commoncats_1_3_0_2'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_3_1' >
+                <label for='commoncats_1_3_1'  style='color:black' >
+                  Foreign Languages
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_1'  class='filled-in ' >
+    <label for='commoncats_1_3_1_1'  style='font-size:12px' >
+      Russian
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_2'  class='filled-in ' >
+    <label for='commoncats_1_3_1_2'  style='font-size:12px' >
+      Spanish
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_3'  class='filled-in ' >
+    <label for='commoncats_1_3_1_3'  style='font-size:12px' >
+      French
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_4'  class='filled-in ' >
+    <label for='commoncats_1_3_1_4'  style='font-size:12px' >
+      Hindi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_5'  class='filled-in ' >
+    <label for='commoncats_1_3_1_5'  style='font-size:12px' >
+      Korean
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_6'  class='filled-in ' >
+    <label for='commoncats_1_3_1_6'  style='font-size:12px' >
+      Chinese
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_1_7'  class='filled-in ' >
+    <label for='commoncats_1_3_1_7'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_3_2' >
+                <label for='commoncats_1_3_2'  style='color:black' >
+                  Health & Fitness
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_1'  class='filled-in ' >
+    <label for='commoncats_1_3_2_1'  style='font-size:12px' >
+      Ayurveda
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_2'  class='filled-in ' >
+    <label for='commoncats_1_3_2_2'  style='font-size:12px' >
+      Fitness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_3'  class='filled-in ' >
+    <label for='commoncats_1_3_2_3'  style='font-size:12px' >
+      Gym
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_4'  class='filled-in ' >
+    <label for='commoncats_1_3_2_4'  style='font-size:12px' >
+      Meditation
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_5'  class='filled-in ' >
+    <label for='commoncats_1_3_2_5'  style='font-size:12px' >
+      Mindfulness
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_6'  class='filled-in ' >
+    <label for='commoncats_1_3_2_6'  style='font-size:12px' >
+      Prenatal Yoga
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_7'  class='filled-in ' >
+    <label for='commoncats_1_3_2_7'  style='font-size:12px' >
+      Qigong
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_8'  class='filled-in ' >
+    <label for='commoncats_1_3_2_8'  style='font-size:12px' >
+      Tai Chi
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_9'  class='filled-in ' >
+    <label for='commoncats_1_3_2_9'  style='font-size:12px' >
+      Tang Soo Do
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_10'  class='filled-in ' >
+    <label for='commoncats_1_3_2_10'  style='font-size:12px' >
+      Yoga
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_2_11'  class='filled-in ' >
+    <label for='commoncats_1_3_2_11'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_3_3' >
+                <label for='commoncats_1_3_3'  style='color:black' >
+                  Gym
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_3_1'  class='filled-in ' >
+    <label for='commoncats_1_3_3_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_1_3_4' >
+                <label for='commoncats_1_3_4'  style='color:black' >
+                  EMT
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_4_1'  class='filled-in ' >
+    <label for='commoncats_1_3_4_1'  style='font-size:12px' >
+      First Responder
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_4_2'  class='filled-in ' >
+    <label for='commoncats_1_3_4_2'  style='font-size:12px' >
+      Patient Stability
+    </label>
+  </span>
+</div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_1_3_4_3'  class='filled-in ' >
+    <label for='commoncats_1_3_4_3'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class='row'  id='modalPets' >
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_2_0_0' >
+                <label for='commoncats_2_0_0'  style='color:black' >
+                  Dog Walking
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_2_0_0_1'  class='filled-in ' >
+    <label for='commoncats_2_0_0_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_2_1_0' >
+                <label for='commoncats_2_1_0'  style='color:black' >
+                  Pet Boarding
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_2_1_0_1'  class='filled-in ' >
+    <label for='commoncats_2_1_0_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_2_2_0' >
+                <label for='commoncats_2_2_0'  style='color:black' >
+                  Pet Grooming
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_2_2_0_1'  class='filled-in ' >
+    <label for='commoncats_2_2_0_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+          <div class='col l3 m3 s6' >
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_2_3_0' >
+                <label for='commoncats_2_3_0'  style='color:black' >
+                  Pet Sitting
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_2_3_0_1'  class='filled-in ' >
+    <label for='commoncats_2_3_0_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+            <div>
+              <span>
+                <input class='filled-in '  data-onclick='selectall'  type='checkbox'  id='commoncats_2_3_1' >
+                <label for='commoncats_2_3_1'  style='color:black' >
+                  Pet Training
+                </label>
+              </span>
+              <div style='font-size:18px;font-wight:700' >
+              </div>
+<div>
+  <span>
+    <input type='checkbox'  id='commoncats_2_3_1_1'  class='filled-in ' >
+    <label for='commoncats_2_3_1_1'  style='font-size:12px' >
+      Miscellaneous
+    </label>
+  </span>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type='text/javascript' >
+      var jsdata = {"_server": "csc", "HOST": "http://privateweb.iitd.ac.in/~cs1120233/cp/", "BASE": "http://privateweb.iitd.ac.in/~cs1120233/cp/index.php/", "curpage": "index"};
+    </script>
+    <script type='text/javascript' >
+      var ec  = jsdata['_ec'] ;
+    </script>
+    <script src='mslib/js/jquery-2.1.1.min.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/materialize.min.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/jquery.bxslider.min.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/jquery.easing.1.3.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/jquery.raty.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/lib.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/mohit.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/mohitlib.js'  type='text/javascript' >
+    </script>
+    <script src='mslib/js/main.js'  type='text/javascript' >
+    </script>
+    <script src='js/main.js'  type='text/javascript' >
+    </script>
+    <script src='js/jquery-ui.js'  type='text/javascript' >
+    </script>
+    <script src='js/index.js'  type='text/javascript' >
+    </script>
+  </body>
+</html>

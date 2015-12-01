@@ -2,14 +2,14 @@
 #Assume _sql is declared already
 
 
-_ec = {
+mifa(_ec, {
 	-1: "Incorrect password or OTP",
 	-2: "Phone number already registered",
 	-3: "OTP is Incorrect",
 	-4: "Action handler not valid",
 	-5: "Insufficient arguments",
 	-6: "Invalid Input"
-};
+});
 
 
 _actions = {
@@ -22,7 +22,6 @@ _actions = {
 	}
 }
 
-_config["sql"] = {};
 _config["sql"]["maininfo1"] = "select provider_id, LOWER(concat(tabs.tabs, cat.cat, subcat.subcat, name_provider, phone, address, website)) as searchtext from maininfo left join tabs on tabs_index = tabs.tabs_id left join cat on cat_index = cat.cat_id left join subcat on subcat_index = subcat.subcat_id left join provider on provider_index = provider.provider_id";
 
 class cp:

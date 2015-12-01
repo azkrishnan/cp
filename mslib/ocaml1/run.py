@@ -206,8 +206,9 @@ class mtmlparser:
 		else:
 			return "";
 	def disp(self, gamma = {}):
-		if(gamma == None):
-			gamma = {};
-		return self.newlj(self.expend( tuple(['Listi']+self.data), gamma, {})[0]);
+		print self.data;
+		# if(gamma == None):
+		# 	gamma = {};
+		# return self.newlj(self.expend( tuple(['Listi']+self.data), gamma, {})[0]);
 
 
