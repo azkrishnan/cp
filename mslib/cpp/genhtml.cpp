@@ -5,6 +5,14 @@ using namespace std;
 
 int main() {
 
+
+maxof(2, jsonp(new json("mohit")), jsonp(new json("Saini")));
+
+
+
+cout<<"Mohit1"<<endl;
+
+
 // json j('l');
 // j.jsonl.PUSH(json(1));
 // j.jsonl.PUSH(json(221));

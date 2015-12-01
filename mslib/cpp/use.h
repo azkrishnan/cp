@@ -35,29 +35,63 @@ public:
 		jsonm = m;
 		ism = 1;
 	}
-	json(char c) {
-		this->reset();
-		if(c=='i')
-			isi = true;
-		else if (c=='s')
-			iss = true;
-		else if (c=='l')
-			isl = true;
-		else if(c=='m')
-			ism = true;
-		else if(c=='n')
-			isn = true;
-		else if(c=='b')
-			isb = true;
-		else if(c=='f')
-			isf = true;
-	}
+	// json(char c, ...) {
+	// 	va_list ap;
+	// 	va_start(ap, 1);
+	// 	this->reset();
+	// 	if(c=='i') {
+	// 		isi = true;
+	// 		ival = va_arg(ap, int);
+	// 	}
+	// 	else if (c=='s') {
+	// 		iss = true;
+	// 		sval = va_arg(ap, string);
+	// 	}
+	// 	else if(c=='n')
+	// 		isn = true;
+	// 	else if(c=='b') {
+	// 		isb = true;
+	// 		ival = va_arg(ap, int);
+	// 	}
+	// 	else if(c=='f') {
+	// 		isf = true;
+	// 		fval = va_arg(ap, float);
+	// 	}
+	// 	else {
+	// 		int n_args = va_arg(ap, int);
+	// 		if (c=='l') {
+	// 			isl = true;
+	// 			va_start(ap, n_args);
+	// 			FL(i, n_args) {
+	// 				jsonl.PUSH(va_arg(ap, json));
+	// 			}
+	// 		} else if(c=='m') {
+	// 			ism = true;
+	// 			va_start(ap, n_args*2);
+	// 			FL(i, n_args) {
+	// 				addkey(va_arg(ap, string), va_arg(ap, json));
+	// 			}
+	// 		}
+	// 	}
+	// }
 	void addkey(string s1, json j) {
 		this->jsonm[s1] = j;
 		this->jsonl.PUSH(json(s1));
 	}
 	string __str__();
 	void parse(istream& fd);
+};
+
+class jsonp {
+public:
+	json*j;
+	jsonp(json*j1) {
+		j = j1;
+	}
+	~jsonp() {
+		//cout<<"It is free... Chill"<<endl;
+		//free j;
+	}
 };
 
 typedef map<string, json> mapsj;
@@ -151,4 +185,16 @@ json parse(istream& fd) {
 		cout<<":(  " <<msg<<endl;
 	}
 }
+
+void maxof(int n_args, ...) {
+	va_list ap;
+	va_start(ap, n_args);
+	for(int i = 1; i <= n_args; i++) {
+		string a = va_arg(ap, jsonp).j->sval;
+		cout<<a<<endl;
+	}
+	va_end(ap);
+}
+
+
 
