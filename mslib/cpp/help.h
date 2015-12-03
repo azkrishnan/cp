@@ -17,6 +17,7 @@
 #define S second
 #define LL long long
 #define VI vector<int>
+#define VS vector<string>
 #define INF 0x7fffffff
 #define PUSH push_back
 

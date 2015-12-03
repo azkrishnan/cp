@@ -101,7 +101,7 @@ class mtmlparser:
 			elif(t[0] == "Attr" ):
 				return expend(t[1], funcs)+".op_Attr("+quoted_s(t[2])+")";
 			elif(t[0] == "Ife"):
-				return "("+expend(t[1], funcs) + ".ival ? "+expend(t[2], funcs) + ": "+expend(t[3], funcs)+")";
+				return "("+expend(t[1], funcs) + ".get_int() ? "+expend(t[2], funcs) + ": "+expend(t[3], funcs)+")";
 			elif(t[0] == "Get"):
 				a1,a2 = expend(t[1], funcs), expend(t[2], funcs)
 				return "(*("+a1+".op_Get("+a2+")))";
@@ -125,7 +125,7 @@ class mtmlparser:
 				outp = [];
 				for j in range(len(t[1:])):
 					i = t[1:][j];
-					outp.append( ("else " if j!=0 else "")+"if("+expend(i[1], funcs)+".ival) {" );
+					outp.append(("else " if j!=0 else "")+"if("+expend(i[1], funcs)+".get_int()) {" );
 					outp.append( expend(i[2], funcs)[0] );
 					outp.append( "}" );
 				return (outp, funcs);

@@ -3,35 +3,9 @@ class json{
 public:
 	void* data;
 	char type;
-	inline void set_int(int x) {
-		data = new int(x);
-	}
-	inline void set_str(string x) {
-		data = new string(x);
-	}
-	inline void init_list() {
-		data = new vector<json>();
-	}
-	inline void init_map() {
-		data = new pair<void*, void*>(new map<sting, json>(), new vector<string>());
-	}
-
-	inline int get_int() {
-		return *((int*)data);
-	}
-	inline string get_str() {
-		return *((string*)data);
-	}
-	inline vector<json>* get_list() {
-		return ((vector<json>*)data);
-	}
-	inline map<string, json>* get_map() {
-		return (((pair<int, int>*)data)->first);
-	}
-	inline vector<string> get_keys() {// for map only
-		return *(((pair<int, int>*)data)->second);
-	}
 	json() {
+		type = '\0';
+		data = NULL;
 	}
 	json(double x) {
 		type = 'f';
@@ -54,49 +28,137 @@ public:
 		else if (c=='l') {
 			va_start(ap, num);
 			FL(i, n_args) {
-				pushjsonl(va_arg(ap, json*));
+				this->pushjsonl(va_arg(ap, json*));
 			}
 			va_end(ap);
 		} else if (c=='m') {
-			ism = true;
 			num*=2;
 			va_start(ap, num);
 			FL(i, n_args) {
-				string key = va_arg(ap, json*)->sval;
-				addkey(key, va_arg(ap, json*));
+				string *keyp = va_arg(ap, string*);
+				this->addkey((*keyp), va_arg(ap, json*));
+				delete keyp;
 			}
 			va_end(ap);
 		}
 	}
+
+
+	json(const json & j) {
+		cout<<"Waw... It is copied from here.." <<endl;
+	}
+//	json & operator = (const json &);
+
+	json& operator = (const json & v) {
+		cout<<"UyUyUy"<<endl;
+		return *this;
+	}
+
+
+	~json() {
+		cout<<"I have free the json with type = "<<type<<endl;
+		if(data != NULL) {
+			if(type == 'i')
+				delete (int*)data;
+			else if(type == 's') 
+				delete (string*)data;
+			else if (type == 'l')
+				delete get_list();
+			else if( type == 'm') {
+				delete get_keys();
+				delete get_map();
+				delete (pair<void*, void*>*)data;
+			}
+			else if ( type == 'f') 
+				delete (double*)data;
+		}
+	}
+	inline void set_int(int x) {
+		data = new int(x);
+	}
+	inline void set_str(string x) {
+		data = new string(x);
+	}
+	inline void set_float(double d) {
+		data = new double(d);
+	}
+	inline void init_list() {
+		data = new vector<json>();
+	}
+	inline void init_map() {
+		data = new pair<void*, void*>(new map<string, json>(), new VS());
+	}
+
+	inline int get_int() {
+		return *((int*)data);
+	}
+	inline double get_float() {
+		return *((double*)data);
+	}
+	inline string get_str() {
+		return *((string*)data);
+	}
+	inline vector<json>* get_list() {
+		return ((vector<json>*)data);
+	}
+	inline vector<json> get_list1() {
+		return *(get_list());
+	}
+	inline map<string, json>* get_map() {
+		return (map<string, json>*)(((pair<void*, void*>*)data)->first);
+	}
+	inline map<string, json> get_map1() {
+		return *get_map();
+	}
+	inline VS* get_keys() {// for map only
+		return (VS*)(((pair<void*, void*>*)data)->second);
+	}
+	inline VS get_keys1() {// for map only
+		return *get_keys();
+	}
+
 	void pushjsonl(json*j) {
 		get_list()->PUSH(*j);
 		delete j;
 	}
-	void addkey(string s1, json j) {
-		this->jsonm[s1] = j;
-		this->jsonl.PUSH(json(s1));
-	}
+	void addkey(string s1, json j);
 	void addkey(string s1, json* j) {
 		addkey(s1, *j);
 		delete j;
 	}
+
 	string __str__();
 	json*copy();
 	void parse(istream& fd);
-	void self_Not() {
-		ival = !ival;
-	}
+	void self_Not();
 	json* op_Get(json j);
 	void self_Set(json j, json j1);
 	json op_Attr(string s);
 	json op_Ife();
+	json op_Binary(string, json j1);
 };
 
-#define VALUE(j) (j.isi ? j.ival: j.sval)
-#define INDEXARR(j) (j.isi ? j.ival: j.jsonl.size())
-#define INDEXARRVAL(j, i) (j.isi ? i: j.jsonl[i])
+#define INDEXARR(j) (j.type == 'i' ? j.get_int(): j.get_list()->size())
+#define INDEXARRVAL(j, i) (j.type == 'i' ? i: j.get_list()[i])
+typedef map<string, json> mapsj;
+#define MAPSJL(it, m) for(mapsj::iterator it = m.begin(); it != m.end(); it++) 
 
 
+json json::op_Binary(string op, json j1) {
+	return *this;
+}
+
+void json::addkey(string s1, json j) {
+	mapsj gmap = *get_map();
+	if(!FIND(s1, gmap))
+		get_keys()->PUSH(s1);
+	(*get_map())[s1] = j;
+}
+
+
+void json::self_Not() {
+	set_int(!get_int());
+}
 
 json* json::copy() {
 	json*j = new json();
@@ -104,17 +166,20 @@ json* json::copy() {
 	return j;
 }
 
-json* json::op_Get(json j) {
-	return (isl ? &jsonl[j.ival]: &jsonm[j.sval]);
+inline json* json::op_Get(json j) {
+	if(type == 'l')
+		return &(get_list1()[j.get_int()]);
+	else if(type == 'm') 
+		return &(get_map1()[j.get_str()]);
+	else
+		return NULL;
 }
 
-json json::op_Attr(string s) {
+inline json json::op_Attr(string s) {
 	if(s=="len") {
-		return json('i', jsonl.size());
+		return json('i', (type == 'l' ? get_list1().size() : get_keys1().size()));
 	} else if( s == "keys" ) {
-		json j('l');
-		j.jsonl = jsonl;
-		return jsonl;
+		return *this;
 	} else if( s == "gchars" ) {
 		return *this;
 	}
@@ -122,36 +187,33 @@ json json::op_Attr(string s) {
 
 
 
-typedef map<string, json> mapsj;
-#define MAPSJL(it, m) for(mapsj::iterator it = m.begin(); it != m.end(); it++) 
 
 string json::__str__() {
-	json j = *this;
-	if (j.isn)
+	if (this->type == 'n')
 		return "null";
-	if (j.isb)
-		return (j.ival?"true":"false");
-	else if (j.isi) 
-		return int2str(j.ival);
-	else if (j.isf) 
-		return float2str(j.fval);
-	else if (j.iss)
-		return quotestring(j.sval);
-	else if (j.isl) {
+	else if (this->type == 'i') 
+		return int2str(this->get_int());
+	else if (this->type == 'f') 
+		return float2str(this->get_float());
+	else if (this->type == 's')
+		return quotestring(this->get_str());
+	else if (this->type == 'l') {
 		string outp = "[";
-		FL(i, j.jsonl.size()) {
-			outp+=(j.jsonl[i].__str__());
-			if(i!=j.jsonl.size()-1) 
+		vector<json> jlist = this->get_list1();
+		FL(i, jlist.size()) {
+			outp+=(jlist[i].__str__());
+			if(i!=jlist.size()-1) 
 				outp+=", ";
 		}
 		outp+="]";
 		return outp;
 	}
-	else if(j.ism) {
+	else if(this->type == 'm') {
 		string outp = "{";
-		FL(i, j.jsonl.size()) {
-			outp+=(quotestring(j.jsonl[i].sval)+": "+ j.jsonm[ j.jsonl[i].sval ].__str__());
-			if(i!=j.jsonl.size()-1) 
+		VS keys = this->get_keys1();
+		FL(i, keys.size()) {
+			outp+=(quotestring(keys[i])+": "+ this->get_map1()[ keys[i] ].__str__());
+			if(i!=keys.size()-1) 
 				outp+=", ";
 		}
 		outp+="}";
@@ -159,31 +221,37 @@ string json::__str__() {
 	}
 	else
 		return "0";
+	return "Mohit..";
 }
 
 void json::parse(istream& fd) {
 	int type,temp;
+	string temp1;
+	double tempf;
 	fd>>type;
-	if(type == 1) {
-		this->isi = true;
-		fd>>this->ival;
+	if(type == 1 || type == 6 ) {
+		this->type = 'i';
+		fd>>temp;
+		this->set_int(temp);
 	} else if(type == 2) {
-		this->iss = true;
-		getline(fd, this->sval);
-		this->sval = invqstring(this->sval.substr(1));
+		this->type = 's';
+		getline(fd, temp1);
+		this->set_str(invqstring(temp1.substr(1)));
 	} else if(type == 3) {
 		int listlen;
 		fd>>listlen;
-		this->isl = true;
+		this->type = 'l';
+		this->init_list();
 		FL(i, listlen) {
 			json j;
 			j.parse(fd);
-			this->jsonl.PUSH(j);
+			this->get_list()->PUSH(j);
 		}
 	} else if(type == 4) {
 		int listlen;
 		fd>>listlen;
-		this->ism = true;
+		this->type = 'm';
+		this->init_map();
 		FL(i, listlen) {
 			fd>>temp;
 			string key;
@@ -194,13 +262,11 @@ void json::parse(istream& fd) {
 			this->addkey(key, j);
 		}
 	} else if(type==5) {
-		this->isn =true;
-	} else if(type == 6) {
-		this->isb = true;
-		fd>> this->ival;
+		this->type = 'n';
 	} else if(type == 7) {
-		this->isf = true;
-		fd>>this->fval;
+		this->type = 'f';
+		fd>>tempf;
+		this->set_float(tempf);
 	}
 }
 
@@ -212,16 +278,6 @@ json parse(istream& fd) {
 	} catch (const char* msg) {
 		cout<<":(  " <<msg<<endl;
 	}
-}
-
-void maxof(int n_args, ...) {
-	va_list ap;
-	va_start(ap, n_args);
-	for(int i = 1; i <= n_args; i++) {
-		string a = va_arg(ap, json*)->sval;
-		cout<<a<<endl;
-	}
-	va_end(ap);
 }
 
 

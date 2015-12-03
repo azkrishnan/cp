@@ -1,24 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 #include "help.h"
-//#include "use.h"
+#include "use.h"
 
 int main() {
 
+json x = json('i', 34);
+
+// cout<<"Next one1" <<endl;
+
+json j = json('i', 11).op_Binary("add", x);
+
+cout<<"Next one2" <<endl;
+
+
+// j2.parse(cin);
+
+// cout<< j2.__str__() <<endl;
 
 
 
-pair<int,int>* p = new pair<int, int>(11, 33);
+// //j2.parse(cin);
 
 
-
-cout<< p->first <<endl;
-
+// j2.parse(cin);
 
 
-
-
-
+// cout<< j2.__str__() <<endl;
 
 return 0;
 }
@@ -61,8 +69,6 @@ return 0;
 // j.jsonl.PUSH(  json(string("moh\n\'...\\it")+'"' ) );
 
 
-// json j2;
-// j2.parse(cin);
 
 // cout<<":"<<j2.jsonl[2].jsonl[1].sval << ";"<<endl;
 
