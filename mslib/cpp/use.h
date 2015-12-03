@@ -1,6 +1,3 @@
-
-
-
 class json{
 public:
 	int ival;
@@ -15,10 +12,10 @@ public:
 	json() {
 		this->reset();
 	}
-	json(int x) {
+	json(double x) {
 		this->reset();
-		ival = x;
-		isi = 1;
+		fval = x;
+		isf = 1;
 	}
 	json(string x) {
 		this->reset();
@@ -35,64 +32,106 @@ public:
 		jsonm = m;
 		ism = 1;
 	}
-	// json(char c, ...) {
-	// 	va_list ap;
-	// 	va_start(ap, 1);
-	// 	this->reset();
-	// 	if(c=='i') {
-	// 		isi = true;
-	// 		ival = va_arg(ap, int);
-	// 	}
-	// 	else if (c=='s') {
-	// 		iss = true;
-	// 		sval = va_arg(ap, string);
-	// 	}
-	// 	else if(c=='n')
-	// 		isn = true;
-	// 	else if(c=='b') {
-	// 		isb = true;
-	// 		ival = va_arg(ap, int);
-	// 	}
-	// 	else if(c=='f') {
-	// 		isf = true;
-	// 		fval = va_arg(ap, float);
-	// 	}
-	// 	else {
-	// 		int n_args = va_arg(ap, int);
-	// 		if (c=='l') {
-	// 			isl = true;
-	// 			va_start(ap, n_args);
-	// 			FL(i, n_args) {
-	// 				jsonl.PUSH(va_arg(ap, json));
-	// 			}
-	// 		} else if(c=='m') {
-	// 			ism = true;
-	// 			va_start(ap, n_args*2);
-	// 			FL(i, n_args) {
-	// 				addkey(va_arg(ap, string), va_arg(ap, json));
-	// 			}
-	// 		}
-	// 	}
-	// }
+	void settype(char c) {
+		this->reset();
+		if(c=='i')
+			isi = true;
+		else if (c=='s')
+			iss = true;
+		else if (c=='n')
+			isn = true;
+		else if (c=='b')
+			isb = true;
+		else if (c=='f')
+			isf = true;
+		else if (c=='l')
+			isl = true;
+		else if (c=='m')
+			ism = true;
+	}
+	json(char c) {
+		this->settype(c);
+	}
+	json(char c, int num, ...) {
+		this->settype(c);
+		va_list ap;
+		int n_args = num;
+		if(c=='i') {
+			ival = num;
+		}
+		else if(c=='b') {
+			ival = num;
+		}
+		else if (c=='l') {
+			va_start(ap, num);
+			FL(i, n_args) {
+				pushjsonl(va_arg(ap, json*));
+			}
+			va_end(ap);
+		} else if (c=='m') {
+			ism = true;
+			num*=2;
+			va_start(ap, num);
+			FL(i, n_args) {
+				string key = va_arg(ap, json*)->sval;
+				addkey(key, va_arg(ap, json*));
+			}
+			va_end(ap);
+		}
+	}
+	void pushjsonl(json*j) {
+		jsonl.PUSH(*j);
+		delete j;
+	}
 	void addkey(string s1, json j) {
 		this->jsonm[s1] = j;
 		this->jsonl.PUSH(json(s1));
 	}
+	void addkey(string s1, json* j) {
+		addkey(s1, *j);
+		delete j;
+	}
 	string __str__();
+	json*copy();
 	void parse(istream& fd);
+	void self_Not() {
+		ival = !ival;
+	}
+	json* op_Get(json j);
+	void self_Set(json j, json j1);
+	json op_Attr(string s);
+	json op_Ife();
 };
 
-class jsonp {
-public:
-	json*j;
-	jsonp(json*j1) {
-		j = j1;
+#define VALUE(j) (j.isi ? j.ival: j.sval)
+#define INDEXARR(j) (j.isi ? j.ival: j.jsonl.size())
+#define INDEXARRVAL(j, i) (j.isi ? i: j.jsonl[i])
+
+
+
+json* json::copy() {
+	json*j = new json();
+	*j = *this;
+	return j;
+}
+
+json* json::op_Get(json j) {
+	return (isl ? &jsonl[j.ival]: &jsonm[j.sval]);
+}
+
+json json::op_Attr(string s) {
+	if(s=="len") {
+		return json('i', jsonl.size());
+	} else if( s == "keys" ) {
+		json j('l');
+		j.jsonl = jsonl;
+		return jsonl;
+	} else if( s == "gchars" ) {
+		return *this;
 	}
-	~jsonp() {
-		//cout<<"It is free... Chill"<<endl;
-		//free j;
-	}
-};
+}
+
+
 
 typedef map<string, json> mapsj;
 #define MAPSJL(it, m) for(mapsj::iterator it = m.begin(); it != m.end(); it++) 
@@ -190,7 +229,7 @@ void maxof(int n_args, ...) {
 	va_list ap;
 	va_start(ap, n_args);
 	for(int i = 1; i <= n_args; i++) {
-		string a = va_arg(ap, jsonp).j->sval;
+		string a = va_arg(ap, json*)->sval;
 		cout<<a<<endl;
 	}
 	va_end(ap);

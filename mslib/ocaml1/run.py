@@ -26,6 +26,7 @@ class mtmlparser:
 		self.newlj = lambda x: "\n".join(list(str(i) for i in x if i!=""))
 		self.compiled = "templates/.compiled/";
 		self.compileddefn = self.compiled+"defines";
+		self.newvar = 0;
 
 	def readcompiled(self, name):
 		self.data = eval(read_file(self.compiled+name));
@@ -36,6 +37,11 @@ class mtmlparser:
 
 	def readonefile(self, fname):
 		self.data = self.parsebyocaml(fname);
+
+	def gennewvar(self):
+		self.newvar+=1;
+#		return "random_var_T6OuFteLo_"+str(self.newvar);
+		return "random_var_"+str(self.newvar);
 
 	def expend(self, t, funcs, depth = 0): #Gamma contains list of all function names.
 		expend = self.expend;
@@ -77,235 +83,79 @@ class mtmlparser:
 				return str(x)+str(y);
 		if(1):
 			if(t[0] == "None"):
-				return None;
+				return "(json('n'))";
 			elif(t[0] == "Assign"):
 				if(t[1][0] == "V"):
-					gamma[ t[1][1] ] = expend( t[2], gamma, funcs );
+					return (["json "+t[1][1] + " = " + expend(t[2], funcs)+";"], funcs);
 				elif(t[1][0] == "Get"):
-					expend(t[1][1], gamma, funcs)[ expend(t[1][2], gamma, funcs) ] = expend( t[2], gamma, funcs );
-				return ("", gamma, funcs);
-			elif(t[0] == "V" ):
-				return geta(t[1], gamma);
-			elif(t[0] in ["N", "S"] ):
+					return ([expend(t[1], funcs)+" = " + expend(t[2], funcs )+";"], funcs)
+				return ([""], funcs);
+			elif(t[0] == "V"):
 				return t[1];
-			elif(t[0] == "Not" ):
-				return int(not(expend(t[1], gamma, funcs)));
+			elif(t[0] in ["S"]):
+				return "(json("+quoted_s(t[1])+"))";
+			elif(t[0] ==  "N"):
+				return "(json('i', "+str(t[1])+"))";
+			elif(t[0] == "Not"):
+				return expend(t[1], funcs)+".op_Not()"
 			elif(t[0] == "Attr" ):
-				a = expend(t[1], gamma, funcs);
-				if(t[2] == 'len'):
-					return len(a);
-				elif(t[2] == 'keys'):
-					return a.keys();
-				elif(t[2] == 'gchars'):
-					return convchars(a);
-				else:
-					return a;
+				return expend(t[1], funcs)+".op_Attr("+quoted_s(t[2])+")";
 			elif(t[0] == "Ife"):
-				if(expend(t[1], gamma, funcs)):
-					return expend(t[2], gamma, funcs);
-				else:
-					return expend(t[3], gamma, funcs);
-			elif(t[0] in ["Add", "Mul", "Sub", "Div", "Mod", "Or", "And", "Get", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"] ):
-				a1,a2 = expend(t[1], gamma, funcs), expend(t[2], gamma, funcs)
-				if(t[0] == "Add"):
-					return ouradd(a1, a2);
-				elif(t[0] == "Mul"):
-					return a1*a2;
-				elif(t[0] == "Sub"):
-					return a1-a2;
-				elif(t[0] == "Div"):
-					return a1/a2;
-				elif(t[0] == "Mod"):
-					return a1%a2;
-				elif(t[0] == "And"):
-					return int(a1 and a2);
-				elif(t[0] == "Or"):
-					return int(a1 or a2);
-				elif(t[0] == "Get"):
-					return a1[a2];
-				elif(t[0] == "Isequal"):
-					return int(a1 == a2);
-				elif(t[0]=="Le"):
-					return int(a1<=a2);
-				elif(t[0]=="Ge"):
-					return int(a1>=a2);
-				elif(t[0]=="Ls"):
-					return int(a1<a2);
-				elif(t[0]=="Gt"):
-					return int(a1>a2);
-				elif(t[0]=="Notequal"):
-					return int(a1!=a2);
-				else:
-					return "";
+				return "("+expend(t[1], funcs) + ".ival ? "+expend(t[2], funcs) + ": "+expend(t[3], funcs)+")";
+			elif(t[0] == "Get"):
+				a1,a2 = expend(t[1], funcs), expend(t[2], funcs)
+				return "(*("+a1+".op_Get("+a2+")))";
+			elif(t[0] in ["Add", "Mul", "Sub", "Div", "Mod", "Or", "And", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"] ):
+				a1,a2 = expend(t[1], funcs), expend(t[2], funcs)
+				return a1+".op_Binary("+ quoted_s(t[0])  +", "+a2+")";
 			elif(t[0] == "Dictle"):
-					return {(t[1][1] if t[1][0] == "V" else expend(t[1], gamma, funcs)): expend(t[2], gamma, funcs) };
+					return ", "+("new json("+quoted_s(t[1][1])+")" if t[1][0] == "V" else expend(t[1], funcs)+".copy()")+", "+expend(t[2], funcs)+".copy() ";
 			elif(t[0] == "Dictl"):
-				return fold(lambda x,y: joinarr(x, expend(y, gamma, funcs) ), t[1:], {});
+				return fold(lambda x,y: x+expend(y, funcs), t[1:][::-1], "(json('m', "+str(len(t[1:])))+"))";
 			elif(t[0] == "Listl"):
-				return map(lambda x: expend(x, gamma, funcs), t[1:]);
+				return fold(lambda y,x: y+", "+expend(x, funcs)+".copy()", t[1:], "(json('l', "+str(len(t[1:])))+"))";
 			elif(t[0] == "Listi"):
 				outp = [];
 				for i in t[1:]:
-					(outp1, gamma1, funcs1) = expend(i, gamma, funcs, depth);
-					outp.append(outp1);
-					gamma = gamma1;
+					(outp1, funcs1) = expend(i, funcs);
+					outp+=outp1;
 					funcs = funcs1;
-				return (outp, gamma, funcs);
+				return (outp, funcs);
 			elif(t[0] == "Ifel"):
-				for i in t[1:]:
-					if(expend(i[1], gamma, funcs)):
-						return (self.newlj(expend(i[2], gamma, funcs)[0]), gamma, funcs);
-				return ("", gamma, funcs);
-			elif(t[0] == "Forl"):
-				lt = expend(t[3], gamma, funcs);
-				lta = ( range(lt) if type(lt) == int else lt)
 				outp = [];
-				for i in xrange(len(lta)):
-					gamma1 = copy.deepcopy(gamma);
-					gamma1[t[1][1]] = lta[i];
-					if(t[2][1] != ""):
-						gamma1[ t[2][1] ] = i;
-					(outp1, gamma2, funcs2) = expend(t[4], gamma1, funcs, depth);
-					outp.append(self.newlj(outp1));
-				return (self.newlj(outp), gamma, funcs);
+				for j in range(len(t[1:])):
+					i = t[1:][j];
+					outp.append( ("else " if j!=0 else "")+"if("+expend(i[1], funcs)+".ival) {" );
+					outp.append( expend(i[2], funcs)[0] );
+					outp.append( "}" );
+				return (outp, funcs);
+			elif(t[0] == "Forl"):
+				lt = expend(t[3], funcs);
+
+				index_var = t[2][1] if(t[2][1] != "") else self.gennewvar();
+				value_var = t[1][1];
+
+				outp = ["FL("+index_var+", INDEXARR("+lt+")) {"];
+				outp.append(["json "+value_var+" = INDEXARRVAL("+lt+", "+index_var+");"]+expend(t[4], funcs)[0]);
+				outp.append("}");
+				return (outp, funcs);
 			elif(t[0] == "Defn"):
-				return "Defined Fun_"+t[1];
+				fname = t[1][1];
+				return (["htmltag* "+fname+"(json* inp) {"]+["}"], [fname]+funcs);
 			elif(t[0] == "Tag"):
-				return "Called Tag_"+t[1];
-			else:
-				return "";
-		if(0):
-			if(t[0] == "None"):
-				return None;
-			elif(t[0] == "Assign"):
-				if(t[1][0] == "V"):
-					gamma[ t[1][1] ] = expend( t[2], gamma, funcs );
-				elif(t[1][0] == "Get"):
-					expend(t[1][1], gamma, funcs)[ expend(t[1][2], gamma, funcs) ] = expend( t[2], gamma, funcs );
-				return ("", gamma, funcs);
-			elif(t[0] == "V" ):
-				return geta(t[1], gamma);
-			elif(t[0] in ["N", "S"] ):
-				return t[1];
-			elif(t[0] == "Not" ):
-				return int(not(expend(t[1], gamma, funcs)));
-			elif(t[0] == "Attr" ):
-				a = expend(t[1], gamma, funcs);
-				if(t[2] == 'len'):
-					return len(a);
-				elif(t[2] == 'keys'):
-					return a.keys();
-				elif(t[2] == 'gchars'):
-					return convchars(a);
+				tname = t[1][1];
+				if(tname == "print"):
+					return ([ expend(t[2], funcs)+".__str__()"], funcs);
 				else:
-					return a;
-			elif(t[0] == "Ife"):
-				if(expend(t[1], gamma, funcs)):
-					return expend(t[2], gamma, funcs);
-				else:
-					return expend(t[3], gamma, funcs);
-			elif(t[0] in ["Add", "Mul", "Sub", "Div", "Mod", "Or", "And", "Get", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"] ):
-				a1,a2 = expend(t[1], gamma, funcs), expend(t[2], gamma, funcs)
-				if(t[0] == "Add"):
-					return ouradd(a1, a2);
-				elif(t[0] == "Mul"):
-					return a1*a2;
-				elif(t[0] == "Sub"):
-					return a1-a2;
-				elif(t[0] == "Div"):
-					return a1/a2;
-				elif(t[0] == "Mod"):
-					return a1%a2;
-				elif(t[0] == "And"):
-					return int(a1 and a2);
-				elif(t[0] == "Or"):
-					return int(a1 or a2);
-				elif(t[0] == "Get"):
-					return a1[a2];
-				elif(t[0] == "Isequal"):
-					return int(a1 == a2);
-				elif(t[0]=="Le"):
-					return int(a1<=a2);
-				elif(t[0]=="Ge"):
-					return int(a1>=a2);
-				elif(t[0]=="Ls"):
-					return int(a1<a2);
-				elif(t[0]=="Gt"):
-					return int(a1>a2);
-				elif(t[0]=="Notequal"):
-					return int(a1!=a2);
-				else:
-					return "";
-			elif(t[0] == "Dictle"):
-					return {(t[1][1] if t[1][0] == "V" else expend(t[1], gamma, funcs)): expend(t[2], gamma, funcs) };
-			elif(t[0] == "Dictl"):
-				return fold(lambda x,y: joinarr(x, expend(y, gamma, funcs) ), t[1:], {});
-			elif(t[0] == "Listl"):
-				return map(lambda x: expend(x, gamma, funcs), t[1:]);
-			elif(t[0] == "Listi"):
-				outp = [];
-				for i in t[1:]:
-					(outp1, gamma1, funcs1) = expend(i, gamma, funcs, depth);
-					outp.append(outp1);
-					gamma = gamma1;
-					funcs = funcs1;
-				return (outp, gamma, funcs);
-			elif(t[0] == "Ifel"):
-				for i in t[1:]:
-					if(expend(i[1], gamma, funcs)):
-						return (self.newlj(expend(i[2], gamma, funcs)[0]), gamma, funcs);
-				return ("", gamma, funcs);
-			elif(t[0] == "Forl"):
-				lt = expend(t[3], gamma, funcs);
-				lta = ( range(lt) if type(lt) == int else lt)
-				outp = [];
-				for i in xrange(len(lta)):
-					gamma1 = copy.deepcopy(gamma);
-					gamma1[t[1][1]] = lta[i];
-					if(t[2][1] != ""):
-						gamma1[ t[2][1] ] = i;
-					(outp1, gamma2, funcs2) = expend(t[4], gamma1, funcs, depth);
-					outp.append(self.newlj(outp1));
-				return (self.newlj(outp), gamma, funcs);
-			elif(t[0] == "Defn" ):
-				funcs[ t[1][1] ] = t;
-				return ("", gamma, funcs);
-			elif(t[0] == "Tag" ):
-				tagname = t[1][1];
-				pretext = self.tabseprate*depth;
-				if(tagname == "p"):
-					return (pretext+str(expend(t[2], gamma, funcs)), gamma, funcs);
-				elif(tagname == "innerHTML" and  gamma.has_key("innerHTML")):
-					return (self.newlj( gamma["innerHTML"] ), gamma, funcs);
-				else:
-					onewaytags = ["input", "link", "img", "base"];
-					inattr = expend(t[2], gamma, funcs);
-					mergeifunset(inattr, {"attr": {}, "style": {}, "data": {}, "datas":{}});
-					mergeifunset(inattr["attr"], {"class": geta("class", inattr), "id": geta("id", inattr) }, True, True);
-					mergeifunset(inattr["style"], {"color": geta("color", inattr)}, True, True);
-					inattr["attr"]["style"] = inattr["style"];
-
-					mifu(inattr["attr"], l2dict(("data-"+i, inattr["data"][i]) for i in inattr["data"]));
-					mifu(inattr["attr"], l2dict(("data-send"+i, inattr["datas"][i]) for i in inattr["datas"]));
-
-					innerHTML = expend(t[3], gamma, funcs, depth+1)[0];
-					if(funcs.has_key(tagname)):
-						t1 = funcs[tagname];
-						gamma1 = copy.deepcopy(gamma);
-						mifu(gamma1, overwrite( expend(t1[2], gamma, funcs), inattr), True);
-						gamma1["innerHTML"] = innerHTML;
-						return (self.newlj(expend(t1[3], gamma1, funcs, depth)[0]), gamma, funcs);
-					else:
-						styles = inattr["attr"]["style"];
-						attrs = inattr["attr"];
-						linstyle = ";".join("{0}:{1}".format(x, styles[x]) for x in styles if styles[x]!=None);
-						linattr = "".join( list(" {0}='{1}' ".format(x, attrs[x]) for x in  attrs if (x!="style" and attrs[x]!=None )) + ([" style='"+linstyle+"' "] if linstyle!='' else []) )
-						fp1 = [pretext+"<"+tagname+linattr+">"];
-						fp2 = ([pretext+"</"+tagname+">"] if (tagname not in onewaytags) else [] );
-						return (self.newlj(fp1+innerHTML+fp2 ), gamma, funcs);
+					return ([(tname+"()" if(tname in funcs) else "new htmltag("+tname+", ..)")], funcs)
 			else:
 				return "";
 	def disp(self, gamma = {}):
-		return self.expend(tuple(['Listi']+self.data), gamma, {});
-
+		outp = self.expend(tuple(['Listi']+self.data), [])[0];
+		def printoutp(xl, depth = -1):
+			if type(xl) == list :
+				return mixl(map(lambda x: printoutp(x, depth+1), xl));
+			else:
+				return ['\t'*depth+xl];
+		return self.newlj(printoutp(outp));
 

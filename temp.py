@@ -9,8 +9,9 @@ from msl.mtime import *;
 
 execfile(_mslib+"ocaml1/run.py");
 
-print "%f"%time.time()
+#print "%f"%time.time()
 maincontent = mtmlparser();
 maincontent.readcompiled("test.cpp");
-maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
-print "%f"%time.time()
+#print maincontent.data;
+print maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
+#print "%f"%time.time()

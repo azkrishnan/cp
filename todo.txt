@@ -1,20 +1,34 @@
 Pending:
 
 0. Move to my AWS, Please...I am unable to make any changes at this time :-)
+
 1. Adding cat/subcat details on business card.
+
 #####2. Minimize button - mobile optimized
+
 ####3. Ability for the home to be pinned anywhere.
+
 4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
+
 #####5. Ability to extend or lessen radius
+
 6. Upload my data (will send it over to you) 
+
 7. Select All Cats: (1) Use Squares for cats, and circles for subcats 
+
 ######(2) Smaller font sizes for subcats
 >>>>>I am getting problem in (coding) making it circle.
+
 8. Upload new logo (you will have to work to make sure this looks good) 
+
 ######9. Clustering of map markers within a close range
+
 10. Datamodel and database - excel sheets won't scale
+
 ######11. Our Story and Contact Us pages -- Will provide you content for Our Story
+
 12. Show favorites in a different color map marker.
+
 13. Search Results: 
 Right now we say "X locations found in your area (x km)"
 
