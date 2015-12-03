@@ -43,20 +43,34 @@ public:
 		}
 	}
 
-
-	json(const json & j) {
-		cout<<"Waw... It is copied from here.." <<endl;
+	json (const json & j) {
+		cout<<"Copy"<<endl;
+		this->newcopy(j);
 	}
-//	json & operator = (const json &);
+
+	void newcopy(const json & j) {
+		type = j.type;
+		if(type == 'i')
+			set_int(j.get_int());
+		else if(type == 's')
+			set_str(j.get_str());
+		else if(type == 'f')
+			set_float(j.get_float());
+		else if(type == 'l')
+			this->set_list(j.get_list1());
+		else if(type == 'm') 
+			this->set_map(j.get_keys1(), j.get_map1());
+	}
 
 	json& operator = (const json & v) {
-		cout<<"UyUyUy"<<endl;
+		this->newcopy(v);
+		//assert(false && ("Bug: I thought nobody will call this method"));
 		return *this;
 	}
 
 
 	~json() {
-		cout<<"I have free the json with type = "<<type<<endl;
+//		cout<<"I have free the json with type = "<<type<<endl;
 		if(data != NULL) {
 			if(type == 'i')
 				delete (int*)data;
@@ -82,38 +96,49 @@ public:
 	inline void set_float(double d) {
 		data = new double(d);
 	}
+	inline void set_list(vector<json>l) {
+		this->init_list();
+		*get_list() = l;
+	}
+	inline void set_map(vector<string>keys, map<string, json> jsonm) {
+		this->init_map();
+		*get_keys() = keys;
+		*get_map() = jsonm;
+	}
+
 	inline void init_list() {
-		data = new vector<json>();
+		data = new vector<json>(0);
 	}
 	inline void init_map() {
 		data = new pair<void*, void*>(new map<string, json>(), new VS());
 	}
 
-	inline int get_int() {
+
+	inline int get_int() const {
 		return *((int*)data);
 	}
-	inline double get_float() {
+	inline double get_float() const {
 		return *((double*)data);
 	}
-	inline string get_str() {
+	inline string get_str() const {
 		return *((string*)data);
 	}
-	inline vector<json>* get_list() {
+	inline vector<json>* get_list() const {
 		return ((vector<json>*)data);
 	}
-	inline vector<json> get_list1() {
+	inline vector<json> get_list1() const {
 		return *(get_list());
 	}
-	inline map<string, json>* get_map() {
+	inline map<string, json>* get_map() const {
 		return (map<string, json>*)(((pair<void*, void*>*)data)->first);
 	}
-	inline map<string, json> get_map1() {
+	inline map<string, json> get_map1() const {
 		return *get_map();
 	}
-	inline VS* get_keys() {// for map only
+	inline VS* get_keys() const {// for map only
 		return (VS*)(((pair<void*, void*>*)data)->second);
 	}
-	inline VS get_keys1() {// for map only
+	inline VS get_keys1() const {// for map only
 		return *get_keys();
 	}
 
@@ -145,14 +170,21 @@ typedef map<string, json> mapsj;
 
 
 json json::op_Binary(string op, json j1) {
+	cout<<"self for op_bin = "<<  this->type <<endl;
+	cout<< "Type of j1 inside = "<< j1.type <<endl;
 	return *this;
 }
 
 void json::addkey(string s1, json j) {
+	cout<<"1111111111"<<endl;
 	mapsj gmap = *get_map();
-	if(!FIND(s1, gmap))
+	cout<<"22222222222"<<endl;
+	if(!FIND(s1, gmap)) {
 		get_keys()->PUSH(s1);
+	}
+	cout<<"Working179"<<endl;
 	(*get_map())[s1] = j;
+	cout<<"Working181"<<endl;
 }
 
 
@@ -161,9 +193,7 @@ void json::self_Not() {
 }
 
 json* json::copy() {
-	json*j = new json();
-	*j = *this;
-	return j;
+	return new json(*this);
 }
 
 inline json* json::op_Get(json j) {

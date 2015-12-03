@@ -12,6 +12,10 @@ elif(_server == "csc"):
 	HOST = 'http://privateweb.iitd.ac.in/~cs1120233/cp/';
 	ROOT = '/home/cse/btech/cs1120233/private_html/cp/';
 	db_data = {'host': 'poorvi.cse.iitd.ac.in', 'user': 'mohit', 'pass': 'mohitsaini', 'db': 'mohit'};
+elif(_server == "aws_cp"):
+	HOST = 'http://52.8.246.176/';
+	ROOT = '/var/www/html/';
+	db_data = {'host': 'localhost', 'user': 'root', 'pass': 'mohit', 'db': 'kurry'};
 
 CDN = HOST+'photo/'
 BASE = HOST+'index.php/'
