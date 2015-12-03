@@ -1,66 +1,55 @@
+
 class json{
 public:
-	int ival;
-	float fval;
-	string sval;
-	vector<json>jsonl;
-	map<string, json> jsonm;
-	bool isi, iss, isl, ism, isn, isb, isf;
-	void reset() {
-		isi = iss = isl = ism = isn = isb = isf = false;
+	void* data;
+	char type;
+	inline void set_int(int x) {
+		data = new int(x);
+	}
+	inline void set_str(string x) {
+		data = new string(x);
+	}
+	inline void init_list() {
+		data = new vector<json>();
+	}
+	inline void init_map() {
+		data = new pair<void*, void*>(new map<sting, json>(), new vector<string>());
+	}
+
+	inline int get_int() {
+		return *((int*)data);
+	}
+	inline string get_str() {
+		return *((string*)data);
+	}
+	inline vector<json>* get_list() {
+		return ((vector<json>*)data);
+	}
+	inline map<string, json>* get_map() {
+		return (((pair<int, int>*)data)->first);
+	}
+	inline vector<string> get_keys() {// for map only
+		return *(((pair<int, int>*)data)->second);
 	}
 	json() {
-		this->reset();
 	}
 	json(double x) {
-		this->reset();
-		fval = x;
-		isf = 1;
+		type = 'f';
+		data = new double(x);
 	}
 	json(string x) {
-		this->reset();
-		sval = x;
-		iss = 1;
-	}
-	json(vector<json>l) {
-		this->reset();
-		jsonl = l;
-		isl = 1;
-	}
-	json(map<string, json> m) {
-		this->reset();
-		jsonm = m;
-		ism = 1;
-	}
-	void settype(char c) {
-		this->reset();
-		if(c=='i')
-			isi = true;
-		else if (c=='s')
-			iss = true;
-		else if (c=='n')
-			isn = true;
-		else if (c=='b')
-			isb = true;
-		else if (c=='f')
-			isf = true;
-		else if (c=='l')
-			isl = true;
-		else if (c=='m')
-			ism = true;
+		type = 's';
+		data = new string(x);
 	}
 	json(char c) {
-		this->settype(c);
+		type = c;
 	}
 	json(char c, int num, ...) {
-		this->settype(c);
+		type = c;
 		va_list ap;
 		int n_args = num;
 		if(c=='i') {
-			ival = num;
-		}
-		else if(c=='b') {
-			ival = num;
+			this->set_int(num);
 		}
 		else if (c=='l') {
 			va_start(ap, num);
@@ -80,7 +69,7 @@ public:
 		}
 	}
 	void pushjsonl(json*j) {
-		jsonl.PUSH(*j);
+		get_list()->PUSH(*j);
 		delete j;
 	}
 	void addkey(string s1, json j) {
