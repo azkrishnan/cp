@@ -138,18 +138,20 @@ class mtmlparser:
 				return (outp);
 			elif(t[0] == "Defn"):
 				fname = t[1][1];
-				return (["htmltag* "+fname+"(json* inp) {"]+["}"]);
+				return (["htmltag* "+fname+"(inp) {"]+["}"]);
 			elif(t[0] == "Tag"):
 				tname = t[1][1];
 				if(tname == "print"):
 					return ([ expend(t[2])+".__str__()"]);
+				# else:
+				# 	return ([(tname+"()" if(tname in self.allfuncs) else "new htmltag("+tname+", ..)")])
 				else:
-					return ([(tname+"()" if(tname in []) else "new htmltag("+tname+", ..)")])
+					return ("new htmltag("+tname+", ..)")
 			else:
 				return "";
 	def disp(self, gamma = {}):
+		self.allfuncs = mappl(lambda x: x[1][1], self.data, lambda x: x[0] == "Defn");
 		outp = self.expend(tuple(['Listi']+self.data))
-		print outp;
 		def printoutp(xl, depth = -1):
 			if type(xl) == list :
 				return mixl(map(lambda x: printoutp(x, depth+1), xl));

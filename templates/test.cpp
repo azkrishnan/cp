@@ -1,9 +1,9 @@
-// define a1() {
-// 	attr["href"] = href;
-// 	a(attr: attr, style: style, class: class) {
-// 		p(name);
-// 	}
-// }
+define a1() {
+	attr["href"] = href;
+	a(attr: attr, style: style, class: class) {
+		p(name);
+	}
+}
 
 x1 = [1,22,3398, {mohit: "Vikash", "sainibhaiya": [1,2,3,4,5, {Saini: "233", "mohit-saini\n\n\n\t\t...';;;": "Bgyyhh"}]}];
 
