@@ -13,7 +13,7 @@ execfile(_mslib+"ocaml1/run.py");
 maincontent = mtmlparser();
 maincontent.readcompiled("test.cpp");
 #print maincontent.data;
-#print maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
+print maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
 #print "%f"%time.time()
 
 
@@ -31,9 +31,15 @@ class htmlnode():
 		self.content = [];
 		self.ptext = ptext;
 
+		self.fcalldata = {};# List of (method_name-> htmltree)
+
 	def addchild(self, n):
 		self.content.append(n);
 		n.parent = self;
+
+	def addfcdata(self, fname):
+		self.fcalldata[fname] = htmltree();
+
 
 	def tostr(self):
 		def tagattrs(a):
@@ -52,7 +58,6 @@ class htmlnode():
 
 class htmltree():
 	def __init__(self):
-		
 		self.root = htmlnode();
 		self.cur = self.root;
 
@@ -64,36 +69,43 @@ class htmltree():
 	def close(self):
 		self.cur = self.cur.parent;
 
+	def addchilds(self, node):
+		mappl(lambda x:self.cur.addchilds(x), node.content);
+
+	def addtext(self, ptext):
+		self.open(htmlnode(ptext = ptext));
 
 
 
 
-m = htmlnode("mangelal");
-n1 = htmlnode("sunita");
-n2 = htmlnode("Vinod");
-
-mn1 = htmlnode(ptext = "mohit");
-
-n2.addchild(mn1);
-
-m.addchild(n1);
-m.addchild(n2);
 
 
-print n1.parent.content[1].tag
+# m = htmlnode("mangelal");
+# n1 = htmlnode("sunita");
+# n2 = htmlnode("Vinod");
 
-print m.tostr()
+# mn1 = htmlnode(ptext = "mohit");
+
+# n2.addchild(mn1);
+
+# m.addchild(n1);
+# m.addchild(n2);
+
+
+# print n1.parent.content[1].tag
+
+# print m.tostr()
 
 
 
-outp = htmltree();
-outp.open(htmlnode("div", {"color": "blue"}));
-outp.open(htmlnode(ptext = "Jai Ho India"));
-outp.close();
+# outp = htmltree();
+# outp.open(htmlnode("div", {"color": "blue"}));
+# outp.open(htmlnode(ptext = "Jai Ho India"));
+# outp.close();
 
-outp1 = htmltree();
+# outp1 = htmltree();
 
-print outp.root.tostr();
+# print outp.root.tostr();
 
 
 
