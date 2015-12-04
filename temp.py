@@ -37,7 +37,7 @@ class htmlnode():
 
 	def tostr(self):
 		def tagattrs(a):
-
+			return json.dumps(a);
 		opentag = lambda : "<"+self.tag+" "+ tagattrs(self.attrs) + " >";
 		closetag = lambda : "</"+self.tag+">"
 		if(self.ptext != None):
@@ -47,7 +47,7 @@ class htmlnode():
 		elif ( len(self.content) ==1 and self.content[0].ptext != None):
 			return [opentag()+self.ptext+closetag()];
 		else:
-			pass
+			return [opentag(), mappl(lambda x: x.tostr(), self.content), closetag()];
 
 
 class htmltree():
