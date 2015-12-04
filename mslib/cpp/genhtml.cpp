@@ -6,36 +6,8 @@ using namespace std;
 int main() {
 
 
+#include "/tmp/null.cpp"
 
-
-
-// json x = json('i', 34);
-
-// cout<< x.type <<";;;;"<<endl;
-
-
-// // cout<<"Next one1" <<endl;
-
-// json j = json('i', 11).op_Binary("add", json('i', 34));
-
-// cout<<"Next one2" <<endl;
-
-
-json j2;
-j2.parse(cin);
-
-
-cout<< j2.__str__() <<endl;
-
-
-
-// //j2.parse(cin);
-
-
-// j2.parse(cin);
-
-
-// cout<< j2.__str__() <<endl;
 
 return 0;
 }
@@ -82,3 +54,34 @@ return 0;
 // cout<<":"<<j2.jsonl[2].jsonl[1].sval << ";"<<endl;
 
 //cout<<parse(cin).__str__()<<endl;
+
+
+
+//////////////////////////
+
+
+// json x = json('i', 34);
+
+// cout<< x.type <<";;;;"<<endl;
+
+
+// // cout<<"Next one1" <<endl;
+
+// json j = json('i', 11).op_Binary("add", json('i', 34));
+
+// cout<<"Next one2" <<endl;
+
+
+// json j2;
+// j2.parse(cin);
+// cout<< j2.__str__() <<endl;
+
+
+
+// //j2.parse(cin);
+
+
+// j2.parse(cin);
+
+
+// cout<< j2.__str__() <<endl;

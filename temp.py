@@ -15,3 +15,4 @@ maincontent.readcompiled("test.cpp");
 #print maincontent.data;
 print maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
 #print "%f"%time.time()
+

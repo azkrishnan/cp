@@ -5,7 +5,7 @@
 // 	}
 // }
 
-x = [1,22,3398, {mohit: "Vikash", "sainibhaiya": [1,2,3,4,5, {Saini: "233", "mohit-saini\n\n\n\t\t...';;;": "Bgyyhh"}]}];
+x1 = [1,22,3398, {mohit: "Vikash", "sainibhaiya": [1,2,3,4,5, {Saini: "233", "mohit-saini\n\n\n\t\t...';;;": "Bgyyhh"}]}];
 
 
 if(231) {
@@ -17,17 +17,20 @@ elif(2313) {
 	x = [111];
 }
 else {
-	x = [11];
+	x = 11;
 	x = x+1;
 }
 
-x = [1,2];
-x[1] = [1258,2,3][0];
-
-//print(x[1]);
+x2 = [1,2];
+x2[1] = [1258,2,3][0];
 
 
-x=(!11).size;
+for(i, j, ['a', 'b', 'c', "mohit\n\n"]) {
+	x[i]["Saini"] = i*10;
+}
+
+
+// x=(!11)
 
 z = 1-((12 ? "Saini": 11) + "Saini");
 

@@ -43,7 +43,7 @@ class mtmlparser:
 #		return "random_var_T6OuFteLo_"+str(self.newvar);
 		return "random_var_"+str(self.newvar);
 
-	def expend(self, t, funcs, depth = 0): #Gamma contains list of all function names.
+	def expend(self, t): #Gamma contains list of all function names.
 		expend = self.expend;
 		def fold(f, l, a):
 			for i in l:
@@ -83,79 +83,79 @@ class mtmlparser:
 				return str(x)+str(y);
 		if(1):
 			if(t[0] == "None"):
-				return "(json('n'))";
+				return t[0];
 			elif(t[0] == "Assign"):
 				if(t[1][0] == "V"):
-					return (["json "+t[1][1] + " = " + expend(t[2], funcs)+";"], funcs);
+					return ([""+t[1][1] + " = " + expend(t[2])+";"]);
 				elif(t[1][0] == "Get"):
-					return ([expend(t[1], funcs)+" = " + expend(t[2], funcs )+";"], funcs)
-				return ([""], funcs);
+					return ([expend(t[1])+" = " + expend(t[2])+";"])
+				return ([""]);
 			elif(t[0] == "V"):
 				return t[1];
 			elif(t[0] in ["S"]):
-				return "(json("+quoted_s(t[1])+"))";
+				return quoted_s(t[1]);
 			elif(t[0] ==  "N"):
-				return "(json('i', "+str(t[1])+"))";
+				return str(t[1]);
 			elif(t[0] == "Not"):
-				return expend(t[1], funcs)+".op_Not()"
-			elif(t[0] == "Attr" ):
-				return expend(t[1], funcs)+".op_Attr("+quoted_s(t[2])+")";
+				return "not("+expend(t[1])+")"
+			elif(t[0] == "Attr"):
+				return expend(t[1])+"."+t[2];
 			elif(t[0] == "Ife"):
-				return "("+expend(t[1], funcs) + ".get_int() ? "+expend(t[2], funcs) + ": "+expend(t[3], funcs)+")";
+				return "("+ expend(t[2]) +" if (" +expend(t[1]) + ") else "+ expend(t[3])+")";
 			elif(t[0] == "Get"):
-				a1,a2 = expend(t[1], funcs), expend(t[2], funcs)
-				return "(*("+a1+".op_Get("+a2+")))";
-			elif(t[0] in ["Add", "Mul", "Sub", "Div", "Mod", "Or", "And", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"] ):
-				a1,a2 = expend(t[1], funcs), expend(t[2], funcs)
-				return a1+".op_Binary("+ quoted_s(t[0])  +", "+a2+")";
+				a1,a2 = expend(t[1]), expend(t[2])
+				return a1+"["+a2+"]";
+			elif(t[0] in ["Add", "Mul", "Sub", "Div", "Mod", "Or", "And", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"]):
+				a1,a2 = expend(t[1]), expend(t[2])
+				return "("+a1+ {"Add": "+", "Mul": "*", "Sub": "-", "Div": "/", "Mod": "%", "Or": "or", "And": "and", "Isequal": "==", "Le": "<=", "Ge": ">=", "Ls": "<", "Gt": ">", "Notequal": "!="}[t[0]] +a2+")";
 			elif(t[0] == "Dictle"):
-					return ", "+("new json("+quoted_s(t[1][1])+")" if t[1][0] == "V" else expend(t[1], funcs)+".copy()")+", "+expend(t[2], funcs)+".copy() ";
+					return (quoted_s(t[1][1]) if t[1][0] == "V" else expend(t[1]) ) +": "+ expend(t[2]);
 			elif(t[0] == "Dictl"):
-				return fold(lambda x,y: x+expend(y, funcs), t[1:][::-1], "(json('m', "+str(len(t[1:])))+"))";
+				return "{"+(", ".join(map(lambda x: expend(x), t[1:][::-1])))+"}"
 			elif(t[0] == "Listl"):
-				return fold(lambda y,x: y+", "+expend(x, funcs)+".copy()", t[1:], "(json('l', "+str(len(t[1:])))+"))";
+				return "["+(", ".join(map(lambda x: expend(x), t[1:])))+"]"
 			elif(t[0] == "Listi"):
 				outp = [];
 				for i in t[1:]:
-					(outp1, funcs1) = expend(i, funcs);
+					(outp1) = expend(i);
 					outp+=outp1;
-					funcs = funcs1;
-				return (outp, funcs);
+				return (outp);
 			elif(t[0] == "Ifel"):
 				outp = [];
 				for j in range(len(t[1:])):
 					i = t[1:][j];
-					outp.append(("else " if j!=0 else "")+"if("+expend(i[1], funcs)+".get_int()) {" );
-					outp.append( expend(i[2], funcs)[0] );
-					outp.append( "}" );
-				return (outp, funcs);
+					outp.append(("elif" if j!=0 else "if")+" ("+expend(i[1])+"): " );
+					outp.append( expend(i[2]) );
+				return (outp);
 			elif(t[0] == "Forl"):
-				lt = expend(t[3], funcs);
-
-				index_var = t[2][1] if(t[2][1] != "") else self.gennewvar();
+				lt = expend(t[3]);
+				index_var = t[2][1];
 				value_var = t[1][1];
+				lta = "forlist("+lt+")";
 
-				outp = ["FL("+index_var+", INDEXARR("+lt+")) {"];
-				outp.append(["json "+value_var+" = INDEXARRVAL("+lt+", "+index_var+");"]+expend(t[4], funcs)[0]);
-				outp.append("}");
-				return (outp, funcs);
+				outp = ["for "+(index_var if index_var != "" else value_var)+" in " + lta + " :"];
+				outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+expend(t[4]));
+				return (outp);
 			elif(t[0] == "Defn"):
 				fname = t[1][1];
-				return (["htmltag* "+fname+"(json* inp) {"]+["}"], [fname]+funcs);
+				return (["htmltag* "+fname+"(json* inp) {"]+["}"]);
 			elif(t[0] == "Tag"):
 				tname = t[1][1];
 				if(tname == "print"):
-					return ([ expend(t[2], funcs)+".__str__()"], funcs);
+					return ([ expend(t[2])+".__str__()"]);
 				else:
-					return ([(tname+"()" if(tname in funcs) else "new htmltag("+tname+", ..)")], funcs)
+					return ([(tname+"()" if(tname in []) else "new htmltag("+tname+", ..)")])
 			else:
 				return "";
 	def disp(self, gamma = {}):
-		outp = self.expend(tuple(['Listi']+self.data), [])[0];
+		outp = self.expend(tuple(['Listi']+self.data))
+		print outp;
 		def printoutp(xl, depth = -1):
 			if type(xl) == list :
 				return mixl(map(lambda x: printoutp(x, depth+1), xl));
-			else:
+			elif(xl != '') :
 				return ['\t'*depth+xl];
+			else:
+				return [];
 		return self.newlj(printoutp(outp));
 

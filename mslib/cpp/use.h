@@ -44,7 +44,6 @@ public:
 	}
 
 	json (const json & j) {
-		cout<<"Copy"<<endl;
 		this->newcopy(j);
 	}
 
@@ -170,21 +169,15 @@ typedef map<string, json> mapsj;
 
 
 json json::op_Binary(string op, json j1) {
-	cout<<"self for op_bin = "<<  this->type <<endl;
-	cout<< "Type of j1 inside = "<< j1.type <<endl;
 	return *this;
 }
 
 void json::addkey(string s1, json j) {
-	cout<<"1111111111"<<endl;
 	mapsj gmap = *get_map();
-	cout<<"22222222222"<<endl;
 	if(!FIND(s1, gmap)) {
 		get_keys()->PUSH(s1);
 	}
-	cout<<"Working179"<<endl;
 	(*get_map())[s1] = j;
-	cout<<"Working181"<<endl;
 }
 
 
