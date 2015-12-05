@@ -80,7 +80,6 @@ $addinfo = array("ip" => $_SERVER['REMOTE_ADDR']);
 
 $pydata = array("get"=> $_GET, "post"=> $_POST, "session"=> $_SESSION, "url"=> curpathinfo(), "file" => $_FILES, "addinfo" => $addinfo);
 
-
 $cmd = "python ".$pyfile." '".tojson($pydata)."' 2>&1";
 
 $pyoutp = shell_exec($cmd);

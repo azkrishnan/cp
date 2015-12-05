@@ -1,7 +1,3 @@
-from msl import *
-from msl.help import *
-from msl.sql import *
-from msl.mtime import *;
 
 class mtmlparser:
 	def config(self):
@@ -93,7 +89,7 @@ class mtmlparser:
 			value_var = t[1][1];
 			lta = "forlist("+lt+")";
 
-			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + lta + " :"];
+			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + ("range(len("+lta+"))" if (index_var != "") else lta) + " :"];
 			self.directvar+=[value_var, index_var];
 			outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+ rift(expend(t[4]), ["pass"], lambda x: len(x) == 0)) ;
 			remove(remove(self.directvar, value_var), index_var);
@@ -120,11 +116,11 @@ class mtmlparser:
 					return [self.returnvar+".cur.addfcdata("+quoted_s(tname)+");"]+innerHTML+[self.returnvar+".addchilds("+self.defname(tname)+"("+inattr+", "+self.ginp+", "+self.returnvar+".cur.fcalldata["+quoted_s(tname)+"].root.content).root.content);"];
 				else:
 					innerHTML = expend(t[3]);
-					return [self.returnvar+".open(htmlnode("+quoted_s(tname)+", extentattrs("+inattr+")));"]+innerHTML+[self.returnvar+".close();"]
+					return [self.returnvar+".open(htmlnode("+quoted_s(tname)+", extentattrs("+inattr+")));"]+innerHTML+([self.returnvar+".close();"] if (tname not in _onewaytags) else [])
 		else:
 			return "";
 	def disp(self, data):
 		self.alltags = ["a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio", "b", "base", "basefont", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "datalist", "dd", "del", "details", "dfn", "dialog", "dir", "div", "dl", "!DOCTYPE", "dt", "em", "embed", "fieldset", "figcaption", "figure", "font", "footer", "form", "frame", "frameset", "h1", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "map", "mark", "menu", "menuitem", "meta", "meter", "nav", "noframes", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"];#+["main"];
 		outp = self.expend(tuple(['Listi'] + data))
-		return self.newlj(printoutp(outp, self.tabseprate, -1));
+		return self.newlj(["#This code is auto generated code, don't Edit it "]+printoutp(outp, self.tabseprate, -1));
 

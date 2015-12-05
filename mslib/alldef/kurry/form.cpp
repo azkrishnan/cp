@@ -2,7 +2,6 @@ define main1(css:[], js:[], bodystyle:{}, htmlstyle:{}, title: "KurryBox") {
 	js = ["js/main.js"] + js;
 	main(title: title, css: css, js:js, bodystyle:bodystyle, htmlstyle: htmlstyle) {
 		innerHTML();
-//		loginmodal();
 	}
 }
 
@@ -20,14 +19,14 @@ define main2(css:[], js:[], bodystyle:{}, htmlstyle:{}, title: "KurryBox") {
 define bigsearch() {
 	div(class: "row", style: {"background-color":""}) {
 		div(class: "col l1 m1") {
-			p("&nbsp;");
+			print("&nbsp;");
 		}
 		div(class: "col m8 s12 l9", style:{"padding": "0px", "margin": "0px"}) {
 			input(attr:{placeholder: ph, id: id, autofocus: autofocus}, class:"bigsearch definput", style:{"border-radius": "0px"});
 		}
 		div(class: "col m2 s12 l1 ", style:{"padding": "0px", "margin": "0px"}) {
 			button(class: "bigsearchbutton waves-effect waves-light btn", style:{"border-radius": "0px"}, attr:{type:"submit"}) {
-				p("Go");
+				print("Go");
 				icon(name: "send", aclass: "right");
 			}
 		}
@@ -57,12 +56,12 @@ define header3(tabname:[], tablink:[]) {
 				ul(class: "right hide-on-med-and-down" ) {
 					li() {
 						a(class: "dropdown-button", attr:{"data-activates": "dropdown2"}) {
-							p("&nbsp;"*10+"Today, 28th Oct"+"&nbsp;"*10);
+							print("&nbsp;"*10+"Today, 28th Oct"+"&nbsp;"*10);
 						}
 					}
 					li() {
 						a(class: "dropdown-button", attr:{"data-activates": "dropdown1"}) {
-							p("&nbsp;"*5+"All"+"&nbsp;"*20);
+							print("&nbsp;"*5+"All"+"&nbsp;"*20);
 						}
 					}
 					disptabs(tabname: tabname, tablink: tablink);
@@ -74,7 +73,7 @@ define header3(tabname:[], tablink:[]) {
 			for(i, ii, foodtype) {
 				li() {
 					a(attr:{href: ""}) {
-						p(i);
+						print(i);
 					}
 				}
 			}
@@ -84,7 +83,7 @@ define header3(tabname:[], tablink:[]) {
 			for(i, ii, nextdays) {
 				li() {
 					a(attr:{href: ""}) {
-						p(i);
+						print(i);
 					}
 				}
 			}
@@ -104,13 +103,13 @@ define dispfood() {
 					div(class: "row") {
 						div(class: "col l8", attr:{align: "left"}) {
 							div() {
-								p(dishinfo["title"]);
+								print(dishinfo["title"]);
 							}
 						}
 						div(class: "col l4") {
 							icon1(img: "photo/inr1.png");
 							span(style:{"font-size": "25px", "font-weight": "600"}){
-								p(dishinfo["price"]);
+								print(dishinfo["price"]);
 							}
 						}
 					}
@@ -133,12 +132,12 @@ define dispfood() {
 					if(islogin == "a" ) {
 						div(class: "col l4 ") {
 							button(class: "btn waves-effect waves-light btn", datas:{datetime: dishinfo["datetime"], lord: dishinfo["lord"], dishid: dishinfo["id"]}, data:{onclick: "sreq", action: "deletedisp", restext: "Deleted !"}) {
-								p("Delete");
+								print("Delete");
 							}
 						}
 						div(class: "col l4 offset-l3") {
 							button(class: "btn waves-effect waves-light btn") {
-								p("Edit");
+								print("Edit");
 							}
 						}
 					} elif( loginid == dishinfo["cid"] ) {
@@ -146,12 +145,12 @@ define dispfood() {
 					} else {
 						div(class: "col l4 ") {
 							button(class: "btn waves-effect waves-light btn", data:{onclick: "addfav"}, attr:{"id": "mohit"}) {
-								p("Favourite");
+								print("Favourite");
 							}
 						}
 						div(class: "col l4 offset-l3") {
 							button(class: "btn waves-effect waves-light btn", data:{onclick: "sreq", action: "addincart", restext: "Added!"}, datas: {datetime: dishinfo["datetime"], lord: dishinfo["lord"], dishid: dishinfo["id"]}) {
-								p("Add + ");
+								print("Add + ");
 							}
 						}
 					}
@@ -163,7 +162,7 @@ define dispfood() {
 
 define l_otp_button() {
 	button(class: "btn waves-effect waves-light", attr:{type: "button"}, data:{onclick: "sreq", action: "sendotp", fobj: "$(obj).parent().parent()[0]", restext: "Re-send"}) {
-		p("Send OTP");
+		print("Send OTP");
 	}
 }
 
@@ -193,7 +192,7 @@ define loginmodal() {
 					div(class: "row") {
 						div(class: "col") {
 							button(class: "btn waves-effect waves-light", attr:{type: "submit"}) {
-								p("Login");
+								print("Login");
 							}
 						}
 					}					
@@ -219,7 +218,7 @@ define loginmodal() {
 					div(class: "row") {
 						div(class: "col") {
 							button(class: "btn waves-effect waves-light", attr:{type: "submit"}) {
-								p("Signup");
+								print("Signup");
 							}
 						}
 					}
@@ -236,7 +235,7 @@ define table1(rows:[], thead:[]) {
 		thead() {
 			for(i, thead) {
 				th() {
-					p(i);
+					print(i);
 				}
 			}
 		}
@@ -245,7 +244,7 @@ define table1(rows:[], thead:[]) {
 				tr() {
 					for(j, jj, i) {
 						td() {
-							p(j);
+							print(j);
 						}
 					}
 				}
@@ -268,7 +267,7 @@ define account_admin() {
 		thead() {
 			for(i, ["UserID", "Name", "Email", "Phone", "User Type"]) {
 				th() {
-					p(i);
+					print(i);
 				}
 			}
 		}
@@ -281,7 +280,7 @@ define account_admin() {
 							if( (jjj=="name") && (i["type"] == "c") ) {
 								profilea1(name:j, uid: i["id"]);
 							} else {
-								p(j);
+								print(j);
 							}
 						}
 					}
@@ -328,7 +327,7 @@ define profile_chef_top2() {
 					form(data: {onsubmit:"sreq", bobj: "", action:"saveaboutinfo", res: "ms.reload();"}) {
 						input(attr: {type: "hidden", name: "chefid", value: uid});
 						textarea(attr:{name: "aboutus"}, class: "materialize-textarea") {
-							p(uinfo["aboutus"].gchars);
+							print(uinfo["aboutus"].gchars);
 						}
 						button1(name: "Save", attr:{type: "submit"});
 					}
@@ -337,9 +336,9 @@ define profile_chef_top2() {
 			textdiv(font:"16px", name: uinfo["aboutus"].gchars);
 			div() {
 				b() {
-					p("Address: ");
+					print("Address: ");
 				}
-				p(uinfo["address"]);
+				print(uinfo["address"]);
 			}
 		}
 
@@ -385,7 +384,7 @@ define profile_chef() {
 												div(class: "file-field input-field") {
 													div(class: "btn") {
 														span() {
-															p("Upload Image");
+															print("Upload Image");
 														}
 														input(attr:{type:"file", name: "dishpic"});
 													}
@@ -397,7 +396,7 @@ define profile_chef() {
 											div(class: "row") {
 												div(class: "col") {
 													button(class: "btn waves-effect waves-light", attr:{type: "submit", name:"adddish"}) {
-														p("Add");
+														print("Add");
 													}
 												}
 											}					
@@ -417,17 +416,17 @@ define profile_chef() {
 												thead() {
 													for(j, ["Title", "Price", "Booked For Lunch", "Booked for Dinner"]) {
 														th() {
-															p(j);
+															print(j);
 														}
 													}
 												}
 												for(j, jj, dispdata) {
 													tr() {
 														th() {
-															p((j["title"]+"").gchars);
+															print((j["title"]+"").gchars);
 														}
 														th() {
-															p(j["price"]);
+															print(j["price"]);
 														}
 														th() {
 															input1(label: "Plate Limit ("+j["ollimit"+ii]+" Booked)", id: "lunch_"+jj+"_"+ii, data:{dishid: j["id"], day:ii}, iclass: "numplatelimit", value: j["llimit"+ii]);
@@ -470,7 +469,7 @@ define select1(tlist:[], class: "browser-default", aclass: "") {//class, tlist, 
 	select(class: class+" "+aclass, name: name, attr:attr) {
 		if(toptext != None) {
 			option(attr:{value: ""}) {
-				p(toptext);
+				print(toptext);
 			}
 		}
 		for(i, ii, tlist) {
@@ -484,7 +483,7 @@ define select1(tlist:[], class: "browser-default", aclass: "") {//class, tlist, 
 				attrs["selected"] = "";
 			}
 			option(attr:attrs) {
-				p(i);
+				print(i);
 			}
 		}
 	}
@@ -517,7 +516,7 @@ define mselect1(tlist:[]) {
 		mselect(vlist:vlist, tlist: tlist, id: id);
 	}
 	a(class: "dropdown-button", data:{activates: id}) {
-		p(label);
+		print(label);
 	}
 }
 
@@ -533,10 +532,10 @@ define mselect2(class: "col l3 s12 m6") {
 define switch1(on: "Yes", off: "No") {
 	div(class: "switch") {
 		label() {
-			p(off);
+			print(off);
 			input(attr:{type: "checkbox", name: name});
 			span(class: "lever");
-			p(on);
+			print(on);
 		}
 	}
 }
@@ -545,7 +544,7 @@ define switch1(on: "Yes", off: "No") {
 define switch2(class: "col l3 s12 m6") {
 	div(class: class) {
 		div(class: "m5") {
-			p(label);
+			print(label);
 			switch1(name: name);
 		}
 	}
@@ -558,7 +557,7 @@ define orderl_admin(){
 		thead() {
 			for(i, ["Odered At", "Delivery Date", "Chef", "User", "Dish", "Price", "Chef Address", "User Address", "Status"]) {
 				th() {
-					p(i);
+					print(i);
 				}
 			}
 		}
@@ -566,10 +565,10 @@ define orderl_admin(){
 			for(i, ii, orderl) {
 				tr(class: "cartitems", datas:{ datetime: i["datetime"], cid: i["cid"], lord: i["lord"], dishid: i["dishid"]}) {
 					td() {
-						p(i["timetext"]);
+						print(i["timetext"]);
 					}
 					td() {
-						p(i["datetimetext"]);
+						print(i["datetimetext"]);
 					}
 					td() {
 						profilea1(name: i["cname"], uid: i["cid"]);
@@ -578,22 +577,22 @@ define orderl_admin(){
 						profilea1(name: i["uname"], uid: i["uid"]);
 					}
 					td() {
-						p(i["title"]);
+						print(i["title"]);
 					}
 					td() {
 						icon1(img: "photo/inr2.png");
 						span(class: "itemprice") {
-							p(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
+							print(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
 						}
 					}
 					td() {
-						p("("+i["clat"]+", "+i["clng"]+")<br>"+i["caddress"]);
+						print("("+i["clat"]+", "+i["clng"]+")<br>"+i["caddress"]);
 					}
 					td() {
-						p("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
+						print("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
 					}
 					td() {
-						p(i["status"]);
+						print(i["status"]);
 					}
 				}
 			}
@@ -607,7 +606,7 @@ define orderl_user(){
 		thead() {
 			for(i, ["Odered At", "Delivery Date", "Chef", "Dish", "Price", "User Address", "Status"]) {
 				th() {
-					p(i);
+					print(i);
 				}
 			}
 		}
@@ -615,28 +614,28 @@ define orderl_user(){
 			for(i, ii, orderl) {
 				tr(class: "cartitems", datas:{ datetime: i["datetime"], cid: i["cid"], lord: i["lord"], dishid: i["dishid"]}) {
 					td() {
-						p(i["timetext"]);
+						print(i["timetext"]);
 					}
 					td() {
-						p(i["datetimetext"]);
+						print(i["datetimetext"]);
 					}
 					td() {
 						profilea1(name: i["cname"], uid: i["cid"]);
 					}
 					td() {
-						p(i["title"]);
+						print(i["title"]);
 					}
 					td() {
 						icon1(img: "photo/inr2.png");
 						span(class: "itemprice") {
-							p(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
+							print(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
 						}
 					}
 					td() {
-						p("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
+						print("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
 					}
 					td() {
-						p(i["status"]);
+						print(i["status"]);
 					}
 				}
 			}
@@ -650,7 +649,7 @@ define orderl_chef(){
 		thead() {
 			for(i, ["Odered At", "Delivery Date", "User", "Dish", "Price", "User Address", "Status"]) {
 				th() {
-					p(i);
+					print(i);
 				}
 			}
 		}
@@ -658,10 +657,10 @@ define orderl_chef(){
 			for(i, ii, orderl) {
 				tr(class: "cartitems", datas:{ datetime: i["datetime"], cid: i["cid"], lord: i["lord"], dishid: i["dishid"]}) {
 					td() {
-						p(i["timetext"]);
+						print(i["timetext"]);
 					}
 					td() {
-						p(i["datetimetext"]);
+						print(i["datetimetext"]);
 					}
 					td() {
 						profilea1(name: i["cname"], uid: i["cid"]);
@@ -670,22 +669,22 @@ define orderl_chef(){
 						profilea1(name: i["uname"], uid: i["uid"]);
 					}
 					td() {
-						p(i["title"]);
+						print(i["title"]);
 					}
 					td() {
 						icon1(img: "photo/inr2.png");
 						span(class: "itemprice") {
-							p(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
+							print(i["price"]+'*'+i["numplate"]+"="+(i["price"]*i["numplate"]));
 						}
 					}
 					td() {
-						p("("+i["clat"]+", "+i["clng"]+")<br>"+i["caddress"]);
+						print("("+i["clat"]+", "+i["clng"]+")<br>"+i["caddress"]);
 					}
 					td() {
-						p("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
+						print("("+i["lat"]+", "+i["lng"]+")<br>"+i["uaddress"]);
 					}
 					td() {
-						p(i["status"]);
+						print(i["status"]);
 					}
 				}
 			}
@@ -712,7 +711,7 @@ define errorbox() {
 	div(class: "row hiddenerror") {
 		div(class: "col s12 l12") {
 			div(class: "card-panel red white-text center errortext") {
-				p("");
+				print("");
 			}
 		}
 	}
@@ -735,7 +734,7 @@ define kurry_footer() {
 				}
 				div(class: "col s2 m2 l3") {
 					h5() {
-						p("Social Media");
+						print("Social Media");
 					}
 					ul(){
 						li() {
@@ -751,7 +750,7 @@ define kurry_footer() {
 				}
 				div(class: "col s2 m2 l3") {
 					h5() {
-						p("Help");
+						print("Help");
 					}
 					ul(){
 						li() {
@@ -764,7 +763,7 @@ define kurry_footer() {
 				}
 				div(class: "col s2 m2 l3") {
 					h5() {
-						p("Legal");
+						print("Legal");
 					}
 					ul(){
 						li() {
@@ -778,7 +777,7 @@ define kurry_footer() {
 			}
 			div(class: "row"){
 				div(class: "col l12 align-left ") {
-					p("&copy; Copyright 2015 KurryBox");
+					print("&copy; Copyright 2015 KurryBox");
 				}
 			}
 		}

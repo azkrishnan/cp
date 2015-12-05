@@ -1,7 +1,7 @@
 import sys, os
 
 execfile("includes/setting.py");
-#execfile(_mslib+"py/func.py");
+execfile(_mslib+"py/webd.py");
 
 from msl import *
 from msl.help import *

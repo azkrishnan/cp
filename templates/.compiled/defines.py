@@ -1,20 +1,20 @@
+#This code is auto generated code, don't Edit it 
 def newtag_main(inp, ginp, innerHTML): 
   inp = overwriteattrs(extentattrs({"acss": ["css/materialize.min.css", "css/lib.css", "css/materialize.min.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "https://fonts.googleapis.com/icon?family=Material+Icons", "css/lib.css", "css/main.css", "css/style.css"], "ajs": ["mslib/js/jquery-2.1.1.min.js", "mslib/js/materialize.min.js", "mslib/js/jquery.bxslider.min.js", "mslib/js/jquery.easing.1.3.js", "mslib/js/jquery.raty.js", "mslib/js/lib.js", "mslib/js/mohit.js", "mslib/js/mohitlib.js", "mslib/js/main.js"], "title": "Class Pundit", "css": [], "js": [], "bodystyle": {}, "htmlstyle": {}}), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
   inp["css"] = myadd(inp["acss"], inp["css"]);
   inp["js"] = myadd(inp["ajs"], inp["js"]);
+  outpvar.addtext("<!--\n\nThis code is auto generated code, don't Edit it \n-MS1.5\n\n-->");
   outpvar.addtext("<!DOCTYPE html>");
   outpvar.open(htmlnode("html", extentattrs({"style": inp["htmlstyle"]})));
   outpvar.open(htmlnode("head", extentattrs({})));
   outpvar.open(htmlnode("base", extentattrs({"attr": {"href": inp["HOST"]}})));
-  outpvar.close();
   outpvar.open(htmlnode("title", extentattrs({})));
   outpvar.addtext(inp["title"]);
   outpvar.close();
   for i in forlist(inp["css"]) :
     outpvar.open(htmlnode("link", extentattrs({"attr": {"href": i, "rel": "stylesheet", "type": "text/css"}})));
-    outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("body", extentattrs({"style": inp["bodystyle"]})));
   outpvar.addchilds(innerHTML);
@@ -35,7 +35,7 @@ def newtag_disptabs(inp, ginp, innerHTML):
   inp = overwriteattrs(extentattrs({"tabname": [], "tablink": []}), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
-  for j in forlist(inp["tabname"]) :
+  for j in range(len(forlist(inp["tabname"]))) :
     i = inp["tabname"][j];
     outpvar.open(htmlnode("li", extentattrs({"class": inp["liclass"]})));
     inp["isactive"] = ("active" if ((inp["active"]==inp["tablink"][j])) else " ");
@@ -55,7 +55,6 @@ def newtag_header1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs({"tabname": inp["tabname"], "tablink": inp["tablink"]}, ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
@@ -74,7 +73,6 @@ def newtag_header1_cp(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "nav-wrapper container"})));
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
-  outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.cur.addfcdata("disptabs");
@@ -105,7 +103,6 @@ def newtag_header2(inp, ginp, innerHTML):
   outpvar.open(htmlnode("ul", extentattrs({"class": "left hide-on-med-and-down"})));
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/logo4.png"}, "class": "responsive-img", "style": {"vertical-align": "middle"}})));
-  outpvar.close();
   outpvar.close();
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs({"tabname": inp["tabname1"], "tablink": inp["tablink1"]}, ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
@@ -155,7 +152,6 @@ def newtag_header2_user(inp, ginp, innerHTML):
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs({"tabname": inp["tabname"], "tablink": inp["tablink"]}, ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
@@ -200,7 +196,6 @@ def newtag_header2_chef(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "nav-wrapper container"})));
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
-  outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.cur.addfcdata("disptabs");
@@ -247,7 +242,6 @@ def newtag_header2_admin(inp, ginp, innerHTML):
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["HOST"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs({"tabname": inp["tabname"], "tablink": inp["tablink"]}, ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
@@ -284,7 +278,6 @@ def newtag_icon1(inp, ginp, innerHTML):
   outpvar = htmltree();
   inp["attr"]["src"] = inp["img"];
   outpvar.open(htmlnode("img", extentattrs({"attr": inp["attr"], "style": {"margin-bottom": "-5px"}, "class": inp["class"]})));
-  outpvar.close();
   return outpvar;
   
 def newtag_checkbox1(inp, ginp, innerHTML): 
@@ -293,7 +286,6 @@ def newtag_checkbox1(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("span", extentattrs({})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "checkbox", "id": inp["id"], "checked": inp["checked"]}, "class": myadd("filled-in ", inp["aclass"]), "data": inp["data"]})));
-  outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}, "style": inp["labels"]})));
   outpvar.addtext(inp["label"]);
   outpvar.close();
@@ -306,7 +298,6 @@ def newtag_checkbox2(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("span", extentattrs({})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "radio", "id": inp["id"], "checked": inp["checked"]}, "class": myadd("with-gap ", inp["aclass"]), "data": inp["data"]})));
-  outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}, "style": inp["labels"]})));
   outpvar.addtext(inp["label"]);
   outpvar.close();
@@ -343,7 +334,6 @@ def newtag_resimg(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("img", extentattrs({"class": myadd("responsive-img ", inp["aclass"]), "attr": {"src": inp["src"]}, "style": {"opacity": inp["opacity"]}})));
-  outpvar.close();
   return outpvar;
   
 def newtag_circleimg(inp, ginp, innerHTML): 
@@ -397,7 +387,6 @@ def newtag_starrating(inp, ginp, innerHTML):
   outpvar = htmltree();
   for i in forlist(inp["val"]) :
     outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/rating4.png"}, "style": {"margin": "-1px", "width": "22px"}})));
-    outpvar.close();
   return outpvar;
   
 def newtag_input1(inp, ginp, innerHTML): 
@@ -413,7 +402,6 @@ def newtag_input1(inp, ginp, innerHTML):
   if ((inp["dname"]!=None)): 
     inp["data"]["name"] = inp["dname"];
   outpvar.open(htmlnode("input", extentattrs({"attr": {"id": inp["id"], "type": inp["type"], "value": inp["value"]}, "class": inp["iclass"], "data": inp["data"]})));
-  outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}})));
   outpvar.addtext(inp["label"]);
   outpvar.close();
@@ -426,7 +414,6 @@ def newtag_input2(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"class": myadd("input-field ", inp["aclass"])})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"id": inp["id"], "type": inp["type"], "name": inp["id"]}, "class": inp["iclass"]})));
-  outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}})));
   outpvar.addtext(inp["label"]);
   outpvar.close();
@@ -483,17 +470,14 @@ def newtag_bigsearch(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"class": "row", "style": {"background-color": ""}})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col l1 m1"})));
-  outpvar.open(htmlnode("p", extentattrs("&nbsp;")));
-  outpvar.close();
+  outpvar.addtext("&nbsp;");
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col m8 s12 l9", "style": {"padding": "0px", "margin": "0px"}})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"placeholder": inp["ph"], "id": inp["id"], "autofocus": inp["autofocus"]}, "class": "bigsearch definput", "style": {"border-radius": "0px"}})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col m2 s12 l1 ", "style": {"padding": "0px", "margin": "0px"}})));
   outpvar.open(htmlnode("button", extentattrs({"class": "bigsearchbutton waves-effect waves-light btn", "style": {"border-radius": "0px"}, "attr": {"type": "submit"}})));
-  outpvar.open(htmlnode("p", extentattrs("Go")));
-  outpvar.close();
+  outpvar.addtext("Go");
   outpvar.cur.addfcdata("icon");
   outpvar.addchilds(newtag_icon({"name": "send", "aclass": "right"}, ginp, outpvar.cur.fcalldata["icon"].root.content).root.content);
   outpvar.close();
@@ -529,18 +513,15 @@ def newtag_header3(inp, ginp, innerHTML):
   outpvar.open(htmlnode("a", extentattrs({"attr": {"id": "logo-container", "href": inp["BASE"]}, "class": "brand-logo"})));
   outpvar.open(htmlnode("img", extentattrs({"attr": {"src": "photo/mylogo1.png"}, "class": "circle responsive-img", "style": {"vertical-align": "middle"}})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"class": "right hide-on-med-and-down"})));
   outpvar.open(htmlnode("li", extentattrs({})));
   outpvar.open(htmlnode("a", extentattrs({"class": "dropdown-button", "attr": {"data-activates": "dropdown2"}})));
-  outpvar.open(htmlnode("p", extentattrs(myadd(myadd(("&nbsp;"*10), "Today, 28th Oct"), ("&nbsp;"*10)))));
-  outpvar.close();
+  outpvar.addtext(myadd(myadd(("&nbsp;"*10), "Today, 28th Oct"), ("&nbsp;"*10)));
   outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("li", extentattrs({})));
   outpvar.open(htmlnode("a", extentattrs({"class": "dropdown-button", "attr": {"data-activates": "dropdown1"}})));
-  outpvar.open(htmlnode("p", extentattrs(myadd(myadd(("&nbsp;"*5), "All"), ("&nbsp;"*20)))));
-  outpvar.close();
+  outpvar.addtext(myadd(myadd(("&nbsp;"*5), "All"), ("&nbsp;"*20)));
   outpvar.close();
   outpvar.close();
   outpvar.cur.addfcdata("disptabs");
@@ -550,23 +531,21 @@ def newtag_header3(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"attr": {"id": "dropdown1"}, "class": "dropdown-content"})));
   inp["foodtype"] = ["All", "Veg", "Non-Veg"];
-  for ii in forlist(inp["foodtype"]) :
+  for ii in range(len(forlist(inp["foodtype"]))) :
     i = inp["foodtype"][ii];
     outpvar.open(htmlnode("li", extentattrs({})));
     outpvar.open(htmlnode("a", extentattrs({"attr": {"href": ""}})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("ul", extentattrs({"attr": {"id": "dropdown2"}, "class": "dropdown-content"})));
   inp["nextdays"] = ["Today, 26 Oct", "27 Oct", "28 Oct"];
-  for ii in forlist(inp["nextdays"]) :
+  for ii in range(len(forlist(inp["nextdays"]))) :
     i = inp["nextdays"][ii];
     outpvar.open(htmlnode("li", extentattrs({})));
     outpvar.open(htmlnode("a", extentattrs({"attr": {"href": ""}})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -588,16 +567,14 @@ def newtag_dispfood(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col l8", "attr": {"align": "left"}})));
   outpvar.open(htmlnode("div", extentattrs({})));
-  outpvar.open(htmlnode("p", extentattrs(inp["dishinfo"]["title"])));
-  outpvar.close();
+  outpvar.addtext(inp["dishinfo"]["title"]);
   outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col l4"})));
   outpvar.cur.addfcdata("icon1");
   outpvar.addchilds(newtag_icon1({"img": "photo/inr1.png"}, ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
   outpvar.open(htmlnode("span", extentattrs({"style": {"font-size": "25px", "font-weight": "600"}})));
-  outpvar.open(htmlnode("p", extentattrs(inp["dishinfo"]["price"])));
-  outpvar.close();
+  outpvar.addtext(inp["dishinfo"]["price"]);
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -622,14 +599,12 @@ def newtag_dispfood(inp, ginp, innerHTML):
   if ((inp["islogin"]=="a")): 
     outpvar.open(htmlnode("div", extentattrs({"class": "col l4 "})));
     outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light btn", "datas": {"datetime": inp["dishinfo"]["datetime"], "lord": inp["dishinfo"]["lord"], "dishid": inp["dishinfo"]["id"]}, "data": {"onclick": "sreq", "action": "deletedisp", "restext": "Deleted !"}})));
-    outpvar.open(htmlnode("p", extentattrs("Delete")));
-    outpvar.close();
+    outpvar.addtext("Delete");
     outpvar.close();
     outpvar.close();
     outpvar.open(htmlnode("div", extentattrs({"class": "col l4 offset-l3"})));
     outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light btn"})));
-    outpvar.open(htmlnode("p", extentattrs("Edit")));
-    outpvar.close();
+    outpvar.addtext("Edit");
     outpvar.close();
     outpvar.close();
   elif ((inp["loginid"]==inp["dishinfo"]["cid"])): 
@@ -637,14 +612,12 @@ def newtag_dispfood(inp, ginp, innerHTML):
   elif (1): 
     outpvar.open(htmlnode("div", extentattrs({"class": "col l4 "})));
     outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light btn", "data": {"onclick": "addfav"}, "attr": {"id": "mohit"}})));
-    outpvar.open(htmlnode("p", extentattrs("Favourite")));
-    outpvar.close();
+    outpvar.addtext("Favourite");
     outpvar.close();
     outpvar.close();
     outpvar.open(htmlnode("div", extentattrs({"class": "col l4 offset-l3"})));
     outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light btn", "data": {"onclick": "sreq", "action": "addincart", "restext": "Added!"}, "datas": {"datetime": inp["dishinfo"]["datetime"], "lord": inp["dishinfo"]["lord"], "dishid": inp["dishinfo"]["id"]}})));
-    outpvar.open(htmlnode("p", extentattrs("Add + ")));
-    outpvar.close();
+    outpvar.addtext("Add + ");
     outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -658,8 +631,7 @@ def newtag_l_otp_button(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light", "attr": {"type": "button"}, "data": {"onclick": "sreq", "action": "sendotp", "fobj": "$(obj).parent().parent()[0]", "restext": "Re-send"}})));
-  outpvar.open(htmlnode("p", extentattrs("Send OTP")));
-  outpvar.close();
+  outpvar.addtext("Send OTP");
   outpvar.close();
   return outpvar;
   
@@ -694,8 +666,7 @@ def newtag_loginmodal(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col"})));
   outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light", "attr": {"type": "submit"}})));
-  outpvar.open(htmlnode("p", extentattrs("Login")));
-  outpvar.close();
+  outpvar.addtext("Login");
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -726,8 +697,7 @@ def newtag_loginmodal(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col"})));
   outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light", "attr": {"type": "submit"}})));
-  outpvar.open(htmlnode("p", extentattrs("Signup")));
-  outpvar.close();
+  outpvar.addtext("Signup");
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -745,19 +715,17 @@ def newtag_table1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("thead", extentattrs({})));
   for i in forlist(inp["thead"]) :
     outpvar.open(htmlnode("th", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("tbody", extentattrs({})));
-  for ii in forlist(inp["rows"]) :
+  for ii in range(len(forlist(inp["rows"]))) :
     i = inp["rows"][ii];
     outpvar.open(htmlnode("tr", extentattrs({})));
-    for jj in forlist(i) :
+    for jj in range(len(forlist(i))) :
       j = i[jj];
       outpvar.open(htmlnode("td", extentattrs({})));
-      outpvar.open(htmlnode("p", extentattrs(j)));
-      outpvar.close();
+      outpvar.addtext(j);
       outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -788,15 +756,14 @@ def newtag_account_admin(inp, ginp, innerHTML):
   outpvar.open(htmlnode("thead", extentattrs({})));
   for i in forlist(["UserID", "Name", "Email", "Phone", "User Type"]) :
     outpvar.open(htmlnode("th", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("tbody", extentattrs({})));
-  for ii in forlist(inp["users"]) :
+  for ii in range(len(forlist(inp["users"]))) :
     i = inp["users"][ii];
     outpvar.open(htmlnode("tr", extentattrs({})));
-    for jj in forlist(["id", "name", "email", "phone", "typetext"]) :
+    for jj in range(len(forlist(["id", "name", "email", "phone", "typetext"]))) :
       jjj = ["id", "name", "email", "phone", "typetext"][jj];
       inp["j"] = i[jjj];
       outpvar.open(htmlnode("td", extentattrs({})));
@@ -804,8 +771,7 @@ def newtag_account_admin(inp, ginp, innerHTML):
         outpvar.cur.addfcdata("profilea1");
         outpvar.addchilds(newtag_profilea1({"name": inp["j"], "uid": i["id"]}, ginp, outpvar.cur.fcalldata["profilea1"].root.content).root.content);
       elif (1): 
-        outpvar.open(htmlnode("p", extentattrs(inp["j"])));
-        outpvar.close();
+        outpvar.addtext(inp["j"]);
       outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("button1");
@@ -859,10 +825,8 @@ def newtag_profile_chef_top2(inp, ginp, innerHTML):
     outpvar.open(htmlnode("div", extentattrs({"class": "edittext", "style": {"display": "none"}})));
     outpvar.open(htmlnode("form", extentattrs({"data": {"onsubmit": "sreq", "bobj": "", "action": "saveaboutinfo", "res": "ms.reload();"}})));
     outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "hidden", "name": "chefid", "value": inp["uid"]}})));
-    outpvar.close();
     outpvar.open(htmlnode("textarea", extentattrs({"attr": {"name": "aboutus"}, "class": "materialize-textarea"})));
-    outpvar.open(htmlnode("p", extentattrs(inp["uinfo"]["aboutus"].gchars)));
-    outpvar.close();
+    outpvar.addtext(inp["uinfo"]["aboutus"].gchars);
     outpvar.close();
     outpvar.cur.addfcdata("button1");
     outpvar.addchilds(newtag_button1({"name": "Save", "attr": {"type": "submit"}}, ginp, outpvar.cur.fcalldata["button1"].root.content).root.content);
@@ -872,11 +836,9 @@ def newtag_profile_chef_top2(inp, ginp, innerHTML):
   outpvar.addchilds(newtag_textdiv({"font": "16px", "name": inp["uinfo"]["aboutus"].gchars}, ginp, outpvar.cur.fcalldata["textdiv"].root.content).root.content);
   outpvar.open(htmlnode("div", extentattrs({})));
   outpvar.open(htmlnode("b", extentattrs({})));
-  outpvar.open(htmlnode("p", extentattrs("Address: ")));
+  outpvar.addtext("Address: ");
   outpvar.close();
-  outpvar.close();
-  outpvar.open(htmlnode("p", extentattrs(inp["uinfo"]["address"])));
-  outpvar.close();
+  outpvar.addtext(inp["uinfo"]["address"]);
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -916,7 +878,6 @@ def newtag_profile_chef(inp, ginp, innerHTML):
       outpvar.open(htmlnode("form", extentattrs({"style": {"display": "none"}, "attr": {"enctype": "multipart/form-data", "method": "post"}})));
       outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
       outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "hidden", "name": "cid", "value": inp["uid"]}})));
-      outpvar.close();
       outpvar.cur.addfcdata("input2");
       outpvar.addchilds(newtag_input2({"label": "Title of Dish", "aclass": "col s12 l6 m6", "id": "dishtitle"}, ginp, outpvar.cur.fcalldata["input2"].root.content).root.content);
       outpvar.cur.addfcdata("input2");
@@ -930,23 +891,19 @@ def newtag_profile_chef(inp, ginp, innerHTML):
       outpvar.open(htmlnode("div", extentattrs({"class": "file-field input-field"})));
       outpvar.open(htmlnode("div", extentattrs({"class": "btn"})));
       outpvar.open(htmlnode("span", extentattrs({})));
-      outpvar.open(htmlnode("p", extentattrs("Upload Image")));
-      outpvar.close();
+      outpvar.addtext("Upload Image");
       outpvar.close();
       outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "file", "name": "dishpic"}})));
-      outpvar.close();
       outpvar.close();
       outpvar.open(htmlnode("div", extentattrs({"class": "file-path-wrapper"})));
       outpvar.open(htmlnode("input", extentattrs({"class": "file-path-validate", "attr": {"type": "text"}})));
       outpvar.close();
       outpvar.close();
       outpvar.close();
-      outpvar.close();
       outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
       outpvar.open(htmlnode("div", extentattrs({"class": "col"})));
       outpvar.open(htmlnode("button", extentattrs({"class": "btn waves-effect waves-light", "attr": {"type": "submit", "name": "adddish"}})));
-      outpvar.open(htmlnode("p", extentattrs("Add")));
-      outpvar.close();
+      outpvar.addtext("Add");
       outpvar.close();
       outpvar.close();
       outpvar.close();
@@ -957,7 +914,7 @@ def newtag_profile_chef(inp, ginp, innerHTML):
       outpvar.addchilds(newtag_dispfood({"dishinfo": i}, ginp, outpvar.cur.fcalldata["dispfood"].root.content).root.content);
     outpvar.close();
     outpvar.close();
-    for ii in forlist(inp["day5times"]["tabkeys"]) :
+    for ii in range(len(forlist(inp["day5times"]["tabkeys"]))) :
       i = inp["day5times"]["tabkeys"][ii];
       outpvar.open(htmlnode("div", extentattrs({"attr": {"id": i}})));
       outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
@@ -965,20 +922,17 @@ def newtag_profile_chef(inp, ginp, innerHTML):
       outpvar.open(htmlnode("thead", extentattrs({})));
       for j in forlist(["Title", "Price", "Booked For Lunch", "Booked for Dinner"]) :
         outpvar.open(htmlnode("th", extentattrs({})));
-        outpvar.open(htmlnode("p", extentattrs(j)));
-        outpvar.close();
+        outpvar.addtext(j);
         outpvar.close();
       outpvar.close();
-      for jj in forlist(inp["dispdata"]) :
+      for jj in range(len(forlist(inp["dispdata"]))) :
         j = inp["dispdata"][jj];
         outpvar.open(htmlnode("tr", extentattrs({})));
         outpvar.open(htmlnode("th", extentattrs({})));
-        outpvar.open(htmlnode("p", extentattrs(myadd(j["title"], "").gchars)));
-        outpvar.close();
+        outpvar.addtext(myadd(j["title"], "").gchars);
         outpvar.close();
         outpvar.open(htmlnode("th", extentattrs({})));
-        outpvar.open(htmlnode("p", extentattrs(j["price"])));
-        outpvar.close();
+        outpvar.addtext(j["price"]);
         outpvar.close();
         outpvar.open(htmlnode("th", extentattrs({})));
         outpvar.cur.addfcdata("input1");
@@ -1022,10 +976,9 @@ def newtag_select1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("select", extentattrs({"class": myadd(myadd(inp["class"], " "), inp["aclass"]), "name": inp["name"], "attr": inp["attr"]})));
   if ((inp["toptext"]!=None)): 
     outpvar.open(htmlnode("option", extentattrs({"attr": {"value": ""}})));
-    outpvar.open(htmlnode("p", extentattrs(inp["toptext"])));
+    outpvar.addtext(inp["toptext"]);
     outpvar.close();
-    outpvar.close();
-  for ii in forlist(inp["tlist"]) :
+  for ii in range(len(forlist(inp["tlist"]))) :
     i = inp["tlist"][ii];
     inp["attrs"] = {};
     if ((inp["vlist"]!=None)): 
@@ -1035,8 +988,7 @@ def newtag_select1(inp, ginp, innerHTML):
     if ((inp["selected"]==ii)): 
       inp["attrs"]["selected"] = "";
     outpvar.open(htmlnode("option", extentattrs({"attr": inp["attrs"]})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   return outpvar;
@@ -1055,7 +1007,7 @@ def newtag_mselect(inp, ginp, innerHTML):
   inp = overwriteattrs(extentattrs({"tlist": []}), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
-  for ii in forlist(inp["tlist"]) :
+  for ii in range(len(forlist(inp["tlist"]))) :
     i = inp["tlist"][ii];
     inp["attrs"] = {};
     if ((inp["vlist"]!=None)): 
@@ -1077,8 +1029,7 @@ def newtag_mselect1(inp, ginp, innerHTML):
   outpvar.addchilds(newtag_mselect({"vlist": inp["vlist"], "tlist": inp["tlist"], "id": inp["id"]}, ginp, outpvar.cur.fcalldata["mselect"].root.content).root.content);
   outpvar.close();
   outpvar.open(htmlnode("a", extentattrs({"class": "dropdown-button", "data": {"activates": inp["id"]}})));
-  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
-  outpvar.close();
+  outpvar.addtext(inp["label"]);
   outpvar.close();
   return outpvar;
   
@@ -1100,14 +1051,11 @@ def newtag_switch1(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"class": "switch"})));
   outpvar.open(htmlnode("label", extentattrs({})));
-  outpvar.open(htmlnode("p", extentattrs(inp["off"])));
-  outpvar.close();
+  outpvar.addtext(inp["off"]);
   outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "checkbox", "name": inp["name"]}})));
-  outpvar.close();
   outpvar.open(htmlnode("span", extentattrs({"class": "lever"})));
   outpvar.close();
-  outpvar.open(htmlnode("p", extentattrs(inp["on"])));
-  outpvar.close();
+  outpvar.addtext(inp["on"]);
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -1118,8 +1066,7 @@ def newtag_switch2(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"class": inp["class"]})));
   outpvar.open(htmlnode("div", extentattrs({"class": "m5"})));
-  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
-  outpvar.close();
+  outpvar.addtext(inp["label"]);
   outpvar.cur.addfcdata("switch1");
   outpvar.addchilds(newtag_switch1({"name": inp["name"]}, ginp, outpvar.cur.fcalldata["switch1"].root.content).root.content);
   outpvar.close();
@@ -1134,21 +1081,18 @@ def newtag_orderl_admin(inp, ginp, innerHTML):
   outpvar.open(htmlnode("thead", extentattrs({})));
   for i in forlist(["Odered At", "Delivery Date", "Chef", "User", "Dish", "Price", "Chef Address", "User Address", "Status"]) :
     outpvar.open(htmlnode("th", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("tbody", extentattrs({})));
-  for ii in forlist(inp["orderl"]) :
+  for ii in range(len(forlist(inp["orderl"]))) :
     i = inp["orderl"][ii];
     outpvar.open(htmlnode("tr", extentattrs({"class": "cartitems", "datas": {"datetime": i["datetime"], "cid": i["cid"], "lord": i["lord"], "dishid": i["dishid"]}})));
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["timetext"])));
-    outpvar.close();
+    outpvar.addtext(i["timetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["datetimetext"])));
-    outpvar.close();
+    outpvar.addtext(i["datetimetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("profilea1");
@@ -1159,28 +1103,23 @@ def newtag_orderl_admin(inp, ginp, innerHTML):
     outpvar.addchilds(newtag_profilea1({"name": i["uname"], "uid": i["uid"]}, ginp, outpvar.cur.fcalldata["profilea1"].root.content).root.content);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["title"])));
-    outpvar.close();
+    outpvar.addtext(i["title"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("icon1");
     outpvar.addchilds(newtag_icon1({"img": "photo/inr2.png"}, ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
     outpvar.open(htmlnode("span", extentattrs({"class": "itemprice"})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])))));
-    outpvar.close();
-    outpvar.close();
-    outpvar.close();
-    outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(myadd("(", i["clat"]), ", "), i["clng"]), ")<br>"), i["caddress"]))));
+    outpvar.addtext(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])));
     outpvar.close();
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]))));
-    outpvar.close();
+    outpvar.addtext(myadd(myadd(myadd(myadd(myadd("(", i["clat"]), ", "), i["clng"]), ")<br>"), i["caddress"]));
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["status"])));
+    outpvar.addtext(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]));
     outpvar.close();
+    outpvar.open(htmlnode("td", extentattrs({})));
+    outpvar.addtext(i["status"]);
     outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -1195,45 +1134,38 @@ def newtag_orderl_user(inp, ginp, innerHTML):
   outpvar.open(htmlnode("thead", extentattrs({})));
   for i in forlist(["Odered At", "Delivery Date", "Chef", "Dish", "Price", "User Address", "Status"]) :
     outpvar.open(htmlnode("th", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("tbody", extentattrs({})));
-  for ii in forlist(inp["orderl"]) :
+  for ii in range(len(forlist(inp["orderl"]))) :
     i = inp["orderl"][ii];
     outpvar.open(htmlnode("tr", extentattrs({"class": "cartitems", "datas": {"datetime": i["datetime"], "cid": i["cid"], "lord": i["lord"], "dishid": i["dishid"]}})));
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["timetext"])));
-    outpvar.close();
+    outpvar.addtext(i["timetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["datetimetext"])));
-    outpvar.close();
+    outpvar.addtext(i["datetimetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("profilea1");
     outpvar.addchilds(newtag_profilea1({"name": i["cname"], "uid": i["cid"]}, ginp, outpvar.cur.fcalldata["profilea1"].root.content).root.content);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["title"])));
-    outpvar.close();
+    outpvar.addtext(i["title"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("icon1");
     outpvar.addchilds(newtag_icon1({"img": "photo/inr2.png"}, ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
     outpvar.open(htmlnode("span", extentattrs({"class": "itemprice"})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])))));
-    outpvar.close();
-    outpvar.close();
-    outpvar.close();
-    outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]))));
+    outpvar.addtext(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])));
     outpvar.close();
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["status"])));
+    outpvar.addtext(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]));
     outpvar.close();
+    outpvar.open(htmlnode("td", extentattrs({})));
+    outpvar.addtext(i["status"]);
     outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -1248,21 +1180,18 @@ def newtag_orderl_chef(inp, ginp, innerHTML):
   outpvar.open(htmlnode("thead", extentattrs({})));
   for i in forlist(["Odered At", "Delivery Date", "User", "Dish", "Price", "User Address", "Status"]) :
     outpvar.open(htmlnode("th", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i)));
-    outpvar.close();
+    outpvar.addtext(i);
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("tbody", extentattrs({})));
-  for ii in forlist(inp["orderl"]) :
+  for ii in range(len(forlist(inp["orderl"]))) :
     i = inp["orderl"][ii];
     outpvar.open(htmlnode("tr", extentattrs({"class": "cartitems", "datas": {"datetime": i["datetime"], "cid": i["cid"], "lord": i["lord"], "dishid": i["dishid"]}})));
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["timetext"])));
-    outpvar.close();
+    outpvar.addtext(i["timetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["datetimetext"])));
-    outpvar.close();
+    outpvar.addtext(i["datetimetext"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("profilea1");
@@ -1273,28 +1202,23 @@ def newtag_orderl_chef(inp, ginp, innerHTML):
     outpvar.addchilds(newtag_profilea1({"name": i["uname"], "uid": i["uid"]}, ginp, outpvar.cur.fcalldata["profilea1"].root.content).root.content);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["title"])));
-    outpvar.close();
+    outpvar.addtext(i["title"]);
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
     outpvar.cur.addfcdata("icon1");
     outpvar.addchilds(newtag_icon1({"img": "photo/inr2.png"}, ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
     outpvar.open(htmlnode("span", extentattrs({"class": "itemprice"})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])))));
-    outpvar.close();
-    outpvar.close();
-    outpvar.close();
-    outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(myadd("(", i["clat"]), ", "), i["clng"]), ")<br>"), i["caddress"]))));
+    outpvar.addtext(myadd(myadd(myadd(myadd(i["price"], "*"), i["numplate"]), "="), (i["price"]*i["numplate"])));
     outpvar.close();
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]))));
-    outpvar.close();
+    outpvar.addtext(myadd(myadd(myadd(myadd(myadd("(", i["clat"]), ", "), i["clng"]), ")<br>"), i["caddress"]));
     outpvar.close();
     outpvar.open(htmlnode("td", extentattrs({})));
-    outpvar.open(htmlnode("p", extentattrs(i["status"])));
+    outpvar.addtext(myadd(myadd(myadd(myadd(myadd("(", i["lat"]), ", "), i["lng"]), ")<br>"), i["uaddress"]));
     outpvar.close();
+    outpvar.open(htmlnode("td", extentattrs({})));
+    outpvar.addtext(i["status"]);
     outpvar.close();
     outpvar.close();
   outpvar.close();
@@ -1323,8 +1247,7 @@ def newtag_errorbox(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"class": "row hiddenerror"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col s12 l12"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "card-panel red white-text center errortext"})));
-  outpvar.open(htmlnode("p", extentattrs("")));
-  outpvar.close();
+  outpvar.addtext("");
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -1351,8 +1274,7 @@ def newtag_kurry_footer(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col s2 m2 l3"})));
   outpvar.cur.addfcdata("h5");
-  outpvar.cur.fcalldata["h5"].open(htmlnode("p", extentattrs("Social Media")));
-  outpvar.cur.fcalldata["h5"].close();
+  outpvar.cur.fcalldata["h5"].addtext("Social Media");
   outpvar.addchilds(newtag_h5({}, ginp, outpvar.cur.fcalldata["h5"].root.content).root.content);
   outpvar.open(htmlnode("ul", extentattrs({})));
   outpvar.open(htmlnode("li", extentattrs({})));
@@ -1371,8 +1293,7 @@ def newtag_kurry_footer(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col s2 m2 l3"})));
   outpvar.cur.addfcdata("h5");
-  outpvar.cur.fcalldata["h5"].open(htmlnode("p", extentattrs("Help")));
-  outpvar.cur.fcalldata["h5"].close();
+  outpvar.cur.fcalldata["h5"].addtext("Help");
   outpvar.addchilds(newtag_h5({}, ginp, outpvar.cur.fcalldata["h5"].root.content).root.content);
   outpvar.open(htmlnode("ul", extentattrs({})));
   outpvar.open(htmlnode("li", extentattrs({})));
@@ -1387,8 +1308,7 @@ def newtag_kurry_footer(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "col s2 m2 l3"})));
   outpvar.cur.addfcdata("h5");
-  outpvar.cur.fcalldata["h5"].open(htmlnode("p", extentattrs("Legal")));
-  outpvar.cur.fcalldata["h5"].close();
+  outpvar.cur.fcalldata["h5"].addtext("Legal");
   outpvar.addchilds(newtag_h5({}, ginp, outpvar.cur.fcalldata["h5"].root.content).root.content);
   outpvar.open(htmlnode("ul", extentattrs({})));
   outpvar.open(htmlnode("li", extentattrs({})));
@@ -1404,8 +1324,7 @@ def newtag_kurry_footer(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
   outpvar.open(htmlnode("div", extentattrs({"class": "col l12 align-left "})));
-  outpvar.open(htmlnode("p", extentattrs("&copy; Copyright 2015 KurryBox")));
-  outpvar.close();
+  outpvar.addtext("&copy; Copyright 2015 KurryBox");
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -1507,18 +1426,16 @@ def newtag_cp_filterform(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs({"style": {"padding": "8px", "margin-bottom": "4px"}, "class": "card-panel"})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"placeholder": "Search Location", "autofocus": "true"}, "class": "inputplaceholder mainsearch", "style": {"border-radius": "0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc"})));
   outpvar.close();
-  outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"style": {"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, "class": "card-panel"})));
   outpvar.open(htmlnode("form", extentattrs({"data": {"onsubmit": "sreq", "bobj": "", "action": "search", "res": "draw_points(data.data);"}})));
   outpvar.open(htmlnode("input", extentattrs({"attr": {"placeholder": "Search keywords", "name": "keyw"}, "class": "inputplaceholder mainsearch", "style": {"border-radius": "0px", "border": "solid black 0px", "font-size": "13px"}})));
-  outpvar.close();
   outpvar.open(htmlnode("button", extentattrs({"attr": {"type": "submit"}, "style": {"display": "none"}})));
   outpvar.close();
   outpvar.close();
   outpvar.close();
   if (1): 
     outpvar.open(htmlnode("ul", extentattrs({"class": "collapsible", "attr": {"data-collapsible": "accordion"}})));
-    for ii in forlist(inp["catg"]) :
+    for ii in range(len(forlist(inp["catg"]))) :
       i = inp["catg"][ii];
       outpvar.open(htmlnode("li", extentattrs({})));
       outpvar.open(htmlnode("div", extentattrs({"class": "collapsible-header"})));
@@ -1530,7 +1447,7 @@ def newtag_cp_filterform(inp, ginp, innerHTML):
       outpvar.open(htmlnode("div", extentattrs({"class": "collapsible-body"})));
       outpvar.open(htmlnode("div", extentattrs({"class": "subcats1", "style": {"padding": "5px", "padding-left": "20px", "padding-bottom": "0px", "padding-top": "0px"}})));
       outpvar.open(htmlnode("ul", extentattrs({"class": "collapsible_sub", "attr": {"data-collapsible": "accordion"}})));
-      for jj in forlist(i["child"]) :
+      for jj in range(len(forlist(i["child"]))) :
         j = i["child"][jj];
         outpvar.open(htmlnode("li", extentattrs({"class": ""})));
         outpvar.open(htmlnode("div", extentattrs({"class": "collapsible-header", "style": {"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}})));
@@ -1546,7 +1463,7 @@ def newtag_cp_filterform(inp, ginp, innerHTML):
         outpvar.addchilds(newtag_checkbox1({"label": "Select All", "id": myadd(myadd(myadd(myadd(myadd("catsubcat", ii), "_"), jj), "_"), "selectall"), "aclass": "selectall", "data": {"onclick": "selectall redraw", "catgtid": myadd(myadd(i["id"], "_"), j["id"])}, "labels": {"font-size": "12px"}}, ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
         outpvar.close();
         outpvar.close();
-        for kk in forlist(j["child"]) :
+        for kk in range(len(forlist(j["child"]))) :
           k = j["child"][kk];
           outpvar.open(htmlnode("li", extentattrs({})));
           outpvar.open(htmlnode("div", extentattrs({})));
@@ -1593,7 +1510,7 @@ def newtag_cp_selectallcatgs(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
   outpvar.open(htmlnode("ul", extentattrs({"class": "tabs"})));
-  for ii in forlist(inp["catg"]) :
+  for ii in range(len(forlist(inp["catg"]))) :
     i = inp["catg"][ii];
     outpvar.open(htmlnode("li", extentattrs({"class": "tab col l4 m4 s4"})));
     outpvar.cur.addfcdata("a1");
@@ -1602,19 +1519,19 @@ def newtag_cp_selectallcatgs(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs({"class": "row"})));
-  for ii in forlist(inp["catg"]) :
+  for ii in range(len(forlist(inp["catg"]))) :
     i = inp["catg"][ii];
     outpvar.open(htmlnode("div", extentattrs({"id": myadd("modal", i["name"]), "class": "row"})));
     for j in forlist(4) :
       outpvar.open(htmlnode("div", extentattrs({"class": "col l3 m3 s6"})));
-      for kk in forlist(inp["commoncats"][ii][j]) :
+      for kk in range(len(forlist(inp["commoncats"][ii][j]))) :
         k = inp["commoncats"][ii][j][kk];
         outpvar.open(htmlnode("div", extentattrs({})));
         outpvar.cur.addfcdata("checkbox1");
         outpvar.addchilds(newtag_checkbox1({"label": k[0], "id": myadd(myadd(myadd(myadd(myadd("commoncats_", ii), "_"), j), "_"), kk), "lstyle": {"color": "black", "font-size": "20px"}, "data": {"onclick": "selectall"}, "labels": {"color": "black"}}, ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
         outpvar.open(htmlnode("div", extentattrs({"style": {"font-wight": 700, "font-size": "18px"}})));
         outpvar.close();
-        for ll in forlist(k) :
+        for ll in range(len(forlist(k))) :
           l = k[ll];
           if ((ll!=0)): 
             outpvar.open(htmlnode("div", extentattrs({})));

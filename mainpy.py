@@ -27,7 +27,7 @@ exec(read_file(ROOT+"py/main.py"));
 
 filename = ("index" if _urlpath == "" else _urlpath);
 
-if( filename == "ajaxactions" ):
+if(filename == "ajaxactions"):
 	mprint(json.dumps(pagehandler(filename).ajaxactions()));
 else:
 	pageh = pagehandler(filename).call();

@@ -11,6 +11,6 @@ execfile(_mslib+"py/webd.py");
 
 
 
-print(execview("test.cpp", {"HOST": HOST}));
+print(execview("test.cpp", {"HOST": HOST, "jsdata": json.dumps({"mohit": "Saini\"..\n\n\n\""})}));
 
 
