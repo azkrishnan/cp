@@ -2,32 +2,32 @@ define cp_contactus_form() {
 	div(class: "row") {
 		div(class: "col s12 l12 m12") {
 			h3(class: "grey-text text-darken-4") {
-				p("Contact US");
+				print("Contact US");
 			}
 		}
 		div(class: "col s12 l6 m6") {
 			h5(class: "grey-text text-darken-2") {
-				p("Address");
+				print("Address");
 				icon(name: "navigation", aclass: "tiny");
 			}
 			div(class: "grey-text") {
-				p("58/1 2nd Floor,<br> Kalu Sarai<br>  Near Hauz Khas Metro Station<br> New Delhi - 110016<br>India");
+				print("58/1 2nd Floor,<br> Kalu Sarai<br>  Near Hauz Khas Metro Station<br> New Delhi - 110016<br>India");
 			}
 		}
 		div(class: "col s12 l6 m6") {
 			h5(class: "grey-text text-darken-2") {
-				p("Mail");
+				print("Mail");
 				icon(name: "mail", aclass: "tiny");
 			}
 			div(class: "grey-text") {
-				p("mohitsaini1196@gmail.com");
+				print("mohitsaini1196@gmail.com");
 			}
 			h5(class: "grey-text text-darken-2") {
-				p("Call");
+				print("Call");
 				icon(name: "call", aclass: "tiny");
 			}
 			div(class: "grey-text") {
-				p("+91 750 375 9053");
+				print("+91 750 375 9053");
 			}
 		}
 	}
@@ -37,10 +37,10 @@ define cp_contactus_form() {
 define cp_our_story() {
 	div(class: "card-content") {
 		h3(class: "card-title") {
-			p("Our Story");
+			print("Our Story");
 		}
 		div() {
-			p(our_story_content);
+			print(our_story_content);
 		}
 	}
 }
@@ -48,16 +48,16 @@ define cp_our_story() {
 
 define headertabs_cp() {
 	li() {
-		a1(name: "MyFav", attr:{onclick: '$("#myfavlist").openModal();'});
+		a1(text: "MyFav", attr:{onclick: '$("#myfavlist").openModal();'});
 	}
 	li() {
-		a1(name: "Contact Us", attr:{onclick: '$("#contactusform").openModal();'});
+		a1(text: "Contact Us", attr:{onclick: '$("#contactusform").openModal();'});
 	}
 	li() {
-		a1(name: "Our Story", attr:{onclick: '$("#ourstory").openModal();'});
+		a1(text: "Our Story", attr:{onclick: '$("#ourstory").openModal();'});
 	}
 	li() {
-		a1(name: "Provider Form", attr:{onclick: '$("#providerform").openModal();'});
+		a1(text: "Provider Form", attr:{onclick: '$("#providerform").openModal();'});
 	}
 }
 
@@ -81,7 +81,7 @@ define cp_filterform() {
 							div(class: "collapsible-header") {
 								icon1(img: i["icon"]);
 								// icon(name: "filter_drama");
-								p(i["name"]);
+								print(i["name"]);
 							}
 							div(class: "collapsible-body") {
 								div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
@@ -89,7 +89,7 @@ define cp_filterform() {
 										for(j, jj, i["child"]) {
 											li(class: "") {
 												div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
-													p(j["name"]);
+													print(j["name"]);
 													// checkbox1(label: j["name"], id: "catsubcat"+ii+"_"+jj);
 												}
 												div(class: "collapsible-body") {
@@ -118,7 +118,7 @@ define cp_filterform() {
 						}
 					}
 					div(style: {"background-color": "white", padding: "5px"}) {
-						a1(name: "See All Cats", attr:{onclick: '$("#commoncats").openModal();'});
+						a1(text: "See All Cats", attr:{onclick: '$("#commoncats").openModal();'});
 					}
 				}
 			}
@@ -138,7 +138,7 @@ define cp_filterform() {
 define cp_selectallcatgs() {
 	div(class: "row") {
 		div(class: "col s6 l6 m6") {
-			p("Select The Cats");
+			print("Select The Cats");
 		}
 		div(class: "col s6 l6 m6") {
 			button1(name: "OK", attr:{onclick: ' $("#commoncats").closeModal();'});
@@ -148,7 +148,7 @@ define cp_selectallcatgs() {
 		ul(class: "tabs") {
 			for(i, ii, catg) {
 				li(class: "tab col l4 m4 s4") {
-					a1(href: "#modal"+i["name"], name: i["name"]);
+					a1(href: "#modal"+i["name"], text: i["name"]);
 				}
 			}
 		}
@@ -162,7 +162,7 @@ define cp_selectallcatgs() {
 							div() {
 								checkbox1(label: k[0], id: "commoncats_"+ii+"_"+j+"_"+kk, lstyle: {"color": "black", "font-size": "20px"}, data:{onclick: "selectall"}, labels:{"color": "black"});
 								div(style:{ "font-wight": 700, "font-size": "18px" }) {
-									//p(k[0]);
+									//print(k[0]);
 								}
 								for(l, ll, k) {
 									if(ll != 0) {

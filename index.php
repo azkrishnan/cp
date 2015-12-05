@@ -1,11 +1,14 @@
 <?php
 
-// echo microtime(true);
-// echo "<br>";
+// echo microtime(true)."<br>";
 
 include "includes/app.php";
 
-// echo "<br>";
-// echo microtime(true);
+
+// echo microtime(true)."<br>";
+
+
+
+
 
 ?>

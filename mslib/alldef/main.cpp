@@ -1,7 +1,6 @@
 define main(acss:["css/materialize.min.css", "css/lib.css", 'css/materialize.min.css', 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js','mslib/js/main.js'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
 	css = acss + css;
 	js = ajs + js;
-	print("<!--\n\nThis code is auto generated code, don't Edit it \n-MS1.5\n\n-->");
 	print("<!DOCTYPE html>");
 	html(style:htmlstyle){
 		head(){
@@ -89,7 +88,7 @@ define header2(tabname:[], tablink:[], tabname1:[], tablink1: []) {
 				ul(class: "right hide-on-med-and-down" ) {
 					disptabs(tabname: tabname, tablink: tablink);
 					li() {
-						a1(href:"#loginmodal", class: "modal-trigger", name: "Login");
+						a1(href:"#loginmodal", class: "modal-trigger", text: "Login");
 					}
 				}
 				ul(attr:{id: "nav-mobile"}, "class": "side-nav") {
@@ -109,13 +108,13 @@ define header2_user(tabname:[], tablink:[]) {
 
 		ul(id: "dropdown1", class: "dropdown-content") {
 			li() {
-				a1(href: BASE+"account", name: "Account");
+				a1(href: BASE+"account", text: "Account");
 			}
 			li() {
-				a1(href: BASE+"orders", name: "Orders");
+				a1(href: BASE+"orders", text: "Orders");
 			}
 			li() {
-				a1(href: HOST+"?logout", name: "Logout");
+				a1(href: HOST+"?logout", text: "Logout");
 			}
 		}
 
@@ -127,7 +126,7 @@ define header2_user(tabname:[], tablink:[]) {
 				ul(class: "right hide-on-med-and-down" ) {
 					disptabs(tabname: tabname, tablink: tablink);
 					li() {
-						a1(class: "dropdown-button", name: "&nbsp;"*5+loginname+"&nbsp;"*10, data:{activates:"dropdown1"});
+						a1(class: "dropdown-button", text: "&nbsp;"*5+loginname+"&nbsp;"*10, data:{activates:"dropdown1"});
 						//icon(name: "arrow_drop_down", aclass: "right");
 					}
 				}
@@ -146,13 +145,13 @@ define header2_chef(tabname:[], tablink:[]) {
 	div(class: "navbar-fixed ") {
 		ul(id: "dropdown1", class: "dropdown-content") {
 			li() {
-				a1(href: BASE+"profile", name: "Profile");
+				a1(href: BASE+"profile", text: "Profile");
 			}
 			li() {
-				a1(href: BASE+"orders", name: "Orders");
+				a1(href: BASE+"orders", text: "Orders");
 			}
 			li() {
-				a1(href: HOST+"?logout", name: "Logout");
+				a1(href: HOST+"?logout", text: "Logout");
 			}
 		}
 
@@ -164,7 +163,7 @@ define header2_chef(tabname:[], tablink:[]) {
 				ul(class: "right hide-on-med-and-down" ) {
 					disptabs(tabname: tabname, tablink: tablink);
 					li() {
-						a1(class: "dropdown-button", name: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
+						a1(class: "dropdown-button", text: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
 						//icon(name: "arrow_drop_down", aclass: "right");
 					}
 				}
@@ -184,13 +183,13 @@ define header2_admin(tabname:[], tablink:[]) {
 	div(class: "navbar-fixed ") {
 		ul(id: "dropdown1", class: "dropdown-content") {
 			li() {
-				a1(href: BASE+"account", name: "Account");
+				a1(href: BASE+"account", text: "Account");
 			}
 			li() {
-				a1(href: BASE+"orders", name: "Orders");
+				a1(href: BASE+"orders", text: "Orders");
 			}
 			li() {
-				a1(href: HOST+"?logout", name: "Logout");
+				a1(href: HOST+"?logout", text: "Logout");
 			}
 		}
 		nav(class:"white", attr:{role: "container"}) {
@@ -201,7 +200,7 @@ define header2_admin(tabname:[], tablink:[]) {
 				ul(class: "right hide-on-med-and-down" ) {
 					disptabs(tabname: tabname, tablink: tablink);
 					li() {
-						a1(class: "dropdown-button", name: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
+						a1(class: "dropdown-button", text: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
 						//icon(name: "arrow_drop_down", aclass: "right");
 					}
 				}
@@ -225,7 +224,7 @@ define icon(aclass: "") {
 	}
 }
 
-define icon1() {
+define icon1(class: None) {
 	attr["src"] = img;
 	img(attr: attr, style:{"margin-bottom": "-5px"}, class: class);
 }
@@ -303,7 +302,7 @@ define starrating(val: 5) {
 	}
 }
 
-define input1(aclass: "col s6",  type: "text", dc: "simple") {
+define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: None, value: None, iclass: None) {
 	div(class: "input-field "+aclass) {
 		if(icon) {
 			icon(name: icon, aclass: "prefix");

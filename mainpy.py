@@ -1,7 +1,7 @@
 _agent = "poorvi";
 execfile("includes/setting.py");
 
-import time;
+import time, sys;
 
 from msl import *
 from msl.help import *
@@ -17,26 +17,31 @@ try:
 	_urlpath = inpdata["url"]
 	_files = inpdata["file"];
 	_addinfo = inpdata["addinfo"];
-except:
-	print "Error in reading php vars";
+except Exception as e:
+	print "Error in reading php vars"+str(e);
 	(_session, _get, _post, _urlpath, _file, _addinfo) = ({}, {}, {}, '', {}, {});
 
 execfile(_mslib+"py/webd.py");
+
+#mprint("%f"%time.time());
 
 exec(read_file(ROOT+"py/main.py"));
 
 filename = ("index" if _urlpath == "" else _urlpath);
 
+
 if(filename == "ajaxactions"):
 	mprint(json.dumps(pagehandler(filename).ajaxactions()));
 else:
 	pageh = pagehandler(filename).call();
+	mprint(execview(filename+".cpp", mifa(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE})));
+
 #	maincontent = mtmlparser();
 #	maincontent.readcompiled(filename+".cpp");
 #	write_file("cache_mainpage.html", maincontent.disp(mifu(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True) ));
 #	mprint(read_file("cache_mainpage.html"));
 
-
+#mprint("<br>%f<br>"%time.time());
 
 _sql.close_db();
 

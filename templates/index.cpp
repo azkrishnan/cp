@@ -18,15 +18,15 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 	}
 	div(class: "modal", id: "commoncats") {
 		div(class: "modal-content") {
-			cp_selectallcatgs();
+//			cp_selectallcatgs();
 		}
 	}
 	div(id: "bcard1", class: "modal bottom-sheet") {
 		div(class: "modal-content") {
-			p("Mohit");
+			print("Mohit");
 		}
 		div(class: "modal-footer") {
-			p("Saini");
+			print("Saini");
 		}
 	}
 
@@ -37,7 +37,7 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 				for(i, pkeys) {
 					pinfo = provider[i];
 					div(class: "col l12 m12 s12 favlistelm", data:{pid: i}) {
-						a1(name: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+"?pid="+i, attr:{target:"_blank"});
+						a1(text: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+"?pid="+i, attr:{target:"_blank"});
 					}
 				}
 			}
@@ -52,33 +52,33 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 					div(class: "row"){
 						div(class: "col l12 m12 s12") {
 							h5() {
-								a1(href: pinfo["website"], name: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
+								a1(href: pinfo["website"], text: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
 							}
 							div() {
-								a1(href: nhost+"?pid="+i, name: "Business Card", class: "truncate", attr:{target:"_blank"} );
+								a1(href: nhost+"?pid="+i, text: "Business Card", class: "truncate", attr:{target:"_blank"} );
 							}
 						}
 						div(class: "col l4 m4 s4") {
 							h5(class: "grey-text text-darken-2") {
-								p("");
+								print("");
 								icon(name: "navigation", aclass: "tiny");
 							}
 							div(class: "grey-text") {
-								p(pinfo["address"]);
+								print(pinfo["address"]);
 							}
 						}
 						div(class: "col l4 m4 s4") {
 							h5(class: "grey-text text-darken-2") {
-								p("");
+								print("");
 								icon(name: "call", aclass: "tiny");
 							}
 							div(class: "grey-text") {
-								p(pinfo["phone"]);
+								print(pinfo["phone"]);
 							}
 						}
 						div(class: "col l3 m3 s3") {
 							button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
-								p("Favorute");
+								print("Favorute");
 							}
 						}
 					}
@@ -90,7 +90,7 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 		div(style: {margin: "10px"}) {
 			form(data:{onsubmit: "sreq", bobj: "", action: "providerinfo", restext: "Submitted"}) {
 				div(style:{"font-size": "20px"}) {
-					p("Fill the provider's Details");
+					print("Fill the provider's Details");
 				}
 				div(class: "row"){
 					input1(label: "Catageroy", id: "form_catg");
