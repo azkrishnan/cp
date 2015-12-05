@@ -1,50 +1,51 @@
-import os,copy,sys,inspect,collections
+from msl import *
+from msl.help import *
+from msl.sql import *
+from msl.mtime import *;
 
 class mtmlparser:
-	def parsebyocaml(self, f):
-		cmd = self.parser+" "+f+" 2> /dev/null"
-		a = self.elc(cmd if _server != "gcl" else "python client.py 10.208.20.186 '"+ cmd +"'" );
-		return eval("["+a+"]");
-
-	def parsedefn(self):
-		path = _mslib+"alldef/";
-		alldefn = path+".alldefn";
-		modftime = lambda x: self.elc("stat -c %x "+x).split(".")[0];
-		if(not( modftime(path) == modftime(alldefn) ) or True):
-			write_file(alldefn, "".join(read_file(i)+"\n\n" for i in allfile_rec(path) if i not in [alldefn] ));
-		self.datadef = self.parsebyocaml(alldefn);
-
-	def __init__(self):
+	def config(self):
 		self.parser = _mslib+"ocaml/calc";
 		self.tabseprate = "  ";
 		self.newlj = lambda x: "\n".join(list(str(i) for i in x if i!=""))
 		self.compiled = "templates/.compiled/";
 		self.compileddefn = self.compiled+"defines";
+		self.defname = lambda x: "newtag_"+x;
+
+	def runtimevar(self):
 		self.returnvardef = "outpvar";
 		self.returnvar = self.returnvardef;
+		self.ginp = "_ginp";
+		self.linp = "inp";
+		self.scopefun = False;
 
-	def readcompiled(self, name):
-		self.data = eval(read_file(self.compiled+name));
+		self.directvar = [];
 
-	def readinp(self, fname):
-		self.parsedefn();
-		self.data = self.datadef + self.parsebyocaml(fname);
+	def __init__(self):
+		self.config();
+		self.runtimevar();
 
-	def readonefile(self, fname):
-		self.data = self.parsebyocaml(fname);
+	def varname(self, x):
+		if(x in self.directvar):
+			return x;
+		else:
+			return (self.linp if self.scopefun else self.ginp)+"["+quoted_s(x)+"]";
 
-	def expend(self, t): #Gamma contains list of all function names.
+
+	def expend(self, t):
 		expend = self.expend;
 		if(t[0] == "None"):
 			return t[0];
 		elif(t[0] == "Assign"):
 			if(t[1][0] == "V"):
-				return ([""+t[1][1] + " = " + expend(t[2])+";"]);
+				if(not(self.scopefun)):
+					self.directvar.append(t[1][1]);
+				return ([ expend(t[1]) + " = " + expend(t[2])+";"]);
 			elif(t[1][0] == "Get"):
 				return ([expend(t[1])+" = " + expend(t[2])+";"])
 			return ([""]);
 		elif(t[0] == "V"):
-			return t[1];
+			return self.varname(t[1]);
 		elif(t[0] in ["S"]):
 			return quoted_s(t[1]);
 		elif(t[0] ==  "N"):
@@ -90,37 +91,35 @@ class mtmlparser:
 			lta = "forlist("+lt+")";
 
 			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + lta + " :"];
+			self.directvar+=([value_var]+([] if index_var == "" else [index_var]));
 			outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+expend(t[4]));
+			remove(remove(self.directvar, value_var), index_var);
 			return (outp);
 		elif(t[0] == "Defn"):
 			fname = t[1][1];
-			return (["def "+fname+"(inp, innerHTML): "]+[[self.returnvar+" = htmltree();"], ["return "+self.returnvar+";"]]);
+			self.scopefun = True;
+			innerHTML = expend(t[3]);
+			self.scopefun = False;
+			return (["def "+self.defname(fname)+"(inp, innerHTML): "]+[["mifu("+self.linp+", "+self.ginp+");"]+[self.returnvar+" = htmltree();"], innerHTML, ["return "+self.returnvar+";"]]+[self.tabseprate]);
 		elif(t[0] == "Tag"):
 			tname = t[1][1];
 			if(tname == "print"):
 				return ([ self.returnvar+ ".addtext("+expend(t[2])+");"]);
 			else:
 				inattr = expend(t[2]);
-				if(tname in self.allfuncs):
+				if(tname not in self.alltags):
 					oldrvar = self.returnvar;
 					self.returnvar = self.returnvar+".cur.fcalldata["+quoted_s(tname)+"]"
 					innerHTML = expend(t[3]);
 					self.returnvar = oldrvar;
-					return [self.returnvar+".cur.addfcdata("+quoted_s(tname)+");", innerHTML, self.returnvar+".addchilds("+tname+"("+inattr+", "+ self.returnvar+".cur.fcalldata["+quoted_s(tname)+"].root.content);"];
+					return [self.returnvar+".cur.addfcdata("+quoted_s(tname)+");"]+innerHTML+[self.returnvar+".addchilds("+self.defname(tname)+"("+inattr+", "+ self.returnvar+".cur.fcalldata["+quoted_s(tname)+"].root.content).root.content);"];
 				else:
 					innerHTML = expend(t[3]);
 					return [self.returnvar+".open(htmlnode("+quoted_s(tname)+","+inattr+"));"]+innerHTML+[self.returnvar+".close();"]
 		else:
 			return "";
-	def disp(self, gamma = {}):
-		self.allfuncs = mappl(lambda x: x[1][1], self.data, lambda x: x[0] == "Defn");
-		outp = self.expend(tuple(['Listi']+self.data))
-		def printoutp(xl, depth = -1):
-			if type(xl) == list :
-				return mixl(map(lambda x: printoutp(x, depth+1), xl));
-			elif(xl != '') :
-				return ['\t'*depth+xl];
-			else:
-				return [];
+	def disp(self, data):
+		self.alltags = ["a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio", "b", "base", "basefont", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "datalist", "dd", "del", "details", "dfn", "dialog", "dir", "div", "dl", "!DOCTYPE", "dt", "em", "embed", "fieldset", "figcaption", "figure", "font", "footer", "form", "frame", "frameset", "h1", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "menu", "menuitem", "meta", "meter", "nav", "noframes", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"];
+		outp = self.expend(tuple(['Listi'] + data))
 		return self.newlj(printoutp(outp));
 

@@ -16,3 +16,5 @@ _ec = {
 	-5: "Insufficient arguments",
 	-6: "Invalid Input"
 }
+
+

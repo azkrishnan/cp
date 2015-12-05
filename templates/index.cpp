@@ -21,98 +21,98 @@ main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 			cp_selectallcatgs();
 		}
 	}
-	// div(id: "bcard1", class: "modal bottom-sheet") {
-	// 	div(class: "modal-content") {
-	// 		p("Mohit");
-	// 	}
-	// 	div(class: "modal-footer") {
-	// 		p("Saini");
-	// 	}
-	// }
+	div(id: "bcard1", class: "modal bottom-sheet") {
+		div(class: "modal-content") {
+			p("Mohit");
+		}
+		div(class: "modal-footer") {
+			p("Saini");
+		}
+	}
 
-	// div(attr:{id: "myfavlist"}, class: "modal bottom-sheet") {
-	// 	div(class: "container-fluid") {
-	// 		div(class: "row"){
-	// 			pkeys = provider.keys;
-	// 			for(i, pkeys) {
-	// 				pinfo = provider[i];
-	// 				div(class: "col l12 m12 s12 favlistelm", data:{pid: i}) {
-	// 					a1(name: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+"?pid="+i, attr:{target:"_blank"});
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// div(style: {display: ""}) {
-	// 	pkeys = provider.keys;
-	// 	for(i, pkeys) {
-	// 		pinfo = provider[i];
-	// 		div(attr:{id: "providerinfo_"+i}, class: "modal bottom-sheet") {
-	// 			div(class: "container-fluid") {
-	// 				div(class: "row"){
-	// 					div(class: "col l12 m12 s12") {
-	// 						h5() {
-	// 							a1(href: pinfo["website"], name: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
-	// 						}
-	// 						div() {
-	// 							a1(href: nhost+"?pid="+i, name: "Business Card", class: "truncate", attr:{target:"_blank"} );
-	// 						}
-	// 					}
-	// 					div(class: "col l4 m4 s4") {
-	// 						h5(class: "grey-text text-darken-2") {
-	// 							p("");
-	// 							icon(name: "navigation", aclass: "tiny");
-	// 						}
-	// 						div(class: "grey-text") {
-	// 							p(pinfo["address"]);
-	// 						}
-	// 					}
-	// 					div(class: "col l4 m4 s4") {
-	// 						h5(class: "grey-text text-darken-2") {
-	// 							p("");
-	// 							icon(name: "call", aclass: "tiny");
-	// 						}
-	// 						div(class: "grey-text") {
-	// 							p(pinfo["phone"]);
-	// 						}
-	// 					}
-	// 					div(class: "col l3 m3 s3") {
-	// 						button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
-	// 							p("Favorute");
-	// 						}
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// div(class: "modal", id: "providerform", style: {padding: "20px"}) {
-	// 	div(style: {margin: "10px"}) {
-	// 		form(data:{onsubmit: "sreq", bobj: "", action: "providerinfo", restext: "Submitted"}) {
-	// 			div(style:{"font-size": "20px"}) {
-	// 				p("Fill the provider's Details");
-	// 			}
-	// 			div(class: "row"){
-	// 				input1(label: "Catageroy", id: "form_catg");
-	// 				input1(label: "Sub-Catageroy", id: "form_subcatg");
-	// 				input1(label: "Provider", id: "form_prov");
-	// 				input1(label: "Provider's Email", id: "form_email");
-	// 				input1(label: "Provider's Phone", id: "form_phone");
-	// 				input1(label: "Provider's Address", id: "form_address", aclass: "col l12");
-	// 				input1(label: "Link to Website", id: "form_web", aclass: "col l12");
-	// 				input1(label: "Link to Class Sechedule", id: "form_sechedule", aclass: "col l12");
-	// 			}
-	// 			div() {
-	// 				button1(name: "Submit", attr:{type: "submit"});
-	// 			}
-	// 		}		
-	// 	}		
-	// }
-	// div(class: "modal", id: "contactusform", style: {padding: "20px"}) {
-	// 	cp_contactus_form();
-	// }
-	// div(class: "modal", id: "ourstory", style: {padding: "20px"}) {
-	// 	cp_our_story();
-	// }
+	div(attr:{id: "myfavlist"}, class: "modal bottom-sheet") {
+		div(class: "container-fluid") {
+			div(class: "row"){
+				pkeys = provider.keys;
+				for(i, pkeys) {
+					pinfo = provider[i];
+					div(class: "col l12 m12 s12 favlistelm", data:{pid: i}) {
+						a1(name: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+"?pid="+i, attr:{target:"_blank"});
+					}
+				}
+			}
+		}
+	}
+	div(style: {display: ""}) {
+		pkeys = provider.keys;
+		for(i, pkeys) {
+			pinfo = provider[i];
+			div(attr:{id: "providerinfo_"+i}, class: "modal bottom-sheet") {
+				div(class: "container-fluid") {
+					div(class: "row"){
+						div(class: "col l12 m12 s12") {
+							h5() {
+								a1(href: pinfo["website"], name: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
+							}
+							div() {
+								a1(href: nhost+"?pid="+i, name: "Business Card", class: "truncate", attr:{target:"_blank"} );
+							}
+						}
+						div(class: "col l4 m4 s4") {
+							h5(class: "grey-text text-darken-2") {
+								p("");
+								icon(name: "navigation", aclass: "tiny");
+							}
+							div(class: "grey-text") {
+								p(pinfo["address"]);
+							}
+						}
+						div(class: "col l4 m4 s4") {
+							h5(class: "grey-text text-darken-2") {
+								p("");
+								icon(name: "call", aclass: "tiny");
+							}
+							div(class: "grey-text") {
+								p(pinfo["phone"]);
+							}
+						}
+						div(class: "col l3 m3 s3") {
+							button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
+								p("Favorute");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	div(class: "modal", id: "providerform", style: {padding: "20px"}) {
+		div(style: {margin: "10px"}) {
+			form(data:{onsubmit: "sreq", bobj: "", action: "providerinfo", restext: "Submitted"}) {
+				div(style:{"font-size": "20px"}) {
+					p("Fill the provider's Details");
+				}
+				div(class: "row"){
+					input1(label: "Catageroy", id: "form_catg");
+					input1(label: "Sub-Catageroy", id: "form_subcatg");
+					input1(label: "Provider", id: "form_prov");
+					input1(label: "Provider's Email", id: "form_email");
+					input1(label: "Provider's Phone", id: "form_phone");
+					input1(label: "Provider's Address", id: "form_address", aclass: "col l12");
+					input1(label: "Link to Website", id: "form_web", aclass: "col l12");
+					input1(label: "Link to Class Sechedule", id: "form_sechedule", aclass: "col l12");
+				}
+				div() {
+					button1(name: "Submit", attr:{type: "submit"});
+				}
+			}		
+		}		
+	}
+	div(class: "modal", id: "contactusform", style: {padding: "20px"}) {
+		cp_contactus_form();
+	}
+	div(class: "modal", id: "ourstory", style: {padding: "20px"}) {
+		cp_our_story();
+	}
 }
 

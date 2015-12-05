@@ -17,9 +17,9 @@ print maincontent.disp(mifu({}, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True));
 #print "%f"%time.time()
 
 
+
 def forlist(a):
-	return range(a) if(type(a) == int) else a;
-		
+	return range(a if(type(a) == int) else len(a));
 
 _onewaytags = ["input", "link", "img", "base"];
 
@@ -69,8 +69,8 @@ class htmltree():
 	def close(self):
 		self.cur = self.cur.parent;
 
-	def addchilds(self, node):
-		mappl(lambda x:self.cur.addchilds(x), node.content);
+	def addchilds(self, content):
+		mappl(lambda x: self.cur.addchilds(x), content);
 
 	def addtext(self, ptext):
 		self.open(htmlnode(ptext = ptext));

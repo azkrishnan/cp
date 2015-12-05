@@ -1,0 +1,14 @@
+outpvar.cur.addfcdata("main1");
+outpvar.cur.fcalldata["main1"].open(htmlnode("p","Upload the excell sheet here [Only *.xlsx]"));
+outpvar.cur.fcalldata["main1"].close();
+outpvar.cur.fcalldata["main1"].open(htmlnode("p",""));
+outpvar.cur.fcalldata["main1"].close();
+outpvar.cur.fcalldata["main1"].open(htmlnode("form",{"attr": {"method": "post", "enctype": "multipart/form-data"}}));
+outpvar.cur.fcalldata["main1"].open(htmlnode("input",{"attr": {"type": "file", "name": "sheet"}}));
+outpvar.cur.fcalldata["main1"].close();
+outpvar.cur.fcalldata["main1"].open(htmlnode("button",{"attr": {"type": "submit"}}));
+outpvar.cur.fcalldata["main1"].open(htmlnode("p","Submit"));
+outpvar.cur.fcalldata["main1"].close();
+outpvar.cur.fcalldata["main1"].close();
+outpvar.cur.fcalldata["main1"].close();
+outpvar.addchilds(newtag_main1({}, outpvar.cur.fcalldata["main1"].root.content).root.content);
