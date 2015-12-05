@@ -1,0 +1,6 @@
+#Error1
+File "/home/shubham/.local/lib/python2.7/site-packages/msl/__init__.py", line 77, in sifu
+    arr[key] = val;
+TypeError: 'str' object does not support item assignment
+
+Means => Need to replace p by print

@@ -4,25 +4,30 @@ def newtag_main(inp, ginp, innerHTML):
   outpvar = htmltree();
   inp["css"] = myadd(inp["acss"], inp["css"]);
   inp["js"] = myadd(inp["ajs"], inp["js"]);
-  outpvar.addtext("<!DOCTYPE html>");
+  outpvar.open(htmlnode("p", extentattrs("<!DOCTYPE html>")));
+  outpvar.close();
   outpvar.open(htmlnode("html", extentattrs({"style": inp["htmlstyle"]})));
   outpvar.open(htmlnode("head", extentattrs({})));
   outpvar.open(htmlnode("base", extentattrs({"attr": {"href": inp["HOST"]}})));
   outpvar.close();
   outpvar.open(htmlnode("title", extentattrs({})));
-  outpvar.addtext(inp["title"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["title"])));
+  outpvar.close();
   outpvar.close();
   for i in forlist(inp["css"]) :
     outpvar.open(htmlnode("link", extentattrs({"attr": {"href": i, "rel": "stylesheet", "type": "text/css"}})));
     outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("body", extentattrs({"style": inp["bodystyle"]})));
-  outpvar.addchilds(innerHTML);
+  outpvar.cur.addfcdata("innerHTML");
+  outpvar.addchilds(newtag_innerHTML({}, ginp, outpvar.cur.fcalldata["innerHTML"].root.content).root.content);
   outpvar.open(htmlnode("script", extentattrs({"attr": {"type": "text/javascript"}})));
-  outpvar.addtext(myadd(myadd("var jsdata = ", inp["jsdata"]), ";"));
+  outpvar.open(htmlnode("p", extentattrs(myadd(myadd("var jsdata = ", inp["jsdata"]), ";"))));
+  outpvar.close();
   outpvar.close();
   outpvar.open(htmlnode("script", extentattrs({"attr": {"type": "text/javascript"}})));
-  outpvar.addtext("var ec  = jsdata['_ec'] ;");
+  outpvar.open(htmlnode("p", extentattrs("var ec  = jsdata['_ec'] ;")));
+  outpvar.close();
   outpvar.close();
   for i in forlist(inp["js"]) :
     outpvar.open(htmlnode("script", extentattrs({"attr": {"type": "text/javascript", "src": i}})));
@@ -30,6 +35,7 @@ def newtag_main(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.close();
   return outpvar;
+
   
 def newtag_disptabs(inp, ginp, innerHTML): 
   inp = overwriteattrs(extentattrs({"tabname": [], "tablink": []}), extentattrs(inp));
@@ -40,7 +46,8 @@ def newtag_disptabs(inp, ginp, innerHTML):
     outpvar.open(htmlnode("li", extentattrs({"class": inp["liclass"]})));
     inp["isactive"] = ("active" if ((inp["active"]==inp["tablink"][j])) else " ");
     outpvar.open(htmlnode("a", extentattrs({"attr": {"href": inp["tablink"][j]}, "class": inp["isactive"]})));
-    outpvar.addtext(i);
+    outpvar.open(htmlnode("p", extentattrs(i)));
+    outpvar.close();
     outpvar.close();
     outpvar.close();
   return outpvar;
@@ -64,7 +71,8 @@ def newtag_header1(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.close();
   return outpvar;
-  
+
+print "1111111111111111";  
 def newtag_header1_cp(inp, ginp, innerHTML): 
   inp = overwriteattrs(extentattrs({"tabname": [], "tablink": []}), extentattrs(inp));
   mifu(inp, ginp);
@@ -274,7 +282,8 @@ def newtag_icon(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("i", extentattrs({"class": myadd("material-icons ", inp["aclass"]), "style": inp["style"]})));
-  outpvar.addtext(inp["name"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["name"])));
+  outpvar.close();
   outpvar.close();
   return outpvar;
   
@@ -295,7 +304,8 @@ def newtag_checkbox1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "checkbox", "id": inp["id"], "checked": inp["checked"]}, "class": myadd("filled-in ", inp["aclass"]), "data": inp["data"]})));
   outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}, "style": inp["labels"]})));
-  outpvar.addtext(inp["label"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -308,7 +318,8 @@ def newtag_checkbox2(inp, ginp, innerHTML):
   outpvar.open(htmlnode("input", extentattrs({"attr": {"type": "radio", "id": inp["id"], "checked": inp["checked"]}, "class": myadd("with-gap ", inp["aclass"]), "data": inp["data"]})));
   outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}, "style": inp["labels"]})));
-  outpvar.addtext(inp["label"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -318,7 +329,8 @@ def newtag_bigf(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("span", extentattrs({"style": {"font-size": inp["font"], "text-shadow": "3px 3px 3px #000, 2px 2px 2px blue"}, "color": inp["color"]})));
-  outpvar.addtext(inp["name"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["name"])));
+  outpvar.close();
   outpvar.close();
   return outpvar;
   
@@ -359,8 +371,10 @@ def newtag_divpedding(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"style": {"padding": inp["padding"]}, "class": inp["class"]})));
-  outpvar.addtext(inp["text"]);
-  outpvar.addchilds(innerHTML);
+  outpvar.open(htmlnode("p", extentattrs(inp["text"])));
+  outpvar.close();
+  outpvar.cur.addfcdata("innerHTML");
+  outpvar.addchilds(newtag_innerHTML({}, ginp, outpvar.cur.fcalldata["innerHTML"].root.content).root.content);
   outpvar.close();
   return outpvar;
   
@@ -369,8 +383,10 @@ def newtag_textdiv(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs({"style": {"font-size": inp["font"], "font-weight": inp["fontw"]}, "color": inp["color"], "class": inp["class"], "id": inp["id"]})));
-  outpvar.addchilds(innerHTML);
-  outpvar.addtext(inp["name"]);
+  outpvar.cur.addfcdata("innerHTML");
+  outpvar.addchilds(newtag_innerHTML({}, ginp, outpvar.cur.fcalldata["innerHTML"].root.content).root.content);
+  outpvar.open(htmlnode("p", extentattrs(inp["name"])));
+  outpvar.close();
   outpvar.close();
   return outpvar;
   
@@ -383,11 +399,13 @@ def newtag_textdiv1(inp, ginp, innerHTML):
   return outpvar;
   
 def newtag_a1(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs({"class": None, "text": None, "href": None}), extentattrs(inp));
+  inp = overwriteattrs(extentattrs({}), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
+  inp["attr"]["href"] = inp["href"];
   outpvar.open(htmlnode("a", extentattrs({"attr": inp["attr"], "style": inp["style"], "class": inp["class"]})));
-  outpvar.addtext(inp["text"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["name"])));
+  outpvar.close();
   outpvar.close();
   return outpvar;
   
@@ -415,7 +433,8 @@ def newtag_input1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("input", extentattrs({"attr": {"id": inp["id"], "type": inp["type"], "value": inp["value"]}, "class": inp["iclass"], "data": inp["data"]})));
   outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}})));
-  outpvar.addtext(inp["label"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -428,7 +447,8 @@ def newtag_input2(inp, ginp, innerHTML):
   outpvar.open(htmlnode("input", extentattrs({"attr": {"id": inp["id"], "type": inp["type"], "name": inp["id"]}, "class": inp["iclass"]})));
   outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}})));
-  outpvar.addtext(inp["label"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -441,7 +461,8 @@ def newtag_textarea1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("textarea", extentattrs({"attr": {"id": inp["id"], "name": inp["id"]}, "class": "materialize-textarea"})));
   outpvar.close();
   outpvar.open(htmlnode("label", extentattrs({"attr": {"for": inp["id"]}})));
-  outpvar.addtext(inp["label"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["label"])));
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -451,7 +472,8 @@ def newtag_button1(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("button", extentattrs({"class": myadd("btn waves-effect waves-light btn ", inp["aclass"]), "data": inp["data"], "attr": inp["attr"], "datas": inp["datas"]})));
-  outpvar.addtext(inp["name"]);
+  outpvar.open(htmlnode("p", extentattrs(inp["name"])));
+  outpvar.close();
   outpvar.close();
   return outpvar;
   
@@ -460,9 +482,10 @@ def newtag_main1(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   inp["js"] = myadd(["js/main.js"], inp["js"]);
-  outpvar.cur.addfcdata("main");
-  outpvar.cur.fcalldata["main"].addchilds(innerHTML);
-  outpvar.addchilds(newtag_main({"title": inp["title"], "css": inp["css"], "js": inp["js"], "bodystyle": inp["bodystyle"], "htmlstyle": inp["htmlstyle"]}, ginp, outpvar.cur.fcalldata["main"].root.content).root.content);
+  outpvar.open(htmlnode("main", extentattrs({"title": inp["title"], "css": inp["css"], "js": inp["js"], "bodystyle": inp["bodystyle"], "htmlstyle": inp["htmlstyle"]})));
+  outpvar.cur.addfcdata("innerHTML");
+  outpvar.addchilds(newtag_innerHTML({}, ginp, outpvar.cur.fcalldata["innerHTML"].root.content).root.content);
+  outpvar.close();
   return outpvar;
   
 def newtag_main2(inp, ginp, innerHTML): 
@@ -470,11 +493,12 @@ def newtag_main2(inp, ginp, innerHTML):
   mifu(inp, ginp);
   outpvar = htmltree();
   inp["js"] = myadd(["js/main.js"], inp["js"]);
-  outpvar.cur.addfcdata("main");
-  outpvar.cur.fcalldata["main"].addchilds(innerHTML);
-  outpvar.cur.fcalldata["main"].cur.addfcdata("loginmodal");
-  outpvar.cur.fcalldata["main"].addchilds(newtag_loginmodal({}, ginp, outpvar.cur.fcalldata["main"].cur.fcalldata["loginmodal"].root.content).root.content);
-  outpvar.addchilds(newtag_main({"title": inp["title"], "css": inp["css"], "js": inp["js"], "bodystyle": inp["bodystyle"], "htmlstyle": inp["htmlstyle"], "acss": ["css/materialize.min.css", "css/lib.css", "css/materialize.min.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "mslib/css/gfont.css", "css/lib.css", "css/main.css", "css/style.css"]}, ginp, outpvar.cur.fcalldata["main"].root.content).root.content);
+  outpvar.open(htmlnode("main", extentattrs({"title": inp["title"], "css": inp["css"], "js": inp["js"], "bodystyle": inp["bodystyle"], "htmlstyle": inp["htmlstyle"], "acss": ["css/materialize.min.css", "css/lib.css", "css/materialize.min.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "mslib/css/gfont.css", "css/lib.css", "css/main.css", "css/style.css"]})));
+  outpvar.cur.addfcdata("innerHTML");
+  outpvar.addchilds(newtag_innerHTML({}, ginp, outpvar.cur.fcalldata["innerHTML"].root.content).root.content);
+  outpvar.cur.addfcdata("loginmodal");
+  outpvar.addchilds(newtag_loginmodal({}, ginp, outpvar.cur.fcalldata["loginmodal"].root.content).root.content);
+  outpvar.close();
   return outpvar;
   
 def newtag_bigsearch(inp, ginp, innerHTML): 

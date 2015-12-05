@@ -6,7 +6,7 @@ _phpheader = "";
 _config["realmsg"] = False;
 _config["realmail"] = False;
 
-
+_onewaytags = ["input", "link", "img", "base"];
 
 _ec = {
 	-1: "Incorrect password or OTP",

@@ -15,7 +15,7 @@ class mtmlparser:
 	def runtimevar(self):
 		self.returnvardef = "outpvar";
 		self.returnvar = self.returnvardef;
-		self.ginp = "_ginp";
+		self.ginp = "ginp";
 		self.linp = "inp";
 		self.scopefun = False;
 
@@ -82,7 +82,10 @@ class mtmlparser:
 			for j in range(len(t[1:])):
 				i = t[1:][j];
 				outp.append(("elif" if j!=0 else "if")+" ("+expend(i[1])+"): " );
-				outp.append( expend(i[2]) );
+				ifcontent = expend(i[2])
+				if(len(ifcontent) == 0):
+					ifcontent.append("pass");
+				outp.append( ifcontent );
 			return (outp);
 		elif(t[0] == "Forl"):
 			lt = expend(t[3]);
@@ -91,8 +94,8 @@ class mtmlparser:
 			lta = "forlist("+lt+")";
 
 			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + lta + " :"];
-			self.directvar+=([value_var]+([] if index_var == "" else [index_var]));
-			outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+expend(t[4]));
+			self.directvar+=[value_var, index_var];
+			outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+ rift(expend(t[4]), ["pass"], lambda x: len(x) == 0)) ;
 			remove(remove(self.directvar, value_var), index_var);
 			return (outp);
 		elif(t[0] == "Defn"):
@@ -100,11 +103,13 @@ class mtmlparser:
 			self.scopefun = True;
 			innerHTML = expend(t[3]);
 			self.scopefun = False;
-			return (["def "+self.defname(fname)+"(inp, innerHTML): "]+[["mifu("+self.linp+", "+self.ginp+");"]+[self.returnvar+" = htmltree();"], innerHTML, ["return "+self.returnvar+";"]]+[self.tabseprate]);
+			return (["def "+self.defname(fname)+"("+self.linp+", "+self.ginp+", innerHTML): "]+[[self.linp+" = overwriteattrs(extentattrs("+expend(t[2])+"), extentattrs("+self.linp+"));"]+["mifu("+self.linp+", "+self.ginp+");"]+[self.returnvar+" = htmltree();"], innerHTML, ["return "+self.returnvar+";"]]+[self.tabseprate]);
 		elif(t[0] == "Tag"):
 			tname = t[1][1];
 			if(tname == "print"):
 				return ([ self.returnvar+ ".addtext("+expend(t[2])+");"]);
+			elif(tname == "innerHTML"):
+				return [self.returnvar+".addchilds(innerHTML);"]
 			else:
 				inattr = expend(t[2]);
 				if(tname not in self.alltags):
@@ -112,14 +117,14 @@ class mtmlparser:
 					self.returnvar = self.returnvar+".cur.fcalldata["+quoted_s(tname)+"]"
 					innerHTML = expend(t[3]);
 					self.returnvar = oldrvar;
-					return [self.returnvar+".cur.addfcdata("+quoted_s(tname)+");"]+innerHTML+[self.returnvar+".addchilds("+self.defname(tname)+"("+inattr+", "+ self.returnvar+".cur.fcalldata["+quoted_s(tname)+"].root.content).root.content);"];
+					return [self.returnvar+".cur.addfcdata("+quoted_s(tname)+");"]+innerHTML+[self.returnvar+".addchilds("+self.defname(tname)+"("+inattr+", "+self.ginp+", "+self.returnvar+".cur.fcalldata["+quoted_s(tname)+"].root.content).root.content);"];
 				else:
 					innerHTML = expend(t[3]);
-					return [self.returnvar+".open(htmlnode("+quoted_s(tname)+","+inattr+"));"]+innerHTML+[self.returnvar+".close();"]
+					return [self.returnvar+".open(htmlnode("+quoted_s(tname)+", extentattrs("+inattr+")));"]+innerHTML+[self.returnvar+".close();"]
 		else:
 			return "";
 	def disp(self, data):
-		self.alltags = ["a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio", "b", "base", "basefont", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "datalist", "dd", "del", "details", "dfn", "dialog", "dir", "div", "dl", "!DOCTYPE", "dt", "em", "embed", "fieldset", "figcaption", "figure", "font", "footer", "form", "frame", "frameset", "h1", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "menu", "menuitem", "meta", "meter", "nav", "noframes", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"];
+		self.alltags = ["a", "abbr", "acronym", "address", "applet", "area", "article", "aside", "audio", "b", "base", "basefont", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "center", "cite", "code", "col", "colgroup", "datalist", "dd", "del", "details", "dfn", "dialog", "dir", "div", "dl", "!DOCTYPE", "dt", "em", "embed", "fieldset", "figcaption", "figure", "font", "footer", "form", "frame", "frameset", "h1", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "map", "mark", "menu", "menuitem", "meta", "meter", "nav", "noframes", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strike", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "tt", "u", "ul", "var", "video", "wbr"];#+["main"];
 		outp = self.expend(tuple(['Listi'] + data))
-		return self.newlj(printoutp(outp));
+		return self.newlj(printoutp(outp, self.tabseprate, -1));
 

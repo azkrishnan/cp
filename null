@@ -1,0 +1,51 @@
+mysql> show columns from cat;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| cat_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| cat    | varchar(50) | YES  | UNI | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> 
+mysql> show columns from subcat;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| subcat_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| subcat    | varchar(50) | YES  | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.03 sec)
+
+mysql> show columns from provider;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| provider_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name_provider | varchar(200) | YES  |     | NULL    |                |
+| phone         | varchar(20)  | YES  |     | NULL    |                |
+| address       | varchar(200) | YES  |     | NULL    |                |
+| website       | varchar(200) | YES  |     | NULL    |                |
+| lat           | double       | YES  |     | NULL    |                |
+| lng           | double       | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> show columns from tabs;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| tabs_id | int(11)     | NO   | PRI | NULL    | auto_increment |
+| tabs    | varchar(20) | YES  | UNI | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from maininfo;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| tabs_index     | int(11) | YES  |     | NULL    |       |
+| provider_index | int(11) | YES  |     | NULL    |       |
+| subcat_index   | int(11) | YES  |     | NULL    |       |
+| cat_index      | int(11) | YES  |     | NULL    |       |
++----------------+---------+------+-----+---------+-------+

@@ -141,3 +141,82 @@ def latlngdist(lat1, lng1, lat2, lng2) :
 	a = sin(dph/2) * sin(dph/2) + sin(ph1)*sin(ph2)*sin(dlem/2)*sin(dlem/2);
 	c = 2*math.atan2(a**0.5, (1-a)**0.5);
 	return R*c;
+
+def forlist(a):
+	return range(a if(type(a) == int) else len(a));
+
+def extentattrs(a):
+	mifu(a, {"style": {}, "attr": {}, "data": {}, "datas": {}});
+	fillfroma = lambda arr, impkey: mifa(arr, pkey1(a, impkey));
+	fillfroma(a["style"], ["color", "font-size"]);
+	fillfroma(a["attr"], ["style", "class", "id", "name", "href"]);
+	mifa(a["data"], mapp(idf, a["datas"], None, lambda x: "send"+x));
+	mifa(a["attr"], mapp(idf, a["data"], None, lambda x:"data-"+x));
+	return a;
+
+def overwriteattrs(a, b): #b is overwritting a
+	for i in b:
+		if(a.has_key(i) and (type(a[i]) == type(b[i]) == dict)):
+			overwriteattrs(a[i], b[i]);
+		else:
+			a[i] = b[i];
+	return a;
+
+def execview(fn, ginp={}):
+	sifu(ginp, "page", fn);
+	return elc("python todisp.py "+quoted_s(json.dumps(ginp)));
+
+class htmlnode():
+	def __init__(self, tag=None, attrs={}, ptext=None):
+		self.tag = tag;
+		self.attrs = attrs;
+		self.parent = None;
+		self.content = [];
+		self.ptext = ptext;
+
+		self.fcalldata = {};# List of (method_name-> htmltree)
+
+	def addchild(self, n):
+		self.content.append(n);
+		n.parent = self;
+
+	def addfcdata(self, fname):
+		self.fcalldata[fname] = htmltree();
+
+
+	def tostr(self):
+		def tagattrs(a):
+			a = a["attr"];
+			a["style"] = rift("".join(mappl(lambda y,x: x+":"+y+";", a["style"], lambda x: x!=None)), None, lambda x: x=='');
+			return " ".join(mappl(lambda y,x: x+"='"+str(y)+"'", a, lambda x: x!=None));
+		opentag = lambda : ("<"+self.tag+" "+ tagattrs(self.attrs) + " >") if self.tag != None else "";
+		closetag = lambda : ("</"+self.tag+">") if self.tag != None else "";
+		if(self.ptext != None):
+			return [self.ptext];
+		elif (len(self.content) == 0):
+			return [opentag()+closetag()]
+		elif ( len(self.content) ==1 and self.content[0].ptext != None):
+			return [opentag()+self.content[0].ptext+closetag()];
+		else:
+			return [opentag()]+mappl(lambda x: x.tostr(), self.content)+[closetag()];
+
+
+class htmltree():
+	def __init__(self):
+		self.root = htmlnode();
+		self.cur = self.root;
+
+	def open(self, hnode):
+		self.cur.addchild(hnode);
+		if(hnode.tag != None and not(hnode.tag in _onewaytags)):
+			self.cur = hnode;
+
+	def close(self):
+		self.cur = self.cur.parent;
+
+	def addchilds(self, content):
+		mappl(lambda x: self.cur.addchild(x), content);
+
+	def addtext(self, ptext):
+		self.open(htmlnode(ptext = str(ptext)));
+

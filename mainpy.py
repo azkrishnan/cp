@@ -8,7 +8,6 @@ from msl.help import *
 from msl.sql import *
 from msl.mtime import *;
 
-execfile(_mslib+"ocaml/run.py");
 
 try:
 	inpdata = udicttostr(json.loads(sys.argv[1]));
@@ -32,10 +31,10 @@ if( filename == "ajaxactions" ):
 	mprint(json.dumps(pagehandler(filename).ajaxactions()));
 else:
 	pageh = pagehandler(filename).call();
-	maincontent = mtmlparser();
-	maincontent.readcompiled(filename+".cpp");
+#	maincontent = mtmlparser();
+#	maincontent.readcompiled(filename+".cpp");
 #	write_file("cache_mainpage.html", maincontent.disp(mifu(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE}, True) ));
-	mprint(read_file("cache_mainpage.html"));
+#	mprint(read_file("cache_mainpage.html"));
 
 
 
