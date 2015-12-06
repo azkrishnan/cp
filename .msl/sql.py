@@ -100,7 +100,7 @@ class sqllib:
 		return self.i_1row(self.g(query, darr, arr), 1);
 
 	def i_conds(self, arr, glu = ' AND '):
-		if(type(arr) == dict):
+		if(type(arr) == dict or type(arr) == cod ):
 			(a,b) = fold(lambda (clist, darr),val,key: r1(clist.append(key+" = {"+key+"}"), (clist, seta(darr, key, val))) , arr, ([],{}));
 			return (mjoin(glu, a, "true"), b);
 		else:

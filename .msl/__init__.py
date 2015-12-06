@@ -93,7 +93,7 @@ def mifa(a1, a2): #Merge Forcefully
 	return mifu(a1, a2, True);
 
 def rmifu(a1, a2, isforce=False):
-	mifu(cod(a1), a2, isforce);
+	return mifu(cod(a1), a2, isforce);
 
 
 def msplit(st, spliter = '-'):
