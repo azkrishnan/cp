@@ -1,4 +1,4 @@
-import itertools, socket;
+import itertools, socket,re;
 
 from msl import *
 try:
@@ -55,13 +55,42 @@ def allfile_rec(f):
 	allff = os.listdir(f);
 	return list(f+i for i in allff if os.path.isfile(f+i))+fold(lambda x,y: x+y, list(allfile_rec(f+i) for i in allff if not(os.path.isfile(f+i)) ), [])
 
-def readxlx(fn):
+def alldir(f):
+	if(f[-1] != "/"):
+		f+="/";
+	return list(i for i in os.listdir(f) if not(os.path.isfile(f+i)));
+
+def readxlx(fn, mincol=None):
 	wb = xlrd.open_workbook(fn);
 	return list(list(list(s.cell(i,j) for j in xrange(s.ncols)) for i in xrange(s.nrows)) for s in wb.sheets());
-	wb.close();
 
 def google_addrtolanlat(addr):
 	url ="https://maps.googleapis.com/maps/api/geocode/json?"+urllib.urlencode({"address": addr});
 	req = s2j(curl(url));
 	if(req):
-		return req["results"][0]["geometry"]["location"];
+		country_code = filter(lambda x: x["types"][0]=="country", req["results"][0]["address_components"])[0]["short_name"];
+		return sifu(req["results"][0]["geometry"]["location"], "countrycode", country_code);
+
+
+def grouplist(arr, gap=1):
+	outp = [];
+	for i in arr:
+		if (outp == [] or (outp[-1][0] + outp[-1][1]*gap != i)):
+			outp.append([i, 1]);
+		else:
+			outp[-1][1]+=1;
+	return outp;
+
+def replaceall(inp, ra):
+	return fold(lambda s, ar, br: s.replace(br, ar), ra, inp);
+
+def searchkeysplit(ss):
+	return re.sub("[^a-zA-Z0-9]+", " ", ss.lower()).strip().split();
+#	return re.split("[^a-zA-Z0-9]+", ss.strip().lower());
+
+def cleanpath(p, typ='se'):
+	if('s' in typ and len(p)>0 and p[0]=='/'):
+		p=p[1:];
+	if('e' in typ and len(p)>0 and p[-1]=='/'):
+		p=p[:-1];
+	return p;

@@ -188,7 +188,9 @@ def unique(l):
 	setol([], l, '|') if l!=[] else [];
 
 def curl(url, postdata='', proxy=''):
+	postdata = urllib.urlencode(postdata) if type(postdata) != str else postdata;
 	if(1):
+		return elc(proxy+" curl -s "+(("-d '"+postdata+"'") if postdata !="" else "") +" '"+url+"'");
 		lc = proxy+" wget --no-check-certificate  "+ (("--post-data=\""+postdata+"\" ") if postdata != '' else '') +" "+url+" -O- -o /tmp/null1"
 		return elc(lc);
 	else:
