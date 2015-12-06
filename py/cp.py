@@ -51,11 +51,6 @@ class cp:
 		query = "select provider_id from "+gtable("maininfo1")+" where "+conds
 		return list(set(mappl(lambda x: x["provider_id"] , _sql.g(query, darr))));
 
-
-
-
-
-
 def catgtree():
 	sublists = ["tabs", "cat", "subcat", "provider"];
 	dictl = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), sublists, None, lambda x: sublists[x]);
