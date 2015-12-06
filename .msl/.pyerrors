@@ -1,0 +1,9 @@
+unknown url type: google.comunknown url type: google.com
+unknown url type: google.com
+<urlopen error [Errno 101] Network is unreachable>
+<urlopen error [Errno 101] Network is unreachable>
+<urlopen error [Errno 101] Network is unreachable>
+<urlopen error [Errno 101] Network is unreachable>
+<urlopen error [Errno 101] Network is unreachable>
+urlopen() got an unexpected keyword argument 'proxy'
+urlopen() got an unexpected keyword argument 'proxies'
