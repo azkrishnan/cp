@@ -72,6 +72,8 @@ class pagehandler:
 				if(latlng):
 					_sql.uval("provider", latlng, {"provider_id": i["provider_id"]}, 1);
 					print latlng, i["address"];
+				time.sleep(1);
+				print "Sleep";
 
 		def deletealltable():
 			print list(_sql.q("drop table if exists "+i) for i in self.alltable);
