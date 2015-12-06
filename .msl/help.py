@@ -1,6 +1,11 @@
 import itertools, socket;
 
 from msl import *
+try:
+	import xlrd;
+except:
+	pass
+
 
 def gen_form(*args):
 	return map(lambda x: ''.join(list(str(i) for i in x)), itertools.product(*args));
@@ -49,3 +54,8 @@ def allfile_rec(f):
 		f+="/";
 	allff = os.listdir(f);
 	return list(f+i for i in allff if os.path.isfile(f+i))+fold(lambda x,y: x+y, list(allfile_rec(f+i) for i in allff if not(os.path.isfile(f+i)) ), [])
+
+def readxlx(fn):
+	wb = xlrd.open_workbook(fn);
+	return list(list(list(s.cell(i,j) for j in xrange(s.ncols)) for i in xrange(s.nrows)) for s in wb.sheets());
+	wb.close();

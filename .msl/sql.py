@@ -1,6 +1,8 @@
 from msl import *
 from msl.mtime import *;
 
+import re
+
 try:
 	import MySQLdb;
 except:

@@ -3,10 +3,24 @@
 _agent = "gcl";
 
 execfile("includes/setting.py");
-execfile(_mslib+"py/func.py");
-execfile("mslib/ocaml/run.py");
-execfile(ROOT+"py/main.py");
+
+import time, sys, MySQLdb
+
+from msl import *
+from msl.help import *
+from msl.sql import *
+from msl.mtime import *;
+
+
+
+#execfile(_mslib+"py/func.py");
+#execfile("mslib/ocaml/run.py");
+
+
 execfile(_mslib+"py/webd.py");
+
+
+execfile(ROOT+"py/main.py");
 
 # maincontent = mtmlparser();
 

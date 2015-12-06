@@ -79,7 +79,7 @@ class pagehandler:
 		def createtables():
 			readxlx_dbdump("data/providers.xlsx", ['tabs', 'cat', 'subcat', 'name_provider', 'phone', 'address', 'website', 'lat', 'lng'], _sql.tabtype("vu20, vu50, vu50, v200, v20, v200, v200, r, r"), "maininfo", {"tabs":[0], "cat": [1], "subcat": [2], "provider":[3, 4, 5, 6, 7, 8]});
 		if(True):
-			deletealltable();
+#			deletealltable();
 			createtables();
 			#updatelatlng();
 		print _sql.q("create table providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
