@@ -19,7 +19,7 @@ execfile(_mslib+"py/webd.py");
 
 #print sql.ival("users", {"name": "Mohit#$%^6''", "email": "timepass@mail.com"});
 
-#a = pagehandler("init").init();
+a = pagehandler("init").init();
 
 #print _sql.sval("maininfo");
 

@@ -15,7 +15,7 @@ elif(_server == "csc"):
 elif(_server == "aws_cp"):
 	HOST = 'http://52.8.246.176/';
 	ROOT = '/var/www/html/';
-	db_data = {'host': 'localhost', 'user': 'root', 'pass': 'mohit', 'db': 'kurry'};
+	db_data = {'host': 'localhost', 'user': 'root', 'pass': 'mohit', 'db': 'cp'};
 elif(_server == "solnki"):
 	HOST = 'http://localhost/cp/';
 	ROOT = '/var/www/html/cp/';

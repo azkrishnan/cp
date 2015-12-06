@@ -81,8 +81,7 @@ class pagehandler:
 		if(True):
 			deletealltable();
 			createtables();
-			updatelatlng();
-			#updateindbcatg(allcatgmap());
+			#updatelatlng();
 		print _sql.q("create table providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
 
 
