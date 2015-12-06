@@ -40,7 +40,7 @@ for i in forlist(pkeys) :
   pinfo = ginp["provider"][i];
   outpvar.cur.fcalldata["main1"].open(htmlnode("div", extentattrs({"class": "col l12 m12 s12 favlistelm", "data": {"pid": i}})));
   outpvar.cur.fcalldata["main1"].cur.addfcdata("a1");
-  outpvar.cur.fcalldata["main1"].addchilds(newtag_a1({"text": myadd(myadd(pinfo["name_provider"], " "), pinfo["address"]), "href": myadd(myadd(ginp["nhost"], "?pid="), i), "attr": {"target": "_blank"}}, ginp, outpvar.cur.fcalldata["main1"].cur.fcalldata["a1"].root.content).root.content);
+  outpvar.cur.fcalldata["main1"].addchilds(newtag_a1({"text": myadd(myadd(pinfo["name_provider"], " "), pinfo["address"]), "href": myadd(ginp["nhost"], pinfo["username"]), "attr": {}}, ginp, outpvar.cur.fcalldata["main1"].cur.fcalldata["a1"].root.content).root.content);
   outpvar.cur.fcalldata["main1"].close();
 outpvar.cur.fcalldata["main1"].close();
 outpvar.cur.fcalldata["main1"].close();
@@ -59,7 +59,7 @@ for i in forlist(pkeys) :
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].open(htmlnode("div", extentattrs({})));
   outpvar.cur.fcalldata["main1"].cur.addfcdata("a1");
-  outpvar.cur.fcalldata["main1"].addchilds(newtag_a1({"href": myadd(myadd(ginp["nhost"], "?pid="), i), "text": "Business Card", "class": "truncate", "attr": {"target": "_blank"}}, ginp, outpvar.cur.fcalldata["main1"].cur.fcalldata["a1"].root.content).root.content);
+  outpvar.cur.fcalldata["main1"].addchilds(newtag_a1({"href": myadd(ginp["nhost"], pinfo["username"]), "text": "Business Card", "class": "truncate", "attr": {}}, ginp, outpvar.cur.fcalldata["main1"].cur.fcalldata["a1"].root.content).root.content);
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].open(htmlnode("div", extentattrs({"class": "col l4 m4 s4"})));

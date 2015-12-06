@@ -37,7 +37,7 @@ main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true
 				for(i, pkeys) {
 					pinfo = provider[i];
 					div(class: "col l12 m12 s12 favlistelm", data:{pid: i}) {
-						a1(text: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+"?pid="+i, attr:{target:"_blank"});
+						a1(text: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+pinfo["username"], attr:{});
 					}
 				}
 			}
@@ -55,7 +55,7 @@ main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true
 								a1(href: pinfo["website"], text: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
 							}
 							div() {
-								a1(href: nhost+"?pid="+i, text: "Business Card", class: "truncate", attr:{target:"_blank"} );
+								a1(href: nhost+pinfo["username"], text: "Business Card", class: "truncate", attr:{});
 							}
 						}
 						div(class: "col l4 m4 s4") {
