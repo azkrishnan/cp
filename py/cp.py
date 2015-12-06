@@ -59,7 +59,7 @@ class cp:
 def catgtree():
 	sublists = ["tabs", "cat", "subcat", "provider"];
 	dictl = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), sublists, None, lambda x: sublists[x]);
-	dictl = mapp(lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True), sublists, None, lambda x: sublists[x]);
+
 
 	maininfocatg = catgxlx1( _sql.sval("maininfo"), ["tabs_index", "cat_index", "subcat_index"]);
 	icons = ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png", ""];
@@ -194,5 +194,44 @@ def check():
 
 
 
+def catgxlx(data, depth = 0):
+	return data if (depth <= 0) else mapp(lambda v: catgxlx(v, depth-1), fold(lambda x,y: r1(sifu(x, y[0], []), x[y[0]].append(y[1:]), x) , data, {}));
 
+def catgxlx1(data, keyl, isuniq = False):
+	listorrow = lambda x: x[0] if isuniq else x;
+	return data if (len(keyl) == 0) else dict(mapp(lambda v: listorrow(catgxlx1(v, keyl[1:])), fold(lambda x,y: r1(sifu(x, y[keyl[0]], []), x[y[keyl[0]]].append( r1(y.pop(keyl[0]), y) ), x), data, {})));
 
+def readxlx_val(fn):
+	return list(list(list(str(x.value.encode('utf-8')) for x in y) for y in z) for z in readxlx(fn));
+
+def readxlx1(fn, depth = 0):
+	return catgxlx(readxlx_val(fn)[0][1:], depth);
+
+def readxlx_db(xldata, title, grouping={}): #data: (list of (list of str)), title line removed, Assuming no element is grouped twice
+	outp = mapp(lambda: [], cod.fromkeys(grouping.keys()));
+	maint = [];
+	if(len(xldata) == 0):
+		return (maint, outp);
+	else:
+		rkeys = setol(range(len(xldata[0])), mixl(grouping.values()), '-');
+		for row in xldata:
+			nrow = pkey1(row, rkeys);
+			for i in grouping:
+				nrow[i+"_index"] = 1+appenduniq(outp[i], mifu(cod({i+"_id":None}), pkey1(row, grouping[i]) ));
+			maint.append(nrow);
+		for i in grouping:
+			mappl(lambda x,y: sifu(x, i+"_id", y+1, True), outp[i]);
+		return (maint, outp);
+
+def readxlx_dbdump(fn, title, coltyp, maintable, grouping={}): #Assuming there is atleast 1 row, other then title.
+	(maint, groupt) = readxlx_db(readxlx_val(fn)[0][1:], title, grouping);
+	tableattrs = mappl(lambda x,y: x+" "+coltyp[y], title);
+	sqlstatement = lambda table, row, isuniqi='': "create table if not exists "+ table+ "("+ ", ".join(mappl(lambda y,x: (tableattrs[x] if type(x) == int else (x+' int'+isuniqi)) , row))+")";
+	groupt[maintable] = maint;
+
+	print "Started Executing..";
+	createquerys = mappl(lambda x,y: sqlstatement(y, x[0], ' unique' if y != maintable else '' ), groupt);
+	groupt = mapp(lambda x, i: mappl(lambda j:mapp(idf, j, None, lambda x: (title[x] if type(x) == int else x)), groupt[i]), groupt);
+	list(_sql.q(x) for x in createquerys);
+	print "Created All";
+	mappl(lambda x,y: mappl(lambda i: _sql.ival(y, dict(i)), x), groupt);

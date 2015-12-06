@@ -130,4 +130,4 @@ outpvar.cur.fcalldata["main1"].open(htmlnode("div", extentattrs({"class": "modal
 outpvar.cur.fcalldata["main1"].cur.addfcdata("cp_our_story");
 outpvar.cur.fcalldata["main1"].addchilds(newtag_cp_our_story({}, ginp, outpvar.cur.fcalldata["main1"].cur.fcalldata["cp_our_story"].root.content).root.content);
 outpvar.cur.fcalldata["main1"].close();
-outpvar.addchilds(newtag_main1({"js": ["js/jquery-ui.js", "js/index.js"], "title": "Class Pundit"}, ginp, outpvar.cur.fcalldata["main1"].root.content).root.content);
+outpvar.addchilds(newtag_main1({"js": ["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"], "title": "Class Pundit"}, ginp, outpvar.cur.fcalldata["main1"].root.content).root.content);

@@ -19,7 +19,7 @@ elif(_server == "aws_cp"):
 elif(_server == "solnki"):
 	HOST = 'http://localhost/cp/';
 	ROOT = '/var/www/html/cp/';
-	db_data = {'host': 'poorvi.cse.iitd.ac.in', 'user': 'mohit', 'pass': 'mohitsaini', 'db': 'mohit'};
+	db_data = {'host': '10.208.20.8', 'user': 'mohit', 'pass': 'mohitsaini', 'db': 'mohit'};
 
 CDN = HOST+'photo/'
 BASE = HOST+'index.php/'

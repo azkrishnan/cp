@@ -5,6 +5,8 @@
 
 _localtz = pytz.timezone("Asia/Calcutta") if ("pytz" in _includes) else None;
 
+
+
 def fold_l(f, l, a):
 	for i in l:
 		a = f(a, i) if len(inspect.getargspec(f).args) == 2 else f(a, l[i], i);

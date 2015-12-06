@@ -1,5 +1,5 @@
-//main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"], title: "Class Pundit") {
-main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
+main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"], title: "Class Pundit") {
+//main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 	header1_cp();
 	div(attr:{id: "map"}, style: {height: "100%"});
 	div(class: "catgselect") {

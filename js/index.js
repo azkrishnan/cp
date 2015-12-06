@@ -228,14 +228,13 @@ function dispfavlist() {
 }
 
 function minimaxifilter(i) {
-	console.log("Mohit...");
 	if(i==1) {
-		$('#maincontrol').hide('slide', {direction: 'left'}, 1000, function(){
+		$('#maincontrol').hide(1000, function(){
 			$('#maincontrol1').show();
 		});
 	} else {
 		$('#maincontrol1').hide();
-		$('#maincontrol').show('slide', {direction: 'left'}, 1000);
+		$('#maincontrol').show(1000);
 	}
 }
 
