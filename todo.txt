@@ -3,33 +3,17 @@ Pending:
 4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
 >>> I still don't know how to do it.
 8. Upload new logo (you will have to work to make sure this looks good) 
-14. Business card
 15. Comment Session b/w users and providers.
-
-
-
-
-    Users must have a way of sharing a Provider's URL with their friends -- Inline image 1 Using the Share icon on the provider page
-    Ideally, we should enable a "quora" like feel within a provider's page. 
-        Moms do not want to give away their identity.  So anyone should be able to anonymously post questions.
-        Other moms must be able to answer anonymously
-        Providers can also provide answers, but when they reply, that should be highlighted differently.
-
-Reason I think this is important is because:
-
-    It promotes interaction between users
-    There's a virality factor - it helps me share the page, as well as get answers directly from providers and other moms
-
-
-
+16. Users must have a way of sharing a Provider's URL with their friends -- Inline image 1 Using the Share icon on the provider page
 
 
 
 
 
 ----------------------------Done-------------------------------
+######14. Business card
 ######12. Show favorites in a different color map marker.
-#####13. Search Results: 
+#####13. Search Results: (Locations, Classes)
 7. Select All Cats: (1) Use Squares for cats, and circles for subcats 
 >>>>>I am getting problem in (coding) making it circle.
 ######6. Upload my data (will send it over to you) 
