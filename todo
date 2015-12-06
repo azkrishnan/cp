@@ -1,3 +1,32 @@
+https://classpundit.signin.aws.amazon.com/console
+
+username: mohit.saini
+password: Bach1196Moz
+
+--URLS--------------------------------------
+
+
+classpundit.com/<2 char ISO alpha-2 Country Code/<Hyphenated name of provider>
+
+where:
+
+    Country codes (US or IN or CA etc) --> https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+    Hyphenated Name of Provider:  
+
+        Replace spaces in the Name of Provider with hyphens.
+        Hyphenated Name of Provider must not exceed 25 chars
+        If the hyphenated name exceeds 25 char, truncate it before the last hyphen that affects the length.
+        For eg. 
+        Melody musicals become "melody-musicals"
+        Satoman Taikwando JiuJitsu Martial Arts School becomes "satoman-taikwando-jiu"
+        In case of conflicts, we will include a hyphen and a counter in addition (this may cause the length to increase from 25 to 27 chars sometimes)
+
+Let's go with this as the default.  If this takes off, we can always suggest the default, and let providers pick a unique name of their choice as long as it's available.
+
+
+----------------------------------------
+
+
 
 3. Minimize button - Right now it appears on a separate bar, but unfortunately, that looks like a search bar.  What about moving it elsewhere so it's not a searchbar.  Also after minimizing, we want the user to know to expand.  So maybe alternate use of + and - maybe?
 

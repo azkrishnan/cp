@@ -22,11 +22,6 @@ execfile(_mslib+"py/webd.py");
 
 execfile(ROOT+"py/main.py");
 
-
-#print readxlx("data/providers.xlsx");
-
-print searchkeysplit("Just Fun !");
-
 # maincontent = mtmlparser();
 
 #maincontent.readonefile("templates/test.cpp");
@@ -38,9 +33,7 @@ print searchkeysplit("Just Fun !");
 
 #print sql.ival("users", {"name": "Mohit#$%^6''", "email": "timepass@mail.com"});
 
-# a = pagehandler("init").init();
-
-# print curl("google.com");
+a = pagehandler("init").init();
 
 #print _sql.sval("maininfo");
 

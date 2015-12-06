@@ -87,6 +87,9 @@ for i in forlist(pkeys) :
   outpvar.cur.fcalldata["main1"].addtext("Favorute");
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].close();
+  outpvar.cur.fcalldata["main1"].open(htmlnode("div", extentattrs({"class": "col l12 m12 s12"})));
+  outpvar.cur.fcalldata["main1"].addtext(ginp["provider2"][i]["mycats"]);
+  outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].close();
   outpvar.cur.fcalldata["main1"].close();

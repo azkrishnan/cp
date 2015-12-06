@@ -220,3 +220,22 @@ class htmltree():
 	def addtext(self, ptext):
 		self.open(htmlnode(ptext = str(ptext)));
 
+def create_username(name, alreadyexists=[], maxlen = 25):
+	keys = searchkeysplit(name);
+	outp = "";
+	for i in keys:
+		if(len(outp)+len(i) > maxlen):
+			break;
+		else:
+			outp+=(i+"-");
+	outp = outp[:-1];
+	outp_a = outp;
+	count = 1;
+	while(outp_a in alreadyexists):
+		outp_a = outp+"-"+str(count);
+		count+=1;
+	return outp_a;
+
+def geturlpath(inpurl):
+	return doifcan1(lambda: mappl(lambda x:cleanpath(str(x)), (HOST.split("//")[0]+"//"+inpurl).split(HOST)[1].split("index.php")), (None, None));
+

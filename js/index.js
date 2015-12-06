@@ -5,12 +5,16 @@ var circle100km = null;
 var infowindow = null;
 var markers_density = 0.00100;
 
-var marker_icons = ["photo/found2.png", "photo/found4.png"];
+var marker_icons = ["photo/found2.png", "photo/found4.png", "photo/favloc3.png"];
 
 
 var provider = jsdata.provider;
-var activep = array_keys(provider);
 var pid = jsdata.pid;
+
+if(pid == 0)
+	var activep = array_keys(provider);
+else
+	var activep = [pid];
 
 
 function init_cookies() {
@@ -20,20 +24,21 @@ function init_cookies() {
 }
 
 
-function msgformatching() {
+function msgformatching(numclasses) {
 	var inmyrange = map(id, mapp(function(i) {
 		var ploc = provider[i];
 		return latlandist(curloc.position.lat(), curloc.position.lng(), ploc.lat, ploc.lng);
 	}, activep), function(x) { return (x<= circle100km.radius); });
 	var intrad = int(circle100km.radius/1000);
 	if(inmyrange.length > 0 )
-		runf("error", {"msg": inmyrange.length+" Locations matching in your Area("+intrad+" KM)"});
+		runf("error", {"msg": (numclasses == null ? (inmyrange.length+" Locations"): inmyrange.length+" Locations, "+numclasses+" Classes"  )+" matching in your Area("+intrad+" KM)"});
 	else
 		runf("error", {"msg": "No Location matching in your Area("+intrad+" KM)"});
 	return inmyrange;
 }
 
 function redisplay() {
+	var myl = getCookie("myfav").plist;//List of Fav providers.
 	var plist = map(function(x) {
 		return [provider[x].lat, provider[x].lng, x];
 	}, activep);
@@ -43,7 +48,7 @@ function redisplay() {
 	map(function(x) {//assuming x.length > 0
 		var thismarker = provider[x[0][2]];
 		var locmark = thismarker.locmark;
-		locmark.setIcon(marker_icons[0+(x.length==1)]);
+		locmark.setIcon(marker_icons[ (belongs(myl, x[0][2]) && x.length ==1)  ? 2:(0+(x.length==1))]);
 		var avgloc = mapp(function(x2) {
 			return x2/x.length;
 		}, fold(function (x1, y1) {
@@ -175,17 +180,21 @@ $(document).ready(function() {
 
 function getallproviders(selectedcatg){
 	var outp = [];
+	var numclasses = 0;
 	for(var i=0; i<selectedcatg.length; i++) {
 		if(selectedcatg[i].length == 3){
 			var j = selectedcatg[i];
 			try {
-				outp = addluniq(outp, map(function(x){return ""+x["provider_index"];}, jsdata.maininfocatg[j[0]][j[1]][j[2]]));
+				var addedprov = map(function(x){return ""+x["provider_index"];}, jsdata.maininfocatg[j[0]][j[1]][j[2]]);
+				outp = addluniq(outp, addedprov);
+				if(addedprov.length > 0)
+					numclasses++;
 			} catch (e) {
 
 			}
 		}
 	}
-	return outp;
+	return {providers: outp, numclasses: numclasses};
 }
 
 
@@ -200,12 +209,14 @@ function findselected() {
 	return selectedcatg;
 }
 
-function draw_points(providers) {
-	var tohide = listaminusb(array_keys(provider), providers);
-	map(function(x){ provider[x].locmark.setVisible(false); }, tohide);
-	map(function(x){ provider[x].locmark.setVisible(true); }, providers);
-	msgformatching();
-	infowindow.close();
+function draw_points(inp) {
+	// var tohide = listaminusb(array_keys(provider), providers);
+	// map(function(x){ provider[x].locmark.setVisible(false); }, tohide);
+	// map(function(x){ provider[x].locmark.setVisible(true); }, providers);
+	activep = inp.providers;
+	msgformatching(inp.numclasses);
+	redisplay();
+//	infowindow.close();
 }
 
 //draw_points( getallproviders( findselected() ) )

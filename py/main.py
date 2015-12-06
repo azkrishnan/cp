@@ -18,7 +18,7 @@ class pagehandler:
 		return sifu(( rifn(self.methodmap[self.name](), {}) if self.methodmap.has_key(self.name) else {}), "jsdata", json.dumps(self.jsdata));
 
 	def index(self):
-		pid = intf(g(_get, "pid"));
+		pid = intf(g(_sql.sval("provider", "provider_id", {"username": _urlpath[0]}, 1), "provider_id") if _urlpath[0] != "" else 0);
 		nhost = g(_get, "nhost" , HOST);
 		catgs = catgtree()
 		mifu(self.jsdata, sifu(catgs, "pid", pid));
@@ -29,30 +29,7 @@ class pagehandler:
 		pass
 
 	def upload(self):
-		if(has_key(_files, "sheet")):
-			datafile = "data/providers.xlsx";
-			datafile = _files["sheet"]["tmp_name"];
-			def updatelatlng():
-				allp = _sql.sval("provider", "provider_id, address");
-				for i in allp:
-					latlng = google_addrtolanlat(i["address"]);
-					time.sleep(0.5);
-					if(latlng):
-						mprint(latlng);
-						_sql.uval("provider", latlng, {"provider_id": i["provider_id"]}, 1);
-						mprint(latlng, i["address"]);
-
-			def deletealltable():
-				mprint(list(_sql.q("drop table if exists "+i) for i in self.alltable));
-
-			def createtables():
-				readxlx_dbdump(datafile, ['tabs', 'cat', 'subcat', 'name_provider', 'phone', 'address', 'website', 'lat', 'lng'], _sql.tabtype("vu20, vu50, vu50, v200, v20, v200, v200, r, r"), "maininfo", {"tabs":[0], "cat": [1], "subcat": [2], "provider":[3, 4, 5, 6, 7, 8]});
-			if(True):
-				list(_sql.q("drop table if exists "+i) for i in ["tabs", "cat", "subcat", "provider"]);
-				createtables();
-				updatelatlng();
-		else:
-			pass
+		pass
 
 
 
@@ -66,23 +43,27 @@ class pagehandler:
 	def init(self):
 		""" Read Xslx Sheet and put in Database """
 		def updatelatlng():
-			allp = _sql.sval("provider", "provider_id, address");
+			allp = _sql.sval("provider", "provider_id, address, name_provider");
 			for i in allp:
 				latlng = google_addrtolanlat(i["address"]);
 				if(latlng):
+					elc("mkdir -p "+ROOT+latlng["countrycode"]);
+					username = latlng["countrycode"]+"/"+create_username(i["name_provider"], alldir(ROOT+latlng["countrycode"]));
+					elc("mkdir -p "+ROOT+username+"; cp inside_index.php "+ROOT+username+"/index.php");
+					sifu(latlng, "username", username);
 					_sql.uval("provider", latlng, {"provider_id": i["provider_id"]}, 1);
 					print latlng, i["address"];
 				time.sleep(1);
 				print "Sleep";
 
 		def deletealltable():
-			print list(_sql.q("drop table if exists "+i) for i in self.alltable);
+			print list(_sql.q("drop table if exists "+i) for i in ["maininfo", "tabs", "cat", "subcat", "provider"]);
 
 		def createtables():
-			readxlx_dbdump("data/providers.xlsx", ['tabs', 'cat', 'subcat', 'name_provider', 'phone', 'address', 'website', 'lat', 'lng'], _sql.tabtype("vu20, vu50, vu50, v200, v20, v200, v200, r, r"), "maininfo", {"tabs":[0], "cat": [1], "subcat": [2], "provider":[3, 4, 5, 6, 7, 8]});
+			readxlx_dbdump("data/providers.xlsx", ['tabs', 'cat', 'subcat', 'name_provider', 'phone', 'address', 'website', 'lat', 'lng', 'countrycode', 'username'], _sql.tabtype("vu20, vu50, vu50, v200, v20, v200, v200, r, r, v5, v50"), "maininfo", {"tabs":[0], "cat": [1], "subcat": [2], "provider":[3, 4, 5, 6, 7, 8, 9, 10]});
 		if(True):
-#			deletealltable();
-			#createtables();
+			deletealltable();
+			createtables();
 			updatelatlng();
 		print _sql.q("create table if not exists providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
 

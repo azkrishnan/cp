@@ -22,7 +22,8 @@ _actions = {
 	}
 }
 
-_config["sql"]["maininfo1"] = "select provider_id, LOWER(concat(tabs.tabs, cat.cat, subcat.subcat, name_provider, phone, address, website)) as searchtext from maininfo left join tabs on tabs_index = tabs.tabs_id left join cat on cat_index = cat.cat_id left join subcat on subcat_index = subcat.subcat_id left join provider on provider_index = provider.provider_id";
+_config["sql"]["maininfo1"] = "select provider_id, concat(tabs_id, ',', cat_id, ',', subcat_id) as classtype, LOWER(concat(tabs.tabs, cat.cat, subcat.subcat, name_provider, phone, address, website)) as searchtext from maininfo left join tabs on tabs_index = tabs.tabs_id left join cat on cat_index = cat.cat_id left join subcat on subcat_index = subcat.subcat_id left join provider on provider_index = provider.provider_id";
+_config["sql"]["provider2"] = 'select provider_id, group_concat(concat(tabs, " ", cat, ": ", subcats),";") as mycats from (select provider_id, tabs.tabs, cat.cat, group_concat(subcat.subcat) as subcats from maininfo left join tabs on tabs_index = tabs.tabs_id left join cat on cat_index = cat.cat_id left join subcat on subcat_index = subcat.subcat_id left join provider on provider_index = provider.provider_id group by provider_id, tabs.tabs, cat.cat) provider1 group by provider_id';
 
 class cp:
 	def __init__(self):
@@ -48,13 +49,14 @@ class cp:
 		conds = mappl(lambda x,y: "searchtext like {x"+str(y)+"} ", skeys); #No worry, we have already filtered the user input.
 		darr = dict(mapp(lambda x: "%"+x+"%", skeys, None, lambda x: "x"+str(x) ));
 		conds = "true" if len(conds) == 0 else " OR ".join(conds);
-		query = "select provider_id from "+gtable("maininfo1")+" where "+conds
-		return list(set(mappl(lambda x: x["provider_id"] , _sql.g(query, darr))));
+		query = "select provider_id, classtype from "+gtable("maininfo1")+" where "+conds
+		matchedprov = _sql.g(query, darr)
+		return {"providers": list(set( mappl(lambda x: x["provider_id"] , matchedprov) )), "numclasses": len( set( mappl(lambda x: x["classtype"] , matchedprov) ) )};
 
 def catgtree():
 	sublists = ["tabs", "cat", "subcat", "provider"];
 	dictl = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), sublists, None, lambda x: sublists[x]);
-
+	dictl["provider2"] = mapp(lambda x: cod({"mycats": "<br>".join(x["mycats"].split(";,"))}), catgxlx1(_sql.sval(gtable("provider2")), ["provider"+"_id"], True));
 
 	maininfocatg = catgxlx1( _sql.sval("maininfo"), ["tabs_index", "cat_index", "subcat_index"]);
 	icons = ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png", ""];
@@ -76,6 +78,7 @@ def catgtree():
 				} , x)
 		} , maininfocatg), 
 		"provider": dictl["provider"], 
+		"provider2": dictl["provider2"], 
 		"maininfocatg": maininfocatg
 	};
 

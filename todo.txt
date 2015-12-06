@@ -1,35 +1,48 @@
 Pending:
 
-0. Move to my AWS, Please...I am unable to make any changes at this time :-)
-
-1. Adding cat/subcat details on business card.
-
-#####2. Minimize button - mobile optimized
-
-####3. Ability for the home to be pinned anywhere.
-
 4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
-
-#####5. Ability to extend or lessen radius
-
-6. Upload my data (will send it over to you) 
-
-7. Select All Cats: (1) Use Squares for cats, and circles for subcats 
-
-######(2) Smaller font sizes for subcats
->>>>>I am getting problem in (coding) making it circle.
-
+>>> I still don't know how to do it.
 8. Upload new logo (you will have to work to make sure this looks good) 
+14. Business card
+15. Comment Session b/w users and providers.
 
+
+
+
+    Users must have a way of sharing a Provider's URL with their friends -- Inline image 1 Using the Share icon on the provider page
+    Ideally, we should enable a "quora" like feel within a provider's page. 
+        Moms do not want to give away their identity.  So anyone should be able to anonymously post questions.
+        Other moms must be able to answer anonymously
+        Providers can also provide answers, but when they reply, that should be highlighted differently.
+
+Reason I think this is important is because:
+
+    It promotes interaction between users
+    There's a virality factor - it helps me share the page, as well as get answers directly from providers and other moms
+
+
+
+
+
+
+
+
+----------------------------Done-------------------------------
+######12. Show favorites in a different color map marker.
+#####13. Search Results: 
+7. Select All Cats: (1) Use Squares for cats, and circles for subcats 
+>>>>>I am getting problem in (coding) making it circle.
+######6. Upload my data (will send it over to you) 
+#####1. Adding cat/subcat details on business card.
+####0. Move to my AWS, Please...I am unable to make any changes at this time :-)
+#####2. Minimize button - mobile optimized
+####3. Ability for the home to be pinned anywhere.
+#####5. Ability to extend or lessen radius
+######(2) Smaller font sizes for subcats
 ######9. Clustering of map markers within a close range
-
-10. Datamodel and database - excel sheets won't scale
-
+#######10. Datamodel and database - excel sheets won't scale
 ######11. Our Story and Contact Us pages -- Will provide you content for Our Story
 
-12. Show favorites in a different color map marker.
-
-13. Search Results: 
 Right now we say "X locations found in your area (x km)"
 
 Let's change it to:

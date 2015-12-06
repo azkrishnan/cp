@@ -62,13 +62,15 @@ function resizeimg($filename,$tosave, $max_width, $max_height){
 }
 
 
-
 function curpathinfo() {
-	if(array_key_exists("PATH_INFO", $_SERVER)) {
-		return substr($_SERVER["PATH_INFO"], 1);
-	} else
-		return "";
+	return $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+	// if(array_key_exists("PATH_INFO", $_SERVER)) {
+	// 	return substr($_SERVER["PATH_INFO"], 1);
+	// } else
+	// 	return "";
 }
+
+//print_r($_SERVER);
 
 $_GET[""] = "mohit";
 $_POST[""] = "mohit";
@@ -80,7 +82,7 @@ $addinfo = array("ip" => $_SERVER['REMOTE_ADDR']);
 $pydata = array("get"=> $_GET, "post"=> $_POST, "session"=> $_SESSION, "url"=> curpathinfo(), "file" => $_FILES, "addinfo" => $addinfo);
 
 
-$cmd = "python ".$pyfile." \"".str_replace('"', '\"', tojson($pydata))."\" 2>&1";
+$cmd = "cd ".$root.";"."python ".$pyfile." \"".str_replace('"', '\"', tojson($pydata))."\" 2>&1";
 $t3 = microtime(true);
 $pyoutp = shell_exec($cmd);
 $t4 = microtime(true);

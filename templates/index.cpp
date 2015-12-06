@@ -81,6 +81,9 @@ main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true
 								print("Favorute");
 							}
 						}
+						div(class: "col l12 m12 s12") {
+							print(provider2[i]["mycats"]);
+						}
 					}
 				}
 			}
