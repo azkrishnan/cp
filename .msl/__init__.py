@@ -169,7 +169,7 @@ def inlist(l, e, f=None, notfound_index=-1):
 	return fold(lambda y,x,i: (i if (y==-1 and f(x,e)) else y), l, notfound_index);
 
 def appenduniq(l, x, f=None):
-	return r1(l.append(x) if (not inlist(l, x, f)) else None, l.index(x));
+	return r1(l.append(x) if (inlist(l, x, f) == -1) else None, l.index(x));
 
 def appenduniq1(l, x, areyousure=True):
 	return r1(appenduniq(l, x) if areyousure else None, l);
