@@ -13,7 +13,7 @@ elif(_server == "csc"):
 	ROOT = '/home/cse/btech/cs1120233/private_html/cp/';
 	db_data = {'host': 'poorvi.cse.iitd.ac.in', 'user': 'mohit', 'pass': 'mohitsaini', 'db': 'mohit'};
 elif(_server == "aws_cp"):
-	HOST = 'http://52.8.246.176/';
+	HOST = 'http://classpundit.com/';
 	ROOT = '/var/www/html/';
 	db_data = {'host': 'localhost', 'user': 'root', 'pass': 'mohit', 'db': 'cp'};
 elif(_server == "solnki"):
