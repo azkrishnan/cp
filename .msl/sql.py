@@ -134,4 +134,5 @@ class sqllib:
 		return self.q("insert into {0} ({1}) values ({2})".format( *([table]+map(lambda l:','.join(l), (lambda l:[l, list("{"+x+"}" for x in l)])(toins.keys())) )), toins);
 
 	def autoscroll(self, query, darr={}, key = None, sort='', isloadold = True, minl = None, maxl = None, arr={}):
+		return;
 		(minl, maxl) = tuple(mmap(lambda x, y: rifu(x, [minl, maxl][y])  ,list(pkeys(arr, ["minl", "maxl"]))))
