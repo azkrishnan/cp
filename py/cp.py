@@ -230,3 +230,4 @@ def readxlx_dbdump(fn, title, coltyp, maintable, grouping={}): #Assuming there i
 	list(_sql.q(x) for x in createquerys);
 	print "Created All";
 	mappl(lambda x,y: mappl(lambda i: _sql.ival(y, dict(i)), x), groupt);
+

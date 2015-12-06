@@ -59,3 +59,9 @@ def readxlx(fn):
 	wb = xlrd.open_workbook(fn);
 	return list(list(list(s.cell(i,j) for j in xrange(s.ncols)) for i in xrange(s.nrows)) for s in wb.sheets());
 	wb.close();
+
+def google_addrtolanlat(addr):
+	url ="https://maps.googleapis.com/maps/api/geocode/json?"+urllib.urlencode({"address": addr});
+	req = s2j(curl(url));
+	if(req):
+		return req["results"][0]["geometry"]["location"];
