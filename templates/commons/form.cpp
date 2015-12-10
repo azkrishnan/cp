@@ -56,7 +56,7 @@ define cp_our_story() {
 
 define headertabs_cp() {
 	li() {
-		a1(text: "MyFav", attr:{onclick: '$("#myfavlist").openModal();'});
+		a1(text: "Favorites", attr:{onclick: '$("#myfavlist").openModal();'});
 	}
 	li() {
 		a1(text: "Contact Us", attr:{onclick: '$("#contactusform").openModal();'});
@@ -65,7 +65,7 @@ define headertabs_cp() {
 		a1(text: "Our Story", attr:{onclick: '$("#ourstory").openModal();'});
 	}
 	li() {
-		a1(text: "Provider Form", attr:{onclick: '$("#providerform").openModal();'});
+		a1(text: "Suggest a Provider", attr:{onclick: '$("#providerform").openModal();'});
 	}
 }
 
@@ -74,11 +74,11 @@ define cp_filterform() {
 	div(class: "row") {
 		div("class": "col l11 s11 m11", id: "mainfilter") {
 			div(style:{"padding": "8px", "margin-bottom": "4px"}, class: "card-panel") {
-				input(attr:{placeholder: "Search Location", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc");
+				input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc");
 			}
 			div(style:{"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, class: "card-panel") {
 				form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
-					input(attr:{placeholder: "Search keywords", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
+					input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
 					button(attr: {type: "submit"}, style: {display: "none"});
 				}
 			}
@@ -126,7 +126,7 @@ define cp_filterform() {
 						}
 					}
 					div(style: {"background-color": "white", padding: "5px"}) {
-						a1(text: "See All Cats", attr:{onclick: '$("#commoncats").openModal();'});
+						a1(text: "See all classes", attr:{onclick: '$("#commoncats").openModal();'});
 					}
 				}
 			}

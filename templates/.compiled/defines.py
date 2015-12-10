@@ -368,7 +368,7 @@ def newtag_headertabs_cp(inp, ginp, innerHTML):
   outpvar = htmltree();
   outpvar.open(htmlnode("li", extentattrs(cod([]))));
   outpvar.cur.addfcdata("a1");
-  outpvar.addchilds(newtag_a1(cod([("text", "MyFav"), ("attr", cod([("onclick", "$(\"#myfavlist\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
+  outpvar.addchilds(newtag_a1(cod([("text", "Favorites"), ("attr", cod([("onclick", "$(\"#myfavlist\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
   outpvar.close();
   outpvar.open(htmlnode("li", extentattrs(cod([]))));
   outpvar.cur.addfcdata("a1");
@@ -380,7 +380,7 @@ def newtag_headertabs_cp(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("li", extentattrs(cod([]))));
   outpvar.cur.addfcdata("a1");
-  outpvar.addchilds(newtag_a1(cod([("text", "Provider Form"), ("attr", cod([("onclick", "$(\"#providerform\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
+  outpvar.addchilds(newtag_a1(cod([("text", "Suggest a Provider"), ("attr", cod([("onclick", "$(\"#providerform\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
   outpvar.close();
   return outpvar;
   
@@ -391,11 +391,11 @@ def newtag_cp_filterform(inp, ginp, innerHTML):
   outpvar.open(htmlnode("div", extentattrs(cod([("class", "row")]))));
   outpvar.open(htmlnode("div", extentattrs(cod([("class", "col l11 s11 m11"), ("id", "mainfilter")]))));
   outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("padding", "8px"), ("margin-bottom", "4px")])), ("class", "card-panel")]))));
-  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search Location"), ("autofocus", "true")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")])), ("id", "searchloc")]))));
+  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search by address (Street, City, ZIP, etc)"), ("autofocus", "true")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")])), ("id", "searchloc")]))));
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("margin-top", "0px"), ("padding", "8px"), ("margin-bottom", "-5px")])), ("class", "card-panel")]))));
   outpvar.open(htmlnode("form", extentattrs(cod([("data", cod([("onsubmit", "sreq"), ("bobj", ""), ("action", "search"), ("res", "draw_points(data.data);")]))]))));
-  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search keywords"), ("name", "keyw")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")]))]))));
+  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search using keywords (Eg: Piano)"), ("name", "keyw")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")]))]))));
   outpvar.open(htmlnode("button", extentattrs(cod([("attr", cod([("type", "submit")])), ("style", cod([("display", "none")]))]))));
   outpvar.close();
   outpvar.close();
@@ -446,7 +446,7 @@ def newtag_cp_filterform(inp, ginp, innerHTML):
       outpvar.close();
     outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("background-color", "white"), ("padding", "5px")]))]))));
     outpvar.cur.addfcdata("a1");
-    outpvar.addchilds(newtag_a1(cod([("text", "See All Cats"), ("attr", cod([("onclick", "$(\"#commoncats\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
+    outpvar.addchilds(newtag_a1(cod([("text", "See all classes"), ("attr", cod([("onclick", "$(\"#commoncats\").openModal();")]))]), ginp, outpvar.cur.fcalldata["a1"].root.content).root.content);
     outpvar.close();
     outpvar.close();
   outpvar.close();
