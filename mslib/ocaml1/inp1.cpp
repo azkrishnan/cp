@@ -645,7 +645,7 @@ define profile_chef_top2() {
 				div(class: "row") {
 					div(class: "col l6") {
 						textdiv(name:38456, fontw:600);
-						textdiv(name: "Dished Delivered");
+						textdiv(name: "Plates Delivered");
 					}
 					div(class: "col l6") {
 						textdiv(name: 56, fontw:600);

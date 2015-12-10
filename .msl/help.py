@@ -23,10 +23,13 @@ def my_send(s, msg):
 
 def my_recv(s):
 	num_to_recv = doifcan1(lambda: int(s.recv(10)), 0)
-	if(num_to_recv > 0):
-		return s.recv(num_to_recv);
-	else:
-		return "";
+	need_to_recv = num_to_recv;
+	datasofar = "";
+	while(need_to_recv > 0):
+		recved = s.recv(need_to_recv);
+		need_to_recv-=len(recved);
+		datasofar+=recved;
+	return datasofar;
 
 def mixl(l):
 	return fold(lambda x,y: x+y, l, []);
@@ -94,3 +97,5 @@ def cleanpath(p, typ='se'):
 	if('e' in typ and len(p)>0 and p[-1]=='/'):
 		p=p[:-1];
 	return p;
+
+

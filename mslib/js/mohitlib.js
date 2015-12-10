@@ -915,7 +915,7 @@ funcs["req1"] = [{callback: id, callanyway: id, errorh: errora}, function() { //
 }];
 
 funcs["sreq"] = [{waittext: " ... ", restext: null, bobj: null, form: null, params: null, fobj: null, res:null, callanyway: id, errorh: null, ferror: null}, function() {// obj, action
-	fobj = (fobj == null ? obj: eval(fobj));
+	fobj = (fobj == null ? obj: (fobj == "" ? lookontop_form(obj): eval(fobj)));
 	bobj = (bobj == null ? obj: (bobj == "" ? ($(obj).find("button[type=submit]")[0]):eval(bobj)));
 	var errorhf = (errorh == null ? errora: function(x) {
 		runf(errorh, mifu(dattr(obj), {obj:obj, msg: x}));
@@ -925,6 +925,7 @@ funcs["sreq"] = [{waittext: " ... ", restext: null, bobj: null, form: null, para
 	if(ferror == null && forminps_data["error"].length > 0) {
 		errorhf(indexedlist(forminps_data.error).join("<br>"));
 	} else {
+		errorhf("");
 		params = mifu(params, sifu(forminps_data["val"], "action", action));
 		params = mifu(params, dsattr(obj));
 		var prvhtml = bobj.innerHTML;

@@ -108,8 +108,8 @@ def isallone(l):
 def isanyone(l):
 	return sum(l) >= 1;
 
-def intf(x):
-	return doifcan(lambda :int(x), (), 0);
+def intf(x, defaultval = 0):
+	return doifcan1(lambda :int(x), defaultval);
 
 def ife(a,b,c=None):
 	return (b if a else c);
@@ -187,14 +187,22 @@ def remove(l, x):
 def unique(l):
 	setol([], l, '|') if l!=[] else [];
 
-def curl(url, postdata='', proxy=''):
+def curl(url, postdata='', proxy='', getdata=''):
 	postdata = urllib.urlencode(postdata) if type(postdata) != str else postdata;
 	if(1):
 		return elc(proxy+" curl -s "+(("-d '"+postdata+"'") if postdata !="" else "") +" '"+url+"'");
 		lc = proxy+" wget --no-check-certificate  "+ (("--post-data=\""+postdata+"\" ") if postdata != '' else '') +" "+url+" -O- -o /tmp/null1"
 		return elc(lc);
 	else:
-		postdata = urllib.urlencode(postdata) if type(postdata) != str else postdata;
+		encodeifneed = lambda x: urllib.urlencode(x) if type(x) != str else x;
+		postdata = encodeifneed(postdata);
+		getdata = encodeifneed(getdata);
+		if(getdata != ''):
+			if("?" in url):
+				url = ife(url[-1] == "&", url, url+"&");
+			else:
+				url = url+"?";
+			url += getdata
 		try:
 			if(0):
 				proxy = {'http': 'http://proxy22.iitd.ac.in:3128', 'https': 'http://proxy22.iitd.ac.in:3128'}

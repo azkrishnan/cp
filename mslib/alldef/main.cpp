@@ -1,4 +1,4 @@
-define main(acss:["css/materialize.min.css", "css/lib.css", 'css/materialize.min.css', 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js','mslib/js/main.js'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
+define main(acss:["css/materialize.min.css", "css/lib.css", 'css/materialize.min.css', 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js?reload','mslib/js/main.js?reload'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
 	css = acss + css;
 	js = ajs + js;
 	print("<!DOCTYPE html>");
@@ -26,7 +26,7 @@ define main(acss:["css/materialize.min.css", "css/lib.css", 'css/materialize.min
 }
 
 
-define disptabs(tabname: [], tablink: []) {
+define disptabs(tabname: [], tablink: [], liclass: None, active: None) {
 	for(i, j, tabname) {
 		li(class: liclass) {
 			isactive = ((active == tablink[j]) ? "active" : " ");
@@ -74,147 +74,6 @@ define header1_cp(tabname:[], tablink:[]) {
 		}
 	}
 }
-
-define header2(tabname:[], tablink:[], tabname1:[], tablink1: []) {
-	div(class: "navbar-fixed ") {
-		nav(class:"white", attr:{role: "container"}) {
-			div(class: "nav-wrapper container") {
-				ul(class: "left hide-on-med-and-down" ) {
-					a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
-						img(attr:{src: "photo/logo4.png"}, class: "responsive-img", style:{"vertical-align": "middle"});
-					}
-					disptabs(tabname: tabname1, tablink: tablink1);
-				}
-				ul(class: "right hide-on-med-and-down" ) {
-					disptabs(tabname: tabname, tablink: tablink);
-					li() {
-						a1(href:"#loginmodal", class: "modal-trigger", text: "Login");
-					}
-				}
-				ul(attr:{id: "nav-mobile"}, "class": "side-nav") {
-					disptabs(tabname: tabname, tablink: tablink);
-				}
-				a(attr:{"data-activates": "nav-mobile"}, "class": "button-collapse") {
-					icon(name: "menu");
-				}
-			}
-		}
-	}
-}
-
-
-define header2_user(tabname:[], tablink:[]) {
-	div(class: "navbar-fixed ") {
-
-		ul(id: "dropdown1", class: "dropdown-content") {
-			li() {
-				a1(href: BASE+"account", text: "Account");
-			}
-			li() {
-				a1(href: BASE+"orders", text: "Orders");
-			}
-			li() {
-				a1(href: HOST+"?logout", text: "Logout");
-			}
-		}
-
-		nav(class:"white", attr:{role: "container"}) {
-			div(class: "nav-wrapper container") {
-				a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
-					img(attr:{src: "photo/mylogo1.png"}, class: "circle responsive-img", style:{"vertical-align": "middle"});
-				}
-				ul(class: "right hide-on-med-and-down" ) {
-					disptabs(tabname: tabname, tablink: tablink);
-					li() {
-						a1(class: "dropdown-button", text: "&nbsp;"*5+loginname+"&nbsp;"*10, data:{activates:"dropdown1"});
-						//icon(name: "arrow_drop_down", aclass: "right");
-					}
-				}
-				ul(attr:{id: "nav-mobile"}, "class": "side-nav") {
-					disptabs(tabname: tabname, tablink: tablink);
-				}
-				a(attr:{"data-activates": "nav-mobile"}, "class": "button-collapse") {
-					icon(name: "menu");
-				}
-			}
-		}
-	}
-}
-
-define header2_chef(tabname:[], tablink:[]) {
-	div(class: "navbar-fixed ") {
-		ul(id: "dropdown1", class: "dropdown-content") {
-			li() {
-				a1(href: BASE+"profile", text: "Profile");
-			}
-			li() {
-				a1(href: BASE+"orders", text: "Orders");
-			}
-			li() {
-				a1(href: HOST+"?logout", text: "Logout");
-			}
-		}
-
-		nav(class:"white", attr:{role: "container"}) {
-			div(class: "nav-wrapper container") {
-				a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
-					img(attr:{src: "photo/mylogo1.png"}, class: "circle responsive-img", style:{"vertical-align": "middle"});
-				}
-				ul(class: "right hide-on-med-and-down" ) {
-					disptabs(tabname: tabname, tablink: tablink);
-					li() {
-						a1(class: "dropdown-button", text: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
-						//icon(name: "arrow_drop_down", aclass: "right");
-					}
-				}
-				ul(attr:{id: "nav-mobile"}, "class": "side-nav") {
-					disptabs(tabname: tabname, tablink: tablink);
-				}
-				a(attr:{"data-activates": "nav-mobile"}, "class": "button-collapse") {
-					icon(name: "menu");
-				}
-			}
-		}
-	}
-}
-
-
-define header2_admin(tabname:[], tablink:[]) {
-	div(class: "navbar-fixed ") {
-		ul(id: "dropdown1", class: "dropdown-content") {
-			li() {
-				a1(href: BASE+"account", text: "Account");
-			}
-			li() {
-				a1(href: BASE+"orders", text: "Orders");
-			}
-			li() {
-				a1(href: HOST+"?logout", text: "Logout");
-			}
-		}
-		nav(class:"white", attr:{role: "container"}) {
-			div(class: "nav-wrapper container") {
-				a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
-					img(attr:{src: "photo/mylogo1.png"}, class: "circle responsive-img", style:{"vertical-align": "middle"});
-				}
-				ul(class: "right hide-on-med-and-down" ) {
-					disptabs(tabname: tabname, tablink: tablink);
-					li() {
-						a1(class: "dropdown-button", text: "&nbsp;"*5+"Profile"+"&nbsp;"*10, data:{activates:"dropdown1"});
-						//icon(name: "arrow_drop_down", aclass: "right");
-					}
-				}
-				ul(attr:{id: "nav-mobile"}, "class": "side-nav") {
-					disptabs(tabname: tabname, tablink: tablink);
-				}
-				a(attr:{"data-activates": "nav-mobile"}, "class": "button-collapse") {
-					icon(name: "menu");
-				}
-			}
-		}
-	}
-}
-
 
 
 
@@ -264,11 +123,11 @@ define height() {
 	div(style:{height: val+"px"});
 }
 
-define resimg(aclass:"") {
+define resimg(aclass:"", opacity: None) {
 	img(class: "responsive-img "+aclass, attr:{src: src}, style:{"opacity": opacity});
 }
 
-define circleimg() {
+define circleimg(opacity: None) {
 	resimg(aclass:"circle", src:src, opacity:opacity);
 }
 
@@ -279,15 +138,15 @@ define divpedding(text:"", padding:"5px") {
 	}
 }
 
-define textdiv(name:"") {
+define textdiv(text:"", fontw: None, font: None, color: None, class: None, id: None) {
 	div(style:{"font-size": font, "font-weight": fontw}, color:color, class: class, id: id){
 		innerHTML();
-		print(name);
+		print(text);
 	}
 }
 
-define textdiv1(font: "20px") {
-	textdiv(font: font, fontw: fontw, color: color, class: class, name: name);
+define textdiv1(font: "20px", fontw: None, color: None, class: None, text: "") {
+	textdiv(font: font, fontw: fontw, color: color, class: class, text: text);
 }
 
 define a1(class: None, text:None, href: None) {
@@ -302,7 +161,7 @@ define starrating(val: 5) {
 	}
 }
 
-define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: None, value: None, iclass: None) {
+define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: None, value: None, iclass: None, disabled: None) {
 	div(class: "input-field "+aclass) {
 		if(icon) {
 			icon(name: icon, aclass: "prefix");
@@ -312,7 +171,7 @@ define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: 
 		if(dname != None) {
 			data["name"] = dname;
 		}
-		input(attr:{id: id, type:type, value: value}, class: iclass, data: data);
+		input(attr:{id: id, type:type, value: value, disabled: disabled}, class: iclass, data: data);
 		label(attr:{"for": id}) {
 			print(label);
 		}
@@ -321,12 +180,26 @@ define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: 
 
 
 
-define input2(aclass: "col s6",  type: "text") {
+define input2(aclass: "col s6",  type: "text", iclass: None, label: None) {
 	div(class: "input-field "+aclass) {
 		input(attr:{id: id, type:type, name:id}, class: iclass);
 		label(attr:{"for": id}) {
 			print(label);
 		}
+	}
+}
+
+define input3(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: None, value: None, iclass: "", name: None) {
+	div(class: "input-field "+aclass) {
+		if(icon) {
+			icon(name: icon, aclass: "prefix");
+		}
+		data["name"] = label;
+		data["dc"] = dc;
+		if(dname != None) {
+			data["name"] = dname;
+		}
+		input(attr:{type:type, value: value, placeholder: label, name: name}, class: "inputph "+iclass, data: data);
 	}
 }
 
@@ -345,4 +218,26 @@ define button1(aclass: "" ) {
 	}
 }
 
+define hidinp(name: None, value: None) {
+	input(attr: {type: "hidden", name: name, value: value});
+}
+
+
+define popupmodal(title: "Mohit Saini", body: "Mohit Saini in there in content of this popup. This is actually a real content of mohit saini. don't try to close this content. It may effect your transferive coolness of circuler motional emotions. due to which a pencial may disclose your aggersive argument of chair in fron of public transport within central state of indian government captured by narender modi.") {
+	div(attr:{id: id}, class: "modal") {
+		div(class: "modal-content container-fluid") {
+			div(class: "row") {
+				div(class: "col l12 m12 s12 realtexttitle", style: {"font-size": "20px"}) {
+					print(title);
+				}
+			}
+			div(class: "row") {
+				div(class: "col l12 m12 s12 realtext") {
+					print(body);
+					innerHTML();
+				}
+			}
+		}
+	}
+}
 

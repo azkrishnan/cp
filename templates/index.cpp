@@ -1,9 +1,9 @@
-main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"], title: "Class Pundit") {
-//main1(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
+main_cp(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"]) {
+//main_cp(js:["js/jquery-ui.js", "js/index.js"], title: "Class Pundit") {
 	header1_cp();
 	div(attr:{id: "map"}, style: {height: "100%"});
-	div(class: "catgselect") {
-		div(id: "maincontrol") {
+	div(class: "catgselect", style: {"padding-bottom": "0px"}) {
+		div(id: "maincontrol", style: {"margin-bottom": "-30px"}) {
 			cp_filterform();
 		}
 		div(id: "maincontrol1", style:{display: "none"}) {
@@ -18,7 +18,7 @@ main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true
 	}
 	div(class: "modal", id: "commoncats") {
 		div(class: "modal-content") {
-//			cp_selectallcatgs();
+			cp_selectallcatgs();
 		}
 	}
 	div(id: "bcard1", class: "modal bottom-sheet") {
@@ -58,29 +58,49 @@ main1(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true
 								a1(href: nhost+pinfo["username"], text: "Business Card", class: "truncate", attr:{});
 							}
 						}
-						div(class: "col l4 m4 s4") {
-							h5(class: "grey-text text-darken-2") {
-								print("");
+						// div(class: "col l4 m4 s12") {
+						// 	h5(class: "grey-text text-darken-2") {
+						// 		print("");
+						// 		icon(name: "navigation", aclass: "tiny");
+						// 	}
+						// 	div(class: "grey-text") {
+						// 		print(pinfo["address"]);
+						// 	}
+						// }
+						// div(class: "col l4 m4 s12") {
+						// 	h5(class: "grey-text text-darken-2") {
+						// 		print("");
+						// 		icon(name: "call", aclass: "tiny");
+						// 	}
+						// 	div(class: "grey-text") {
+						// 		print(pinfo["phone"]);
+						// 	}
+						// }
+						// div(class: "col l3 m3 s12") {
+						// 	button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
+						// 		print("Favorute");
+						// 	}
+						// }
+
+
+						div(class: "col l4 m4 s12") {
+							div(class: "grey-text text-darken-2 p5") {
 								icon(name: "navigation", aclass: "tiny");
-							}
-							div(class: "grey-text") {
 								print(pinfo["address"]);
 							}
 						}
-						div(class: "col l4 m4 s4") {
-							h5(class: "grey-text text-darken-2") {
-								print("");
+						div(class: "col l4 m4 s12") {
+							div(class: "grey-text text-darken-2 p5") {
 								icon(name: "call", aclass: "tiny");
-							}
-							div(class: "grey-text") {
 								print(pinfo["phone"]);
 							}
 						}
-						div(class: "col l3 m3 s3") {
+						div(class: "col l3 m3 s12") {
 							button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
 								print("Favorute");
 							}
 						}
+
 						div(class: "col l12 m12 s12") {
 							print(provider2[i]["mycats"]);
 						}

@@ -49,7 +49,13 @@ class mtmlparser:
 		elif(t[0] == "Not"):
 			return "not("+expend(t[1])+")"
 		elif(t[0] == "Attr"):
-			return expend(t[1])+"."+t[2]+"()";
+			eexpr = expend(t[1]);
+			if(t[2] == "len"):
+				return "len("+eexpr+")";
+			elif(t[2] == 'gchars'):
+				return "convchars("+eexpr+")";
+			else:
+				return eexpr+"."+t[2]+"()";
 		elif(t[0] == "Ife"):
 			return "("+ expend(t[2]) +" if (" +expend(t[1]) + ") else "+ expend(t[3])+")";
 		elif(t[0] in  ["Get", "Add"]):
@@ -60,11 +66,15 @@ class mtmlparser:
 				return "myadd("+a1+", "+a2+")";
 		elif(t[0] in ["Mul", "Sub", "Div", "Mod", "Or", "And", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"]):
 			a1,a2 = expend(t[1]), expend(t[2])
-			return "("+a1+ {"Add": "+", "Mul": "*", "Sub": "-", "Div": "/", "Mod": "%", "Or": "or", "And": "and", "Isequal": "==", "Le": "<=", "Ge": ">=", "Ls": "<", "Gt": ">", "Notequal": "!="}[t[0]] +a2+")";
+			expr = "("+a1+" "+{"Add": "+", "Mul": "*", "Sub": "-", "Div": "/", "Mod": "%", "Or": "or", "And": "and", "Isequal": "==", "Le": "<=", "Ge": ">=", "Ls": "<", "Gt": ">", "Notequal": "!="}[t[0]]+" "+a2+")";
+			if(t[0] in ["Or", "And", "Isequal", "Le", "Ge", "Ls", "Gt", "Notequal"]):
+				return "int("+expr+")";
+			else:
+				return expr;
 		elif(t[0] == "Dictle"):
-				return (quoted_s(t[1][1]) if t[1][0] == "V" else expend(t[1]) ) +": "+ expend(t[2]);
+				return "("+(quoted_s(t[1][1]) if t[1][0] == "V" else expend(t[1]) ) +", "+ expend(t[2])+")";
 		elif(t[0] == "Dictl"):
-			return "{"+(", ".join(map(lambda x: expend(x), t[1:][::-1])))+"}"
+			return "cod(["+(", ".join(map(lambda x: expend(x), t[1:][::-1])))+"])"
 		elif(t[0] == "Listl"):
 			return "["+(", ".join(map(lambda x: expend(x), t[1:])))+"]"
 		elif(t[0] == "Listi"):
@@ -87,9 +97,9 @@ class mtmlparser:
 			lt = expend(t[3]);
 			index_var = t[2][1];
 			value_var = t[1][1];
-			lta = "forlist("+lt+")";
+			lta = "forlist("+lt+", "+str(index_var != "")+" )";
 
-			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + ("range(len("+lta+"))" if (index_var != "") else lta) + " :"];
+			outp = ["for "+(index_var if index_var != "" else value_var)+" in " + lta + " :"];
 			self.directvar+=[value_var, index_var];
 			outp.append([""+value_var+" = "+lt+"["+index_var+"];" if (index_var != "") else "" ]+ rift(expend(t[4]), ["pass"], lambda x: len(x) == 0)) ;
 			remove(remove(self.directvar, value_var), index_var);

@@ -13,6 +13,17 @@ execfile(_mslib+"ocaml1/run.py");
 def setp():
 	print elc("chmod 777 "+_mslib+"alldef -R");
 
+
+_pushpull_localstore = ".msl/";
+
+def push(ctext):
+	os.system("cp "+_msladd+"* "+_pushpull_localstore);
+	os.system("git add '*';"+'git commit -m "'+ctext+'"; git push');
+
+def pull():
+	os.system("git pull");
+	os.system("cp "+_pushpull_localstore+"* "+_msladd);
+
 def compile(): #compile all
 	folder = "templates/";
 	parser = _mslib+"ocaml/calc";
@@ -39,4 +50,8 @@ if(len(sys.argv) >= 2 ):
 		setp();
 	elif( cmd == "compile" ):
 		compile();
+	elif( cmd == "push" ):
+		push(g(sys.argv, 2, "Another Change"));
+	elif( cmd == "pull"):
+		pull();
 

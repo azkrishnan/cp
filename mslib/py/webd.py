@@ -79,7 +79,8 @@ def loginid():
 		return _session["login"]["id"];
 
 def redirect(url):
-	global _phpheader;
+	global _phpheader, _addinfo;
+	_addinfo["redirect"] = True;
 	_phpheader += "Location: " + url;
 
 def getnewfilename(ext='mohit', extra=''):
@@ -142,8 +143,14 @@ def latlngdist(lat1, lng1, lat2, lng2) :
 	c = 2*math.atan2(a**0.5, (1-a)**0.5);
 	return R*c;
 
-def forlist(a):
-	return range(a) if(type(a) == int) else a;
+def forlist(a, typ):
+	if(type(a) == int):
+		return range(a);
+	else:
+		if(typ and type(a) == list):
+			return range(len(a))
+		else:
+			return a;
 
 def extentattrs(a):
 	mifu(a, {"style": {}, "attr": {}, "data": {}, "datas": {}});
@@ -185,9 +192,13 @@ class htmlnode():
 
 
 	def tostr(self):
+		if(self.tag == "script"):
+			attr = self.attrs["attr"];
+			if(isg(attr, "src") and (re.match(".*?reload$", attr["src"]) != None)):
+				attr["src"] += ("="+str(tnow()));
 		def tagattrs(a):
 			a = a["attr"];
-			a["style"] = rift("".join(mappl(lambda y,x: x+":"+y+";", a["style"], lambda x: x!=None)), None, lambda x: x=='');
+			a["style"] = rift("".join(mappl(lambda y,x: x+":"+str(y)+";", a["style"], lambda x: x!=None)), None, lambda x: x=='');
 			return " ".join(mappl(lambda y,x: x+"='"+str(y)+"'", a, lambda x: x!=None));
 		opentag = lambda : ("<"+self.tag+" "+ tagattrs(self.attrs) + " >") if self.tag != None else "";
 		closetag = lambda : ("</"+self.tag+">") if self.tag != None and (self.tag not in _onewaytags) else "";
@@ -238,4 +249,8 @@ def create_username(name, alreadyexists=[], maxlen = 25):
 
 def geturlpath(inpurl):
 	return doifcan1(lambda: mappl(lambda x:cleanpath(str(x)), (HOST.split("//")[0]+"//"+inpurl).split(HOST)[1].split("index.php")), (None, None));
+
+
+def convchars(inp):
+	return replaceall(inp, {"&": "&amp;", '"': "&quot;", "'": "&#039;", "<": "&lt;", ">": "&gt;"});
 

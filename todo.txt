@@ -1,5 +1,30 @@
-Pending:
+ 
+Cat-Subcat Values: Sent you the new values in an email
+Mobile:
+1. Not able to adjust circle
+>>> It works at 4 point in circle. (0', 90', 180', 270') {That is just feature of google}
+2. Unable to click the map markers sometimes.
+>>> It happens when your marker is below minimize sign. It is design issue, since we are blocking whole reactangle area for filter, so we need to disable map click in that region. which needs to be reactangle { Including minimize button.} But you can always pull the map to somewhere else & then click on marker.
 
+3. Menu sub pages are not mobile optimized
+>>> I tried to fix it. Looks better.
+
+4. When the business card appears, it doesn't stay on the screen.
+>>>Send me screenshot. Working good at smaller window size at me.
+
+5. Business Card is not mobile optimized.
+>>> Tried to fix.
+
+Others:
+1. URL does not appear when clicking on the business card.
+>>> It is working.
+3. I think you're still working on All Options.
+
+
+5. Let's remove the Select All option, and have a checkbox next to the cat itself (we have it in our backlog also)
+>>> As i replied earlier also, It is not possible, I mean when a person click on music, what should be done ? { Open it's submenu or select/clear all catg in it} ? different person want different events after click.
+
+Pending:
 4. Scrollbar on filter settings?  (not scrollbar, but you get the idea)
 >>> I still don't know how to do it.
 8. Upload new logo (you will have to work to make sure this looks good) 
