@@ -52,11 +52,14 @@ def printoutp(xl, tabseprate='\t', depth = -1):
 	else:
 		return [];
 
-def allfile_rec(f):
+def oslistdir(f, shouldvis=False):
+	return filter(lambda x: (not(shouldvis) or g(x,0) != '.'), os.listdir(f));
+
+def allfile_rec(f, shouldvis = False):
 	if(f[-1] != "/"):
 		f+="/";
-	allff = os.listdir(f);
-	return list(f+i for i in allff if os.path.isfile(f+i))+fold(lambda x,y: x+y, list(allfile_rec(f+i) for i in allff if not(os.path.isfile(f+i)) ), [])
+	allff = oslistdir(f, shouldvis);
+	return list(f+i for i in allff if os.path.isfile(f+i))+fold(lambda x,y: x+y, list(allfile_rec(f+i, shouldvis) for i in allff if not(os.path.isfile(f+i)) ), [])
 
 def alldir(f):
 	if(f[-1] != "/"):

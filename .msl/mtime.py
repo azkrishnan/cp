@@ -22,6 +22,9 @@ def timenow():
 
 tnow = timenow;
 
+def timeint2obj(x):
+	return datetime.datetime.fromtimestamp(x);
+
 def time2format(formate, tat = None):#tat: TimeAt
 	return datetime.datetime.fromtimestamp(rifn(tat, tnow())).strftime(formate);
 
@@ -33,7 +36,7 @@ def parsetime(times, formate, errortime = None): #times: time_string
 def str2time(times, errortime = 0): #times: time_String
 	times = re.sub('\s+', ' ', times).strip()
 	# formates = gen_form(['']+gen_form(['%d-%m-'], ['%y', '%Y']), [' '], ['', '%I:%M:%S %p', '%H:%M:%S', '%I:%M %p', '%H:%M' ])
-	formates = ['', ' %I:%M:%S %p', ' %H:%M:%S', ' %I:%M %p', ' %H:%M', '%d-%m-%y ', '%d-%m-%y %I:%M:%S %p', '%d-%m-%y %H:%M:%S', '%d-%m-%y %I:%M %p', '%d-%m-%y %H:%M', '%d-%m-%Y ', '%d-%m-%Y %I:%M:%S %p', '%d-%m-%Y %H:%M:%S', '%d-%m-%Y %I:%M %p', '%d-%m-%Y %H:%M'];
+	formates = ['', ' %I:%M:%S %p', ' %H:%M:%S', ' %I:%M %p', ' %H:%M', '%d-%m-%y ', '%d-%m-%y %I:%M:%S %p', '%d-%m-%y %H:%M:%S', '%d-%m-%y %I:%M %p', '%d-%m-%y %H:%M', '%d-%m-%Y ', '%d-%m-%Y %I:%M:%S %p', '%d-%m-%Y %H:%M:%S', '%d-%m-%Y %I:%M %p', '%d-%m-%Y %H:%M', '%d/%m/%y ', '%d/%m/%y %I:%M:%S %p', '%d/%m/%y %H:%M:%S', '%d/%m/%y %I:%M %p', '%d/%m/%y %H:%M', '%d/%m/%Y ', '%d/%m/%Y %I:%M:%S %p', '%d/%m/%Y %H:%M:%S', '%d/%m/%Y %I:%M %p', '%d/%m/%Y %H:%M'];
 	return intf(fold(lambda x,y: parsetime(times, y.strip()) if x == None else x, formates, None), errortime)
 
 t2f_date = lambda tat=None: time2format("%d-%m-%Y", tat);

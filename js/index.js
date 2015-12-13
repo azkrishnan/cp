@@ -173,7 +173,7 @@ function showPosition(position) {
 }
 
 $(document).ready(function() {
-	if(jsdata["_server"] != "gcl" && pid == 0 )
+	if( (jsdata["_server"] != "gcl" && jsdata._server != "mohit" ) && pid == 0 )
 		getLocation();
 });
 

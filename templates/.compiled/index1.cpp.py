@@ -6,6 +6,8 @@ outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("attr", 
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "catgselect"), ("style", cod([("padding-bottom", "0px")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("id", "maincontrol"), ("style", cod([("margin-bottom", "-30px")]))]))));
+outpvar.cur.fcalldata["main_cp"].cur.addfcdata("cp_filterform");
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_cp_filterform(cod([]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["cp_filterform"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("id", "maincontrol1"), ("style", cod([("display", "none")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "row")]))));
@@ -16,6 +18,12 @@ outpvar.cur.fcalldata["main_cp"].addchilds(newtag_icon1(cod([("img", "photo/plus
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].close();
+outpvar.cur.fcalldata["main_cp"].close();
+outpvar.cur.fcalldata["main_cp"].close();
+outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "modal"), ("id", "commoncats")]))));
+outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "modal-content")]))));
+outpvar.cur.fcalldata["main_cp"].cur.addfcdata("cp_selectallcatgs");
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_cp_selectallcatgs(cod([]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["cp_selectallcatgs"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("id", "bcard1"), ("class", "modal bottom-sheet")]))));
@@ -121,4 +129,4 @@ outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class",
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("cp_our_story");
 outpvar.cur.fcalldata["main_cp"].addchilds(newtag_cp_our_story(cod([]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["cp_our_story"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].close();
-outpvar.addchilds(newtag_main_cp(cod([("js", ["js/index.js"])]), ginp, outpvar.cur.fcalldata["main_cp"].root.content).root.content);
+outpvar.addchilds(newtag_main_cp(cod([("js", ["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"])]), ginp, outpvar.cur.fcalldata["main_cp"].root.content).root.content);

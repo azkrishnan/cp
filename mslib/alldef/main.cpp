@@ -1,4 +1,4 @@
-define main(acss:["css/materialize.min.css", "css/lib.css", 'css/materialize.min.css', 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js?reload','mslib/js/main.js?reload'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
+define main(acss:["css/materialize_mohit.css", "css/lib.css", 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js?reload','mslib/js/main.js?reload'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
 	css = acss + css;
 	js = ajs + js;
 	print("<!DOCTYPE html>");
@@ -46,29 +46,6 @@ define header1(tabname:[], tablink:[]) {
 				}
 				ul(class: "right hide-on-med-and-down") {
 					disptabs(tabname: tabname, tablink: tablink);
-				}
-			}
-		}
-	}
-}
-
-
-define header1_cp(tabname:[], tablink:[]) {
-	div(class: "navbar-fixed ") {
-		nav(class:"white", attr:{role: "container"}) {
-			div(class: "nav-wrapper container") {
-				a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
-					img(attr:{src: "photo/mylogo1.png"}, class: "circle responsive-img", style:{"vertical-align": "middle"});
-				}
-				ul(class: "right hide-on-med-and-down") {
-					disptabs(tabname: tabname, tablink: tablink);
-					headertabs_cp();
-				}
-				ul(id: "nav-mobile", class: "side-nav") {
-					headertabs_cp();
-				}
-				a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
-					icon(name: "menu");
 				}
 			}
 		}

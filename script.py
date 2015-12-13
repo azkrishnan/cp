@@ -34,14 +34,11 @@ def compile(): #compile all
 	pagefiles = list(i for i in os.listdir(folder) if os.path.isfile(folder+i) and (i not in [compiledf]));
 
 	list(write_file(folder+compiledf+"/"+i, str(cmd(folder+i)) ) for i in pagefiles);
-	write_file(folder+compiledf+"/"+defines, str(fold(lambda x,y: x+y, list(cmd(x) for x in allfile_rec(_mslib+"alldef/")+allfile_rec(ROOT+"templates/commons/")), []) ));
+	write_file(folder+compiledf+"/"+defines, str(fold(lambda x,y: x+y, list(cmd(x) for x in allfile_rec(_mslib+"alldef/", True)+allfile_rec(ROOT+"templates/commons/", True)), []) ));
 
 	m = mtmlparser();
 	for i in [defines]+pagefiles:
 		write_file(folder+compiledf+"/"+i+".py", m.disp(eval(read_file(folder+compiledf+"/"+i))));
-
-
-
 
 
 if(len(sys.argv) >= 2 ):

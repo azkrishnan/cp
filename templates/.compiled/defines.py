@@ -1,6 +1,6 @@
 #This code is auto generated code, don't Edit it 
 def newtag_main(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs(cod([("acss", ["css/materialize.min.css", "css/lib.css", "css/materialize.min.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "https://fonts.googleapis.com/icon?family=Material+Icons", "css/lib.css", "css/main.css", "css/style.css"]), ("ajs", ["mslib/js/jquery-2.1.1.min.js", "mslib/js/materialize.min.js", "mslib/js/jquery.bxslider.min.js", "mslib/js/jquery.easing.1.3.js", "mslib/js/jquery.raty.js", "mslib/js/lib.js", "mslib/js/mohit.js", "mslib/js/mohitlib.js?reload", "mslib/js/main.js?reload"]), ("title", "Class Pundit"), ("css", []), ("js", []), ("bodystyle", cod([])), ("htmlstyle", cod([]))])), extentattrs(inp));
+  inp = overwriteattrs(extentattrs(cod([("acss", ["css/materialize_mohit.css", "css/lib.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "https://fonts.googleapis.com/icon?family=Material+Icons", "css/lib.css", "css/main.css", "css/style.css"]), ("ajs", ["mslib/js/jquery-2.1.1.min.js", "mslib/js/materialize.min.js", "mslib/js/jquery.bxslider.min.js", "mslib/js/jquery.easing.1.3.js", "mslib/js/jquery.raty.js", "mslib/js/lib.js", "mslib/js/mohit.js", "mslib/js/mohitlib.js?reload", "mslib/js/main.js?reload"]), ("title", "Class Pundit"), ("css", []), ("js", []), ("bodystyle", cod([])), ("htmlstyle", cod([]))])), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
   inp["css"] = myadd(inp["acss"], inp["css"]);
@@ -57,35 +57,6 @@ def newtag_header1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-med-and-down")]))));
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs(cod([("tabname", inp["tabname"]), ("tablink", inp["tablink"])]), ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
-  outpvar.close();
-  outpvar.close();
-  outpvar.close();
-  outpvar.close();
-  return outpvar;
-  
-def newtag_header1_cp(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs(cod([("tabname", []), ("tablink", [])])), extentattrs(inp));
-  mifu(inp, ginp);
-  outpvar = htmltree();
-  outpvar.open(htmlnode("div", extentattrs(cod([("class", "navbar-fixed ")]))));
-  outpvar.open(htmlnode("nav", extentattrs(cod([("class", "white"), ("attr", cod([("role", "container")]))]))));
-  outpvar.open(htmlnode("div", extentattrs(cod([("class", "nav-wrapper container")]))));
-  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("id", "logo-container"), ("href", inp["HOST"])])), ("class", "brand-logo")]))));
-  outpvar.open(htmlnode("img", extentattrs(cod([("attr", cod([("src", "photo/mylogo1.png")])), ("class", "circle responsive-img"), ("style", cod([("vertical-align", "middle")]))]))));
-  outpvar.close();
-  outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-med-and-down")]))));
-  outpvar.cur.addfcdata("disptabs");
-  outpvar.addchilds(newtag_disptabs(cod([("tabname", inp["tabname"]), ("tablink", inp["tablink"])]), ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
-  outpvar.cur.addfcdata("headertabs_cp");
-  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
-  outpvar.close();
-  outpvar.open(htmlnode("ul", extentattrs(cod([("id", "nav-mobile"), ("class", "side-nav")]))));
-  outpvar.cur.addfcdata("headertabs_cp");
-  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
-  outpvar.close();
-  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("data-activates", "nav-mobile")])), ("class", "button-collapse")]))));
-  outpvar.cur.addfcdata("icon");
-  outpvar.addchilds(newtag_icon(cod([("name", "menu")]), ginp, outpvar.cur.fcalldata["icon"].root.content).root.content);
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -323,6 +294,38 @@ def newtag_main_cp(inp, ginp, innerHTML):
   outpvar.cur.addfcdata("main");
   outpvar.cur.fcalldata["main"].addchilds(innerHTML);
   outpvar.addchilds(newtag_main(cod([("title", inp["title"]), ("css", inp["css"]), ("js", inp["js"]), ("bodystyle", inp["bodystyle"]), ("htmlstyle", inp["htmlstyle"])]), ginp, outpvar.cur.fcalldata["main"].root.content).root.content);
+  return outpvar;
+  
+def newtag_header1_cp(inp, ginp, innerHTML): 
+  inp = overwriteattrs(extentattrs(cod([("tabname", []), ("tablink", [])])), extentattrs(inp));
+  mifu(inp, ginp);
+  outpvar = htmltree();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "navbar-fixed ")]))));
+  outpvar.open(htmlnode("nav", extentattrs(cod([("class", "white")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "nav-wrapper container")]))));
+  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("href", inp["HOST"])])), ("class", ""), ("style", cod([("display", "inline-block")]))]))));
+  outpvar.open(htmlnode("img", extentattrs(cod([("attr", cod([("src", "photo/logo2.png")])), ("class", "responsive-img"), ("style", cod([("vertical-align", "middle")]))]))));
+  outpvar.close();
+  outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-med-and-down")]))));
+  outpvar.cur.addfcdata("disptabs");
+  outpvar.addchilds(newtag_disptabs(cod([("tabname", inp["tabname"]), ("tablink", inp["tablink"])]), ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
+  outpvar.cur.addfcdata("headertabs_cp");
+  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
+  outpvar.close();
+  outpvar.open(htmlnode("ul", extentattrs(cod([("id", "nav-mobile"), ("class", "side-nav")]))));
+  outpvar.cur.addfcdata("headertabs_cp");
+  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
+  outpvar.close();
+  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("data-activates", "nav-mobile")])), ("class", "button-collapse")]))));
+  outpvar.cur.addfcdata("icon");
+  outpvar.addchilds(newtag_icon(cod([("name", "menu")]), ginp, outpvar.cur.fcalldata["icon"].root.content).root.content);
+  outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("height", "56px"), ("float", "left"), ("position", "relative")]))]))));
+  outpvar.addtext("Saini");
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
   return outpvar;
   
 def newtag_cp_contactus_form(inp, ginp, innerHTML): 

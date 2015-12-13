@@ -6,6 +6,47 @@ define main_cp(css:[], js:[], bodystyle:{}, htmlstyle:{}, title: "Class Pundit")
 }
 
 
+define header1_cp(tabname:[], tablink:[]) {
+	div(class: "navbar-fixed ") {
+		nav(class:"white") {
+			div(class: "nav-wrapper container") {
+				// div(class: "row") {
+				// 	div(class: "col s2") {
+				// 		a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
+				// 			icon(name: "menu");
+				// 		}
+				// 	}
+				// 	div(class: "col s2", style: {"background-color": "red"}) {
+				// 		// a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
+				// 		// 	icon(name: "menu");
+				// 		// }
+				// 		a(attr:{href: HOST}, class: "", style: {"display": "inline-block"}) {
+				// 			img(attr:{src: "photo/logo2.png"}, class: "responsive-img", style: {"vertical-align": "middle"});
+				// 		}
+				// 	}
+				// }
+				a(attr:{href: HOST}, class: "", style: {display: "inline-block"}) {
+					img(attr:{src: "photo/logo2.png"}, class: "responsive-img", style:{"vertical-align": "middle"});
+				}
+				ul(class: "right hide-on-med-and-down") {
+					disptabs(tabname: tabname, tablink: tablink);
+					headertabs_cp();
+				}
+				ul(id: "nav-mobile", class: "side-nav") {
+					headertabs_cp();
+				}
+				a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
+					icon(name: "menu");
+				}
+				div(style: {"height": "56px", float: "left", position: "relative"}) {
+					print("Saini");
+				}
+			}
+		}
+	}
+}
+
+
 define cp_contactus_form() {
 	div(class: "row") {
 		div(class: "col s12 l12 m12") {
