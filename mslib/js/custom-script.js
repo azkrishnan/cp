@@ -37,7 +37,7 @@ $(document).ready(function(){
 
   $('.slider').slider({
     full_width: true,
-    height:350,
+    height:300,
     transition:400,
     interval:3500
   });

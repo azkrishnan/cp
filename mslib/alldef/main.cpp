@@ -1,4 +1,4 @@
-define main(acss:["css/materialize_mohit.css", "css/lib.css", 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js','mslib/js/mohit.js','mslib/js/mohitlib.js?reload','mslib/js/main.js?reload'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
+define main(acss:["css/materialize_mohit.css?reload", "css/lib.css", 'css/custom-stylesheet.css', 'css/jquery.bxslider.css', 'https://fonts.googleapis.com/icon?family=Material+Icons', 'css/lib.css', 'css/main.css', 'css/style.css'], ajs:['mslib/js/jquery-2.1.1.min.js','mslib/js/materialize.min.js','mslib/js/jquery.bxslider.min.js','mslib/js/jquery.easing.1.3.js','mslib/js/jquery.raty.js','mslib/js/lib.js?reload','mslib/js/mohit.js','mslib/js/mohitlib.js?reload','mslib/js/main.js?reload'], title: "Class Pundit", css:[], js:[], bodystyle:{}, htmlstyle:{}) {
 	css = acss + css;
 	js = ajs + js;
 	print("<!DOCTYPE html>");
@@ -17,6 +17,7 @@ define main(acss:["css/materialize_mohit.css", "css/lib.css", 'css/custom-styles
 			}
 			script(attr:{type:"text/javascript"}) {
 				print("var ec  = jsdata['_ec'] ;");
+				print("var ve  = jsdata['_formerror'];");
 			}
 			for(i, js) {
 				script(attr:{type:"text/javascript", src:i});
@@ -46,6 +47,29 @@ define header1(tabname:[], tablink:[]) {
 				}
 				ul(class: "right hide-on-med-and-down") {
 					disptabs(tabname: tabname, tablink: tablink);
+				}
+			}
+		}
+	}
+}
+
+
+define header1_cp(tabname:[], tablink:[]) {
+	div(class: "navbar-fixed ") {
+		nav(class:"white", attr:{role: "container"}) {
+			div(class: "nav-wrapper container") {
+				a(attr:{id: "logo-container", href: HOST}, class: "brand-logo") {
+					img(attr:{src: "photo/mylogo1.png"}, class: "circle responsive-img", style:{"vertical-align": "middle"});
+				}
+				ul(class: "right hide-on-med-and-down") {
+					disptabs(tabname: tabname, tablink: tablink);
+					headertabs_cp();
+				}
+				ul(id: "nav-mobile", class: "side-nav") {
+					headertabs_cp();
+				}
+				a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
+					icon(name: "menu");
 				}
 			}
 		}
@@ -157,9 +181,9 @@ define input1(aclass: "col s6",  type: "text", dc: "simple", icon: None, dname: 
 
 
 
-define input2(aclass: "col s6",  type: "text", iclass: None, label: None) {
+define input2(aclass: "col s6",  type: "text", iclass: None, label: None, placeholder: None) {
 	div(class: "input-field "+aclass) {
-		input(attr:{id: id, type:type, name:id}, class: iclass);
+		input(attr:{id: id, type:type, name:id, placeholder: placeholder}, class: iclass);
 		label(attr:{"for": id}) {
 			print(label);
 		}
@@ -195,12 +219,18 @@ define button1(aclass: "" ) {
 	}
 }
 
+define button2(aclass: "", text: "Submit") {
+	button(class: "btn waves-effect waves-light btn "+aclass, data: data, attr: attr, datas: datas) {
+		print(text);
+	}
+}
+
 define hidinp(name: None, value: None) {
 	input(attr: {type: "hidden", name: name, value: value});
 }
 
 
-define popupmodal(title: "Mohit Saini", body: "Mohit Saini in there in content of this popup. This is actually a real content of mohit saini. don't try to close this content. It may effect your transferive coolness of circuler motional emotions. due to which a pencial may disclose your aggersive argument of chair in fron of public transport within central state of indian government captured by narender modi.") {
+define popupmodal(title: "Mohit Saini", body: "") {
 	div(attr:{id: id}, class: "modal") {
 		div(class: "modal-content container-fluid") {
 			div(class: "row") {
@@ -214,6 +244,27 @@ define popupmodal(title: "Mohit Saini", body: "Mohit Saini in there in content o
 					innerHTML();
 				}
 			}
+		}
+	}
+}
+
+define popupmodal_confirm(title: "Mohit Saini", body: "") {
+	div(attr:{id: id}, class: "modal") {
+		div(class: "modal-content container-fluid") {
+			div(class: "row") {
+				div(class: "col l12 m12 s12 realtexttitle", style: {"font-size": "20px"}) {
+					print(title);
+				}
+			}
+			div(class: "row") {
+				div(class: "col l12 m12 s12 realtext") {
+					print(body);
+					innerHTML();
+				}
+			}
+		}
+		div(class: "modal-footer") {
+			button2(aclass: "realyes modal-action modal-close", text: "Agree");
 		}
 	}
 }

@@ -109,9 +109,12 @@ def isanyone(l):
 	return sum(l) >= 1;
 
 def intf(x, defaultval = 0):
-	return doifcan1(lambda :int(x), defaultval);
+	return doifcan1(lambda: int(x), defaultval);
 
-def ife(a,b,c=None):
+def floatf(x, defaultval = 0):
+	return doifcan1(lambda: float(x), defaultval);
+
+def ife(a,b=None,c=None):
 	return (b if a else c);
 
 def mystr(s):

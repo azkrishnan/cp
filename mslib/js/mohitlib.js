@@ -1056,8 +1056,8 @@ var finp = forminps;
 
 
 var ms = {
-	reload: function() {
-		window.location.href = window.location.href;
+	reload: function(inp) {
+		window.location.href = (typeof(inp) == "undefined" ? window.location.href: (jsdata.BASE+inp));
 	}
 };
 

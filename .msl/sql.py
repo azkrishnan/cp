@@ -90,7 +90,7 @@ class sqllib:
 			self.cur = self.db.cursor(MySQLdb.cursors.DictCursor);
 		self.cur.execute(self.rquery(query, darr, arr), dict(darr));
 		s_feilds = mappl(lambda x: x[0], list(self.cur.description));
-		return mappl(lambda x: pkey1(mapp(lambda y: intf(y, str(y)), x), s_feilds), list(self.cur));
+		return mappl(lambda x: pkey1(mapp(lambda y: doifcan1(lambda: r1(json.dumps(y), y), str(y)), x), s_feilds), list(self.cur));
 
 	def g1(self, query, darr={}, arr={}):
 		return self.i_1row(self.g(query, darr, arr), 1);

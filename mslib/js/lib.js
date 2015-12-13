@@ -50,16 +50,6 @@ var checkValidInput={
 	}
 };
 
-var ve = {
-	idel: "",
-	simple: "Should not Empty",
-	email: "Not valid email format",
-	password: "Didn't matched",
-	phone: "Should be 10 digit",
-	otp: "Should be 8 digit",
-	password1: "Should Be Strong"
-};
-
 
 function checkValid(obj,e){
 	if(e.keyCode!=9){

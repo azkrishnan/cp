@@ -50,7 +50,7 @@ function runonload(){
 	$('.materialboxed').materialbox();
 	$('.slider').slider({
 		full_width: true,
-		height:350,
+		height:250,
 		transition:400,
 		interval:3500
 	});

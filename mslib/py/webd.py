@@ -14,10 +14,8 @@ def maildummy(email, sub, msg):
 	writefd(open(mailfile, "a"), "To: {0}\nSubject: {1}\nAt: {2}\n{3}\n{4}\n{5}\n{5}\n\n\n".format(email, sub, t2f_time(), '-'*20, msg, '-'*20));
 
 def msgreal(phone, msg):
-	return msgreal1(phone, msg);
-	key="ad3eaba4216fed6f5197c8beedd0d358";
-	u="harshaccent";
-	p="85632"
+#	return msgreal1(phone, msg);
+	return curl("http://api.textlocal.in/send/", {"username": "harshaccent@gmail.com", "hash": "Woodwindow62", "numbers": phone, "sender": 'KURYBX', "message": msg});
 	url="http://mysms.msgclub.net/rest/services/sendSMS/sendGroupSms?"+ urllib.urlencode({"AUTH_KEY": key, "message": msg, "senderId": "SMSTST", "routeId": "1", "mobileNos": phone, "smsContentType": "english"});
 	return s2j(mcurl(url));
 
@@ -248,7 +246,8 @@ def create_username(name, alreadyexists=[], maxlen = 25):
 	return outp_a;
 
 def geturlpath(inpurl):
-	return doifcan1(lambda: mappl(lambda x:cleanpath(str(x)), (HOST.split("//")[0]+"//"+inpurl).split(HOST)[1].split("index.php")), (None, None));
+	uup = urlparse.urlparse;
+	return doifcan1(lambda: mappl(lambda x: cleanpath(str(x)), inpurl.split(uup(HOST).path, 1)[1].split("index.php")), (None, None));
 
 
 def convchars(inp):
