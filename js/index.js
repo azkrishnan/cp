@@ -23,8 +23,11 @@ function choosevisiable(inp) {
 }
 
 function getsearchinput() {
-	return $(choosevisiable(["#searchloc", "#searchloc1", "#searchloc2"]));
+	return $($("#searchloc").is(":visible") ? "#searchloc": "#searchloc_1");
 }
+
+
+
 
 function init_cookies() {
 	var cookies = getCookie("myfav");
@@ -158,6 +161,7 @@ function initMap() {
 		msgformatching();
 	});
 	curloc.setMap(gmap);
+	console.log(getsearchinput()[0]);
 	var autocomplete = new google.maps.places.Autocomplete( getsearchinput()[0] );
 	autocomplete.addListener('place_changed', function() {
 		if( haskey(autocomplete.getPlace(), "geometry")) {
@@ -182,7 +186,7 @@ function showPosition(position) {
 }
 
 $(document).ready(function() {
-	if( (jsdata["_server"] != "gcl" && jsdata._server != "mohit" ) && pid == 0 )
+	if( (true || (jsdata["_server"] != "gcl" && jsdata._server != "mohit") ) && pid == 0 )
 		getLocation();
 });
 
@@ -209,7 +213,7 @@ function getallproviders(selectedcatg){
 
 
 function findselected() {
-	var allcbox = $(choosevisiable([".catgselect", ".catgselect1", ".catgselect2"])).find("input[type=checkbox]");
+	var allcbox = ().find("input[type=checkbox]");
 	var selectedcatg = map(function(i){
 		return dattr(allcbox[i]).catgtid.split("_");
 	}, range(allcbox.length), function(i) {

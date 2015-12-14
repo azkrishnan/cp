@@ -1,4 +1,4 @@
-main_cp(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"]) {
+main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"]) {
 //main_cp(js:["js/index.js"]) {
 	header1_cp();
 	div(attr:{id: "map"}, style: {height: "100%"});
@@ -131,14 +131,19 @@ main_cp(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=tr
 			}		
 		}		
 	}
-	div(class: "modal", id: "searchform", style: {padding: "20px"}) {
-		cp_contactus_form();
-	}
 	div(class: "modal", id: "contactusform", style: {padding: "20px"}) {
 		cp_contactus_form();
 	}
 	div(class: "modal", id: "ourstory", style: {padding: "20px"}) {
 		cp_our_story();
+	}
+	div(class: "modal modal-fixed-footer", id: "searchform", style:{ padding: "0"}) {
+		div(class: "modal-content") {
+			cp_filtertags(typ: "_1");
+		}
+		div(class: "modal-footer") {
+			button2(aclass: "realyes modal-action modal-close", text: "Go");
+		}
 	}
 }
 

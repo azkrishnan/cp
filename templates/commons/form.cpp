@@ -25,27 +25,7 @@ define header1_cp(tabname:[], tablink:[]) {
 				}
 				ul(class: "right hide-on-large-only") {
 					li() {
-						a() {
-							span(class: "hide-on-med-and-up") {
-								print("Search");
-							}
-							span(class: "hide-on-small-and-down") {
-								print("Filter");
-							}
-						}
-					}
-				}
-				div(class: "hide-on-small-and-down", style: {display: "block", float: "right", "line-height": "30px", color: "black", "width": "280px", "padding-right": "20px"}) {
-					div("class": "row") {
-						div("class": "col l12 m12 s12") {
-							input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid #cccccc 1px", "font-size": "13px", padding: "4px"}, "id": "searchloc1");
-						}
-						div("class": "col l12 m12 s12") {
-							form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
-								input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid #cccccc 1px", "font-size": "13px", padding: "4px"});
-								button(attr: {type: "submit"}, style: {display: "none"});
-							}
-						}
+						a1(text: "Search", attr: {onclick: '$("#searchform").openModal();'});
 					}
 				}
 			}
@@ -118,51 +98,45 @@ define headertabs_cp() {
 }
 
 
-define cp_filterform() {
-	div(class: "row") {
-		div("class": "col l11 s11 m11", id: "mainfilter") {
-			div(style:{"padding": "8px", "margin-bottom": "4px"}, class: "card-panel") {
-				input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc");
-			}
-			div(style:{"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, class: "card-panel") {
-				form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
-					input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
-					button(attr: {type: "submit"}, style: {display: "none"});
+define cp_filtertags(typ: "") {
+	div(style:{"padding": "8px", "margin-bottom": "4px"}, class: "card-panel") {
+		input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc"+typ);
+	}
+	div(style:{"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, class: "card-panel") {
+		form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
+			input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
+			button(attr: {type: "submit"}, style: {display: "none"});
+		}
+	}
+	ul(class: "collapsible", attr:{"data-collapsible": "accordion"}, style: {"margin-bottom": "0px"}) {
+		for(i, ii, catg) {
+			li() {
+				div(class: "collapsible-header") {
+					icon1(img: i["icon"]);
+					// icon(name: "filter_drama");
+					print(i["name"]);
 				}
-			}
-			if(true) {
-				ul(class: "collapsible", attr:{"data-collapsible": "accordion"}, style: {"margin-bottom": "0px"}) {
-					for(i, ii, catg) {
-						li() {
-							div(class: "collapsible-header") {
-								icon1(img: i["icon"]);
-								// icon(name: "filter_drama");
-								print(i["name"]);
-							}
-							div(class: "collapsible-body") {
-								div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
-									ul(class: "collapsible_sub", attr:{"data-collapsible": "accordion"}) {
-										for(j, jj, i["child"]) {
-											li(class: "") {
-												div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
-													print(j["name"]);
-													// checkbox1(label: j["name"], id: "catsubcat"+ii+"_"+jj);
+				div(class: "collapsible-body") {
+					div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
+						ul(class: "collapsible_sub", attr:{"data-collapsible": "accordion"}) {
+							for(j, jj, i["child"]) {
+								li(class: "") {
+									div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
+										print(j["name"]);
+										// checkbox1(label: j["name"], id: "catsubcat"+ii+"_"+jj);
+									}
+									div(class: "collapsible-body") {
+										div(class: "subcats2", style:{"padding-left": "30px"}) {
+											ul() {
+												li() {
+													div() {
+														checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall"+typ, aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]}, labels:{"font-size": "12px"});
+													}
 												}
-												div(class: "collapsible-body") {
-													div(class: "subcats2", style:{"padding-left": "30px"}) {
-														ul() {
-															li() {
-																div() {
-																	checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall", aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]}, labels:{"font-size": "12px"});
-																}
-															}
-															for(k, kk, j["child"]) {
-																li() {
-																	div() {
-																		checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"}, labels:{"font-size": "12px"});
-																	}
-																}
-															}
+												for(k, kk, j["child"]) {
+													li() {
+														div() {
+															checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk+typ, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"}, labels:{"font-size": "12px"});
 														}
 													}
 												}
@@ -173,11 +147,20 @@ define cp_filterform() {
 							}
 						}
 					}
-					div(style: {"background-color": "white", padding: "5px"}) {
-						a1(text: "See all classes", attr:{onclick: '$("#commoncats").openModal();'});
-					}
 				}
 			}
+		}
+		// div(style: {"background-color": "white", padding: "5px"}) {
+		// 	a1(text: "See all classes", attr:{onclick: '$("#commoncats").openModal();'});
+		// }
+	}
+}
+
+
+define cp_filterform() {
+	div(class: "row") {
+		div("class": "col l11 s11 m11", id: "mainfilter") {
+			cp_filtertags();
 		}
 		div(class: "col l1 s1 m1") {
 			div(style:{"padding": "8px", "margin-bottom": "4px", "padding-left": "0px", "margin-left": "-20px"}) {
