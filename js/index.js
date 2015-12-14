@@ -16,6 +16,15 @@ if(pid == 0)
 else
 	var activep = [pid];
 
+function choosevisiable(inp) {
+	return filter(function(x){
+		return $(x).is(":visible");
+	}, inp)[0];
+}
+
+function getsearchinput() {
+	return $(choosevisiable(["#searchloc", "#searchloc1", "#searchloc2"]));
+}
 
 function init_cookies() {
 	var cookies = getCookie("myfav");
@@ -149,7 +158,7 @@ function initMap() {
 		msgformatching();
 	});
 	curloc.setMap(gmap);
-	var autocomplete = new google.maps.places.Autocomplete( $("#searchloc")[0] );
+	var autocomplete = new google.maps.places.Autocomplete( getsearchinput()[0] );
 	autocomplete.addListener('place_changed', function() {
 		if( haskey(autocomplete.getPlace(), "geometry")) {
 			setcurloc( autocomplete.getPlace().geometry.location );
@@ -167,7 +176,7 @@ function getLocation() {
 
 function showPosition(position) {
 	$.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude, function(r){
-		$("#searchloc").val( r["results"][0]["formatted_address"] );
+		getsearchinput().val( r["results"][0]["formatted_address"]);
 		setcurloc({lat:position.coords.latitude, lng:position.coords.longitude});
 	});
 }
@@ -200,7 +209,7 @@ function getallproviders(selectedcatg){
 
 
 function findselected() {
-	var allcbox = $(".catgselect").find("input[type=checkbox]");
+	var allcbox = $(choosevisiable([".catgselect", ".catgselect1", ".catgselect2"])).find("input[type=checkbox]");
 	var selectedcatg = map(function(i){
 		return dattr(allcbox[i]).catgtid.split("_");
 	}, range(allcbox.length), function(i) {

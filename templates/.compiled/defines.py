@@ -1,6 +1,6 @@
 #This code is auto generated code, don't Edit it 
 def newtag_main(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs(cod([("acss", ["css/materialize_mohit.css", "css/lib.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "https://fonts.googleapis.com/icon?family=Material+Icons", "css/lib.css", "css/main.css", "css/style.css"]), ("ajs", ["mslib/js/jquery-2.1.1.min.js", "mslib/js/materialize.min.js", "mslib/js/jquery.bxslider.min.js", "mslib/js/jquery.easing.1.3.js", "mslib/js/jquery.raty.js", "mslib/js/lib.js", "mslib/js/mohit.js", "mslib/js/mohitlib.js?reload", "mslib/js/main.js?reload"]), ("title", "Class Pundit"), ("css", []), ("js", []), ("bodystyle", cod([])), ("htmlstyle", cod([]))])), extentattrs(inp));
+  inp = overwriteattrs(extentattrs(cod([("acss", ["css/materialize_mohit.css?reload", "css/lib.css", "css/custom-stylesheet.css", "css/jquery.bxslider.css", "https://fonts.googleapis.com/icon?family=Material+Icons", "css/lib.css", "css/main.css", "css/style.css"]), ("ajs", ["mslib/js/jquery-2.1.1.min.js", "mslib/js/materialize.min.js", "mslib/js/jquery.bxslider.min.js", "mslib/js/jquery.easing.1.3.js", "mslib/js/jquery.raty.js", "mslib/js/lib.js?reload", "mslib/js/mohit.js", "mslib/js/mohitlib.js?reload", "mslib/js/main.js?reload"]), ("title", "Class Pundit"), ("css", []), ("js", []), ("bodystyle", cod([])), ("htmlstyle", cod([]))])), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
   inp["css"] = myadd(inp["acss"], inp["css"]);
@@ -22,6 +22,7 @@ def newtag_main(inp, ginp, innerHTML):
   outpvar.close();
   outpvar.open(htmlnode("script", extentattrs(cod([("attr", cod([("type", "text/javascript")]))]))));
   outpvar.addtext("var ec  = jsdata['_ec'] ;");
+  outpvar.addtext("var ve  = jsdata['_formerror'];");
   outpvar.close();
   for i in forlist(inp["js"], False ) :
     outpvar.open(htmlnode("script", extentattrs(cod([("attr", cod([("type", "text/javascript"), ("src", i)]))]))));
@@ -57,6 +58,35 @@ def newtag_header1(inp, ginp, innerHTML):
   outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-med-and-down")]))));
   outpvar.cur.addfcdata("disptabs");
   outpvar.addchilds(newtag_disptabs(cod([("tabname", inp["tabname"]), ("tablink", inp["tablink"])]), ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  return outpvar;
+  
+def newtag_header1_cp(inp, ginp, innerHTML): 
+  inp = overwriteattrs(extentattrs(cod([("tabname", []), ("tablink", [])])), extentattrs(inp));
+  mifu(inp, ginp);
+  outpvar = htmltree();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "navbar-fixed ")]))));
+  outpvar.open(htmlnode("nav", extentattrs(cod([("class", "white"), ("attr", cod([("role", "container")]))]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "nav-wrapper container")]))));
+  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("id", "logo-container"), ("href", inp["HOST"])])), ("class", "brand-logo")]))));
+  outpvar.open(htmlnode("img", extentattrs(cod([("attr", cod([("src", "photo/mylogo1.png")])), ("class", "circle responsive-img"), ("style", cod([("vertical-align", "middle")]))]))));
+  outpvar.close();
+  outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-med-and-down")]))));
+  outpvar.cur.addfcdata("disptabs");
+  outpvar.addchilds(newtag_disptabs(cod([("tabname", inp["tabname"]), ("tablink", inp["tablink"])]), ginp, outpvar.cur.fcalldata["disptabs"].root.content).root.content);
+  outpvar.cur.addfcdata("headertabs_cp");
+  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
+  outpvar.close();
+  outpvar.open(htmlnode("ul", extentattrs(cod([("id", "nav-mobile"), ("class", "side-nav")]))));
+  outpvar.cur.addfcdata("headertabs_cp");
+  outpvar.addchilds(newtag_headertabs_cp(cod([]), ginp, outpvar.cur.fcalldata["headertabs_cp"].root.content).root.content);
+  outpvar.close();
+  outpvar.open(htmlnode("a", extentattrs(cod([("attr", cod([("data-activates", "nav-mobile")])), ("class", "button-collapse")]))));
+  outpvar.cur.addfcdata("icon");
+  outpvar.addchilds(newtag_icon(cod([("name", "menu")]), ginp, outpvar.cur.fcalldata["icon"].root.content).root.content);
   outpvar.close();
   outpvar.close();
   outpvar.close();
@@ -209,11 +239,11 @@ def newtag_input1(inp, ginp, innerHTML):
   return outpvar;
   
 def newtag_input2(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs(cod([("aclass", "col s6"), ("type", "text"), ("iclass", None), ("label", None)])), extentattrs(inp));
+  inp = overwriteattrs(extentattrs(cod([("aclass", "col s6"), ("type", "text"), ("iclass", None), ("label", None), ("placeholder", None)])), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs(cod([("class", myadd("input-field ", inp["aclass"]))]))));
-  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("id", inp["id"]), ("type", inp["type"]), ("name", inp["id"])])), ("class", inp["iclass"])]))));
+  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("id", inp["id"]), ("type", inp["type"]), ("name", inp["id"]), ("placeholder", inp["placeholder"])])), ("class", inp["iclass"])]))));
   outpvar.open(htmlnode("label", extentattrs(cod([("attr", cod([("for", inp["id"])]))]))));
   outpvar.addtext(inp["label"]);
   outpvar.close();
@@ -258,6 +288,15 @@ def newtag_button1(inp, ginp, innerHTML):
   outpvar.close();
   return outpvar;
   
+def newtag_button2(inp, ginp, innerHTML): 
+  inp = overwriteattrs(extentattrs(cod([("aclass", ""), ("text", "Submit")])), extentattrs(inp));
+  mifu(inp, ginp);
+  outpvar = htmltree();
+  outpvar.open(htmlnode("button", extentattrs(cod([("class", myadd("btn waves-effect waves-light btn ", inp["aclass"])), ("data", inp["data"]), ("attr", inp["attr"]), ("datas", inp["datas"])]))));
+  outpvar.addtext(inp["text"]);
+  outpvar.close();
+  return outpvar;
+  
 def newtag_hidinp(inp, ginp, innerHTML): 
   inp = overwriteattrs(extentattrs(cod([("name", None), ("value", None)])), extentattrs(inp));
   mifu(inp, ginp);
@@ -266,7 +305,7 @@ def newtag_hidinp(inp, ginp, innerHTML):
   return outpvar;
   
 def newtag_popupmodal(inp, ginp, innerHTML): 
-  inp = overwriteattrs(extentattrs(cod([("title", "Mohit Saini"), ("body", "Mohit Saini in there in content of this popup. This is actually a real content of mohit saini. don't try to close this content. It may effect your transferive coolness of circuler motional emotions. due to which a pencial may disclose your aggersive argument of chair in fron of public transport within central state of indian government captured by narender modi.")])), extentattrs(inp));
+  inp = overwriteattrs(extentattrs(cod([("title", "Mohit Saini"), ("body", "")])), extentattrs(inp));
   mifu(inp, ginp);
   outpvar = htmltree();
   outpvar.open(htmlnode("div", extentattrs(cod([("attr", cod([("id", inp["id"])])), ("class", "modal")]))));
@@ -282,6 +321,31 @@ def newtag_popupmodal(inp, ginp, innerHTML):
   outpvar.addchilds(innerHTML);
   outpvar.close();
   outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  return outpvar;
+  
+def newtag_popupmodal_confirm(inp, ginp, innerHTML): 
+  inp = overwriteattrs(extentattrs(cod([("title", "Mohit Saini"), ("body", "")])), extentattrs(inp));
+  mifu(inp, ginp);
+  outpvar = htmltree();
+  outpvar.open(htmlnode("div", extentattrs(cod([("attr", cod([("id", inp["id"])])), ("class", "modal")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "modal-content container-fluid")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "row")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "col l12 m12 s12 realtexttitle"), ("style", cod([("font-size", "20px")]))]))));
+  outpvar.addtext(inp["title"]);
+  outpvar.close();
+  outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "row")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "col l12 m12 s12 realtext")]))));
+  outpvar.addtext(inp["body"]);
+  outpvar.addchilds(innerHTML);
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "modal-footer")]))));
+  outpvar.cur.addfcdata("button2");
+  outpvar.addchilds(newtag_button2(cod([("aclass", "realyes modal-action modal-close"), ("text", "Agree")]), ginp, outpvar.cur.fcalldata["button2"].root.content).root.content);
   outpvar.close();
   outpvar.close();
   return outpvar;
@@ -320,8 +384,31 @@ def newtag_header1_cp(inp, ginp, innerHTML):
   outpvar.cur.addfcdata("icon");
   outpvar.addchilds(newtag_icon(cod([("name", "menu")]), ginp, outpvar.cur.fcalldata["icon"].root.content).root.content);
   outpvar.close();
-  outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("height", "56px"), ("float", "left"), ("position", "relative")]))]))));
-  outpvar.addtext("Saini");
+  outpvar.open(htmlnode("ul", extentattrs(cod([("class", "right hide-on-large-only")]))));
+  outpvar.open(htmlnode("li", extentattrs(cod([]))));
+  outpvar.open(htmlnode("a", extentattrs(cod([]))));
+  outpvar.open(htmlnode("span", extentattrs(cod([("class", "hide-on-med-and-up")]))));
+  outpvar.addtext("Search");
+  outpvar.close();
+  outpvar.open(htmlnode("span", extentattrs(cod([("class", "hide-on-small-and-down")]))));
+  outpvar.addtext("Filter");
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "hide-on-small-and-down"), ("style", cod([("display", "block"), ("float", "right"), ("line-height", "30px"), ("color", "black"), ("width", "280px"), ("padding-right", "20px")]))]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "row")]))));
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "col l12 m12 s12")]))));
+  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search by address (Street, City, ZIP, etc)"), ("autofocus", "true")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid #cccccc 1px"), ("font-size", "13px"), ("padding", "4px")])), ("id", "searchloc1")]))));
+  outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("class", "col l12 m12 s12")]))));
+  outpvar.open(htmlnode("form", extentattrs(cod([("data", cod([("onsubmit", "sreq"), ("bobj", ""), ("action", "search"), ("res", "draw_points(data.data);")]))]))));
+  outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search using keywords (Eg: Piano)"), ("name", "keyw")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid #cccccc 1px"), ("font-size", "13px"), ("padding", "4px")]))]))));
+  outpvar.open(htmlnode("button", extentattrs(cod([("attr", cod([("type", "submit")])), ("style", cod([("display", "none")]))]))));
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  outpvar.close();
   outpvar.close();
   outpvar.close();
   outpvar.close();

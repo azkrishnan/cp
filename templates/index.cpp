@@ -1,10 +1,10 @@
-//main_cp(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"]) {
-main_cp(js:["js/index.js"]) {
+main_cp(js:["js/index.js", "https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=drawing,places&callback=initMap"]) {
+//main_cp(js:["js/index.js"]) {
 	header1_cp();
 	div(attr:{id: "map"}, style: {height: "100%"});
-	div(class: "catgselect", style: {"padding-bottom": "0px"}) {
+	div(class: "catgselect hide-on-med-and-down", style: {"padding-bottom": "0px"}) {
 		div(id: "maincontrol", style: {"margin-bottom": "-30px"}) {
-			// cp_filterform();
+			cp_filterform();
 		}
 		div(id: "maincontrol1", style:{display: "none"}) {
 			div(class: "row") {
@@ -16,11 +16,11 @@ main_cp(js:["js/index.js"]) {
 			}
 		}
 	}
-	// div(class: "modal", id: "commoncats") {
-	// 	div(class: "modal-content") {
-	// 		cp_selectallcatgs();
-	// 	}
-	// }
+	div(class: "modal", id: "commoncats") {
+		div(class: "modal-content") {
+			cp_selectallcatgs();
+		}
+	}
 	div(id: "bcard1", class: "modal bottom-sheet") {
 		div(class: "modal-content") {
 			print("Mohit");
@@ -130,6 +130,9 @@ main_cp(js:["js/index.js"]) {
 				}
 			}		
 		}		
+	}
+	div(class: "modal", id: "searchform", style: {padding: "20px"}) {
+		cp_contactus_form();
 	}
 	div(class: "modal", id: "contactusform", style: {padding: "20px"}) {
 		cp_contactus_form();

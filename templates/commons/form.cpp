@@ -10,21 +10,6 @@ define header1_cp(tabname:[], tablink:[]) {
 	div(class: "navbar-fixed ") {
 		nav(class:"white") {
 			div(class: "nav-wrapper container") {
-				// div(class: "row") {
-				// 	div(class: "col s2") {
-				// 		a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
-				// 			icon(name: "menu");
-				// 		}
-				// 	}
-				// 	div(class: "col s2", style: {"background-color": "red"}) {
-				// 		// a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
-				// 		// 	icon(name: "menu");
-				// 		// }
-				// 		a(attr:{href: HOST}, class: "", style: {"display": "inline-block"}) {
-				// 			img(attr:{src: "photo/logo2.png"}, class: "responsive-img", style: {"vertical-align": "middle"});
-				// 		}
-				// 	}
-				// }
 				a(attr:{href: HOST}, class: "", style: {display: "inline-block"}) {
 					img(attr:{src: "photo/logo2.png"}, class: "responsive-img", style:{"vertical-align": "middle"});
 				}
@@ -38,8 +23,30 @@ define header1_cp(tabname:[], tablink:[]) {
 				a(attr:{"data-activates": "nav-mobile"}, class: "button-collapse") {
 					icon(name: "menu");
 				}
-				div(style: {"height": "56px", float: "left", position: "relative"}) {
-					print("Saini");
+				ul(class: "right hide-on-large-only") {
+					li() {
+						a() {
+							span(class: "hide-on-med-and-up") {
+								print("Search");
+							}
+							span(class: "hide-on-small-and-down") {
+								print("Filter");
+							}
+						}
+					}
+				}
+				div(class: "hide-on-small-and-down", style: {display: "block", float: "right", "line-height": "30px", color: "black", "width": "280px", "padding-right": "20px"}) {
+					div("class": "row") {
+						div("class": "col l12 m12 s12") {
+							input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid #cccccc 1px", "font-size": "13px", padding: "4px"}, "id": "searchloc1");
+						}
+						div("class": "col l12 m12 s12") {
+							form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
+								input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid #cccccc 1px", "font-size": "13px", padding: "4px"});
+								button(attr: {type: "submit"}, style: {display: "none"});
+							}
+						}
+					}
 				}
 			}
 		}
