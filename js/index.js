@@ -3,9 +3,9 @@ var gmap = null;
 var curloc = null;
 var circle100km = null;
 var infowindow = null;
-var markers_density = 0.00100;
+var markers_density = 0.00300;
 
-var marker_icons = ["photo/found2.png", "photo/found4.png", "photo/favloc3.png"];
+var marker_icons = ["photo/found2.png", "photo/found4.png", "photo/favloc5.png"];
 
 
 var provider = jsdata.provider;
@@ -63,7 +63,7 @@ function redisplay() {
 	map(function(x) {//assuming x.length > 0
 		var thismarker = provider[x[0][2]];
 		var locmark = thismarker.locmark;
-		locmark.setIcon(marker_icons[ (belongs(myl, x[0][2]) && x.length ==1)  ? 2:(0+(x.length==1))]);
+		locmark.setIcon( (belongs(myl, x[0][2]) && x.length ==1) ? marker_icons[2]: "photo/numicons/marker"+x.length+".png");
 		var avgloc = mapp(function(x2) {
 			return x2/x.length;
 		}, fold(function (x1, y1) {
