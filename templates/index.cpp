@@ -138,12 +138,13 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 		cp_our_story();
 	}
 	div(class: "modal modal-fixed-footer", id: "searchform", style:{ padding: "0"}) {
-		div(class: "modal-content") {
 			cp_filtertags(typ: "_1");
-		}
-		div(class: "modal-footer") {
-			button2(aclass: "realyes modal-action modal-close", text: "Go");
-		}
+		// div(class: "modal-content") {
+		// 	cp_filtertags(typ: "_1");
+		// }
+		// div(class: "modal-footer") {
+		// 	button2(aclass: "realyes modal-action modal-close", text: "Go");
+		// }
 	}
 }
 
