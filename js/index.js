@@ -26,6 +26,9 @@ function getsearchinput() {
 	return $($("#searchloc").is(":visible") ? "#searchloc": "#searchloc_1");
 }
 
+function getfilter() {
+	return $($("#catgselect").is(":visible") ? "#catgselect": "#searchform");
+}
 
 
 
@@ -43,9 +46,9 @@ function msgformatching(numclasses) {
 	}, activep), function(x) { return (x<= circle100km.radius); });
 	var intrad = int(circle100km.radius/1000);
 	if(inmyrange.length > 0 )
-		runf("error", {"msg": (numclasses == null ? (inmyrange.length+" Locations"): inmyrange.length+" Locations, "+numclasses+" Classes"  )+" matching in your Area("+intrad+" KM)"});
+		runf("error", {"msg": (numclasses == null ? (inmyrange.length+" Locations"): inmyrange.length+" Locations, "+numclasses+" Classes"  )+" matching"+(numclasses == null ? " in "+intrad+" KM": "")  });
 	else
-		runf("error", {"msg": "No Location matching in your Area("+intrad+" KM)"});
+		runf("error", {"msg": "No Location matching in "+intrad+" KM"});
 	return inmyrange;
 }
 
@@ -78,7 +81,7 @@ function redisplay() {
 function setcurloc(place, showmsg) {
 	curloc.setVisible(true);
 	gmap.setCenter(place);
-	gmap.setZoom(10);
+	gmap.setZoom(8);
 	curloc.setPosition(place);
 	circle100km.setCenter(place);
 	if(!(showmsg)) {
@@ -98,7 +101,7 @@ function initMap() {
 	}
 	gmap = new google.maps.Map(document.getElementById('map'), {
 		center: myCenter,
-		zoom: 9,
+		zoom: 8,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 	gmap.addListener("zoom_changed", function() {
@@ -213,7 +216,7 @@ function getallproviders(selectedcatg){
 
 
 function findselected() {
-	var allcbox = ().find("input[type=checkbox]");
+	var allcbox = getfilter().find("input[type=checkbox]");
 	var selectedcatg = map(function(i){
 		return dattr(allcbox[i]).catgtid.split("_");
 	}, range(allcbox.length), function(i) {
