@@ -32,7 +32,6 @@ class pagehandler:
 
 
 	def ajaxactions(self):
-		time.sleep(1);
 		if( has_key(_actions, g(_post, "action"))):
 			return _cp.handler(_post,  _actions[_post["action"]]);
 		else:
@@ -74,7 +73,7 @@ class pagehandler:
 		print _sql.q("create table if not exists tabs (tabs_id int not null auto_increment, tabs varchar(50), primary key (tabs_id) )");
 		print _sql.q("create table if not exists cat (cat_id int not null auto_increment, cat varchar(50), primary key (cat_id) )");
 		print _sql.q("create table if not exists subcat (subcat_id int not null auto_increment, subcat varchar(50), primary key (subcat_id) )");
-		print _sql.q("create table if not exists provider (provider_id int not null auto_increment, name_provider varchar(200), phone varchar(20), email varchar(30), address varchar(200), website varchar(200), lat real, lng real, countrycode varchar(5), username varchar(50), primary key (provider_id))");
+		print _sql.q("create table if not exists provider (provider_id int not null auto_increment, name_provider varchar(200), phone varchar(20), email varchar(30), address varchar(200), website varchar(200), lat real not null, lng real not null, countrycode varchar(5), username varchar(50), primary key (provider_id))");
 		print _sql.q("create table maininfo (tabs_index int, cat_index int, subcat_index int, provider_index int, UNIQUE (tabs_index, cat_index, subcat_index, provider_index))");
 
 		print _sql.q("create table if not exists providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
