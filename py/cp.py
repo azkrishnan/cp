@@ -253,7 +253,7 @@ def readxlsx_insertdb():
 				data["username"] = create_username(data["name_provider"], usernames);
 				usernames.append(data["username"]);
 				print "Address = ",data["address"];
-				latlng = rifn(google_addrtolanlat(row[4]), {"lat": None, "lng": None, "countrycode": None});
+				latlng = rifn(google_addrtolanlat(row[4]), {"lat": 0, "lng": 0, "countrycode": None});
 				time.sleep(0.3);
 				print latlng;
 				mifu(data, latlng);
