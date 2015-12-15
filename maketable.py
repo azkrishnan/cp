@@ -33,7 +33,7 @@ execfile(ROOT+"py/main.py");
 
 #print sql.ival("users", {"name": "Mohit#$%^6''", "email": "timepass@mail.com"});
 
-a = pagehandler("init").init();
+a = pagehandler("").init_db();
 
 #print _sql.sval("maininfo");
 

@@ -13,6 +13,6 @@ def putnum(inp, num, outp):
 	img.save(outp)
 
 
-for i in xrange(2, 400):
+for i in xrange(2, 1500):
 	print i;
 	putnum("found2.png", i, "numicons/marker"+str(i)+".png");

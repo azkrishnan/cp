@@ -22,28 +22,14 @@ execfile(_mslib+"py/webd.py");
 
 execfile(ROOT+"py/main.py");
 
-
-#print readxlx("data/providers.xlsx");
-
-print searchkeysplit("Just Fun !");
-
-# maincontent = mtmlparser();
-
-#maincontent.readonefile("templates/test.cpp");
-
-# print maincontent.disp() ;
+# print pagehandler("").init_db();
 
 
-#print sql.sval("users", limit=1);
+readxlsx_insertdb();
+#update_latlng()
 
-#print sql.ival("users", {"name": "Mohit#$%^6''", "email": "timepass@mail.com"});
-
-# a = pagehandler("init").init();
-
-# print curl("google.com");
-
-#print _sql.sval("maininfo");
-
+# a=readxlx("data/FUN_Kids_08052015.xlsx");
+# print len(a);
 
 
 _sql.close_db();

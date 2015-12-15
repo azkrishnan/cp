@@ -350,6 +350,31 @@ def newtag_popupmodal_confirm(inp, ginp, innerHTML):
   outpvar.close();
   return outpvar;
   
+def newtag_table1(inp, ginp, innerHTML): 
+  inp = overwriteattrs(extentattrs(cod([("rows", []), ("thead", [])])), extentattrs(inp));
+  mifu(inp, ginp);
+  outpvar = htmltree();
+  outpvar.open(htmlnode("table", extentattrs(cod([("class", inp["class"])]))));
+  outpvar.open(htmlnode("thead", extentattrs(cod([]))));
+  for i in forlist(inp["thead"], False ) :
+    outpvar.open(htmlnode("th", extentattrs(cod([]))));
+    outpvar.addtext(i);
+    outpvar.close();
+  outpvar.close();
+  outpvar.open(htmlnode("tbody", extentattrs(cod([]))));
+  for ii in forlist(inp["rows"], True ) :
+    i = inp["rows"][ii];
+    outpvar.open(htmlnode("tr", extentattrs(cod([]))));
+    for jj in forlist(i, True ) :
+      j = i[jj];
+      outpvar.open(htmlnode("td", extentattrs(cod([]))));
+      outpvar.addtext(j);
+      outpvar.close();
+    outpvar.close();
+  outpvar.close();
+  outpvar.close();
+  return outpvar;
+  
 def newtag_main_cp(inp, ginp, innerHTML): 
   inp = overwriteattrs(extentattrs(cod([("css", []), ("js", []), ("bodystyle", cod([])), ("htmlstyle", cod([])), ("title", "Class Pundit")])), extentattrs(inp));
   mifu(inp, ginp);

@@ -73,7 +73,7 @@ def readxlx(fn, mincol=None):
 def google_addrtolanlat(addr):
 	url ="https://maps.googleapis.com/maps/api/geocode/json?"+urllib.urlencode({"address": addr});
 	req = s2j(curl(url));
-	if(req):
+	if(req and len(req['results']) > 0):
 		country_code = filter(lambda x: x["types"][0]=="country", req["results"][0]["address_components"])[0]["short_name"];
 		return sifu(req["results"][0]["geometry"]["location"], "countrycode", country_code);
 
@@ -100,5 +100,4 @@ def cleanpath(p, typ='se'):
 	if('e' in typ and len(p)>0 and p[-1]=='/'):
 		p=p[:-1];
 	return p;
-
 

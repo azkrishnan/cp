@@ -203,6 +203,9 @@ def catgxlx1(data, keyl, isuniq = False):
 def readxlx_val(fn):
 	return list(list(list(str(x.value.encode('utf-8')) for x in y) for y in z) for z in readxlx(fn));
 
+def readxlx_val1(fn):
+	return list(list(list(unicode(x.value).encode('utf-8') for x in y) for y in z) for z in readxlx(fn));
+
 def readxlx1(fn, depth = 0):
 	return catgxlx(readxlx_val(fn)[0][1:], depth);
 
@@ -235,3 +238,57 @@ def readxlx_dbdump(fn, title, coltyp, maintable, grouping={}): #Assuming there i
 	print "Created All";
 	mappl(lambda x,y: mappl(lambda i: _sql.ival(y, dict(i)), x), groupt);
 
+
+
+
+def readxlsx_insertdb():
+	sheets = cod([("Kids", "data/FUN_Kids_08052015.xlsx"), ("Adults", "data/FUN_Adults_08132015.xlsx"), ("Pets", "data/FUN_Pets_08052015.xlsx")]);
+	itables = mapp(lambda x, y: catgxlx1(x, [y], True), sifu(mapp(lambda x: _sql.sval(x), ["tabs", "cat", "subcat"], None, lambda x, y: y), "provider", _sql.sval("provider", "provider_id, concat(name_provider, '_', address, '_', website) as provider, username")));
+	usernames = mappl(lambda x: x["username"], itables["provider"]);
+	def insert_uniq(t, data, uindex):
+		if itables[t].has_key(uindex) :
+			return itables[t][uindex][t+"_id"]
+		else :
+			if(t=="provider"):
+				data["username"] = create_username(data["name_provider"], usernames);
+				usernames.append(data["username"]);
+				print "Address = ",data["address"];
+				latlng = rifn(google_addrtolanlat(row[4]), {"lat": None, "lng": None, "countrycode": None});
+				time.sleep(0.3);
+				print latlng;
+				mifu(data, latlng);
+				if(data["countrycode"] != None):
+					data["username"] = data["countrycode"]+"/"+data["username"];
+					elc("mkdir -p "+ROOT+data["countrycode"]);
+					elc("mkdir -p "+ROOT+data["username"]+"; cp inside_index.php "+ROOT+data["username"]+"/index.php");	
+			data[t+"_id"] = _sql.ival(t, data);
+			itables[t][uindex] = data;
+			return data[t+"_id"];
+	for i in sheets.keys():
+		ikey = insert_uniq("tabs", {"tabs": i}, i);
+		xldata = readxlx_val1(sheets[i]);
+		tabdata = mixl(list(j[1:] for j in xldata));
+		for j in xrange(len(tabdata)):
+			row = tabdata[j];
+			if(row[1] !="" and row[2] != "" and row[4] !=""):
+				cat_id = insert_uniq("cat", {"cat": row[1]}, row[1]);
+				subcat_id = insert_uniq("subcat", {"subcat": row[2]}, row[2]);
+				provider_id = insert_uniq("provider", {"name_provider": row[0], "phone": row[3], "address": row[4], "website": row[5], "email": g(row, 6, "")}, row[0]+"_"+row[4]+"_"+row[5]);
+				print provider_id;
+				try:
+					print _sql.ival("maininfo", {"tabs_index": ikey, "cat_index": cat_id, "subcat_index": subcat_id, "provider_index": provider_id});
+				except Exception as e:
+					print "Error: "+str(e);
+
+
+def update_latlng():
+	allp = _sql.g("select * from provider where countrycode is NULL");
+	for i in allp:
+		latlng = google_addrtolanlat(i["address"]);
+		print i["address"]
+		if(latlng):
+			sifu(latlng, "username", latlng["countrycode"]+"/"+i["username"]);
+			_sql.uval("provider", latlng, {"provider_id": i["provider_id"]}, 1);
+			print latlng, i["address"];
+		time.sleep(0.3);
+		print "Sleep";

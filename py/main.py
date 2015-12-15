@@ -8,10 +8,8 @@ _cp = cp();
 class pagehandler:
 	def __init__(self, name):
 		self.name = name;
-		if(False and _server == "gcl"):
-			elc("python client.py 10.208.20.186 ./compile");
 		self.jsdata = {"HOST": HOST, "BASE": BASE, "curpage": self.name, "_server": _server};
-		self.methodmap = {"index": self.index, "test": self.index, "upload": self.upload};
+		self.methodmap = {"index": self.index, "test": self.test, "upload": self.upload, "seeall": self.seeall};
 		self.alltable = ["maininfo", "tabs", "cat", "subcat", "provider", "providerform"];
 
 	def call(self):
@@ -26,7 +24,7 @@ class pagehandler:
 		return catgs;
 
 	def test(self):
-		pass
+		return {"data": sqlr2table(_sql.g("select provider_id, name_provider, address from provider where countrycode is NULL"))};
 
 	def upload(self):
 		pass
@@ -61,11 +59,25 @@ class pagehandler:
 
 		def createtables():
 			readxlx_dbdump("data/providers.xlsx", ['tabs', 'cat', 'subcat', 'name_provider', 'phone', 'address', 'website', 'lat', 'lng', 'countrycode', 'username'], _sql.tabtype("vu20, vu50, vu50, v200, v20, v200, v200, r, r, v5, v50"), "maininfo", {"tabs":[0], "cat": [1], "subcat": [2], "provider":[3, 4, 5, 6, 7, 8, 9, 10]});
-		if(True):
+		if(False):
 			deletealltable();
 			createtables();
 			updatelatlng();
+			print _sql.q("create table if not exists providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
+		else:
+			pass
+
+
+	def init_db(self):
+		print list(_sql.q("drop table if exists "+i) for i in ["maininfo", "tabs", "cat", "subcat", "provider"]);
+
+		print _sql.q("create table if not exists tabs (tabs_id int not null auto_increment, tabs varchar(50), primary key (tabs_id) )");
+		print _sql.q("create table if not exists cat (cat_id int not null auto_increment, cat varchar(50), primary key (cat_id) )");
+		print _sql.q("create table if not exists subcat (subcat_id int not null auto_increment, subcat varchar(50), primary key (subcat_id) )");
+		print _sql.q("create table if not exists provider (provider_id int not null auto_increment, name_provider varchar(200), phone varchar(20), email varchar(30), address varchar(200), website varchar(200), lat real, lng real, countrycode varchar(5), username varchar(50), primary key (provider_id))");
+		print _sql.q("create table maininfo (tabs_index int, cat_index int, subcat_index int, provider_index int, UNIQUE (tabs_index, cat_index, subcat_index, provider_index))");
+
 		print _sql.q("create table if not exists providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
 
-
-
+	def seeall(self):
+		pass

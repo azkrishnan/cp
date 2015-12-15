@@ -8,7 +8,10 @@ from msl.mtime import *;
 
 execfile(_mslib+"py/webd.py");
 
-ginp = s2j(sys.argv[1]);
+if(len(sys.argv)>1):
+	ginp = s2j(sys.argv[1]);
+else:
+	ginp = s2j(read_file("todispdata.json"));
 
 outpvar = htmltree();
 compiledf = ROOT+"templates/.compiled/"

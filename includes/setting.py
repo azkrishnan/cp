@@ -33,6 +33,7 @@ elif(_server == "mohit"):
 	HOST = 'http://localhost/cp/';
 	ROOT = '/var/www/cp/';
 	db_data = {'host': '10.208.20.8', 'user': 'mohit', 'pass': 'mohitsaini', 'db': 'mohit'};
+	db_data = {'host': 'localhost', 'user': 'root', 'pass': 'mohitsaini', 'db': 'cp'};
 	_msladd = '/usr/lib/python2.7/msl/';
 
 elif(_server == "aws_cp"):

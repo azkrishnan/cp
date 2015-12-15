@@ -1,11 +1,5 @@
 #This code is auto generated code, don't Edit it 
 outpvar.cur.addfcdata("main_cp");
-outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "row")]))));
-outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "col l12 s12 m12")]))));
-outpvar.cur.fcalldata["main_cp"].open(htmlnode("input", extentattrs(cod([("style", cod([("color", "black"), ("margin", "0px"), ("padding", "0px")]))]))));
-outpvar.cur.fcalldata["main_cp"].close();
-outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "col l12 s12 m12")]))));
-outpvar.cur.fcalldata["main_cp"].open(htmlnode("input", extentattrs(cod([("style", cod([("color", "black"), ("margin", "0px"), ("padding", "0px")]))]))));
-outpvar.cur.fcalldata["main_cp"].close();
-outpvar.cur.fcalldata["main_cp"].close();
+outpvar.cur.fcalldata["main_cp"].cur.addfcdata("table1");
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_table1(cod([("thead", ginp["data"]["thead"]), ("rows", ginp["data"]["rows"]), ("class", "bordered")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["table1"].root.content).root.content);
 outpvar.addchilds(newtag_main_cp(cod([("js", ["js/index.js"]), ("title", "Class Pundit")]), ginp, outpvar.cur.fcalldata["main_cp"].root.content).root.content);

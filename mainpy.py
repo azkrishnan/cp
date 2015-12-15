@@ -30,13 +30,13 @@ exec(read_file(ROOT+"py/main.py"));
 
 filename = ("index" if _urlpath[1] == "" else _urlpath[1]);
 
-# mprint(_urlpath);
 
 if(filename == "ajaxactions"):
 	mprint(json.dumps(pagehandler(filename).ajaxactions()));
 else:
 	pageh = pagehandler(filename).call();
 	mprint(execview(filename+".cpp", mifa(pageh, {"HOST": HOST, "CDN": CDN, "BASE":BASE})));
+
 
 #	maincontent = mtmlparser();
 #	maincontent.readcompiled(filename+".cpp");

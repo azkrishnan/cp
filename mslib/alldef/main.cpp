@@ -269,3 +269,26 @@ define popupmodal_confirm(title: "Mohit Saini", body: "") {
 	}
 }
 
+
+define table1(rows:[], thead:[]) {
+	table(class: class) {
+		thead() {
+			for(i, thead) {
+				th() {
+					print(i);
+				}
+			}
+		}
+		tbody() {
+			for(i, ii, rows) {
+				tr() {
+					for(j, jj, i) {
+						td() {
+							print(j);
+						}
+					}
+				}
+			}
+		}
+	}
+}

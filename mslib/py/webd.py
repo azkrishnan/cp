@@ -169,7 +169,11 @@ def overwriteattrs(a, b): #b is overwritting a
 
 def execview(fn, ginp={}):
 	sifu(ginp, "page", fn);
-	return elc("python todisp.py "+quoted_s(json.dumps(ginp)));
+	if(0):
+		return elc("python todisp.py "+quoted_s(json.dumps(ginp)));
+	else:
+		write_file("todispdata.json", json.dumps(ginp));
+		return elc("python todisp.py");
 
 class htmlnode():
 	def __init__(self, tag=None, attrs={}, ptext=None):

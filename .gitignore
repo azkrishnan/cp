@@ -2,3 +2,4 @@ includes/password.py
 data/files/*
 data/mailf
 data/msgf
+todispdata.json
