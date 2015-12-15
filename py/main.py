@@ -17,11 +17,13 @@ class pagehandler:
 
 	def index(self):
 		pid = intf(g(_sql.sval("provider", "provider_id", {"username": _urlpath[0]}, 1), "provider_id") if _urlpath[0] != "" else 0);
-		nhost = g(_get, "nhost" , HOST);
-		catgs = catgtree()
-		mifu(self.jsdata, sifu(catgs, "pid", pid));
-		mifu(catgs, {"commoncats": eval(read_file("data/commondata.pyf")), "pid": pid, "nhost": nhost, "our_story_content": read_file("data/aboutusc")});
-		return catgs;
+		outp = {"icons": ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png"], "pid": pid};
+		outp["dictl"] = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), ["tabs", "cat", "subcat"], None, lambda x,y: y);
+		outp["allcatgs"] = catgtree();
+		outp["catgtree"] = catgtree_shortlist(outp["allcatgs"], 5 ,5);
+		outp["our_story_content"] = read_file("data/aboutusc");
+		mifu(self.jsdata, pkey1(outp, ["pid", "allcatgs"]));
+		return outp;
 
 	def test(self):
 		return {"data": sqlr2table(_sql.g("select provider_id, name_provider, address from provider where countrycode is NULL"))};
@@ -68,15 +70,20 @@ class pagehandler:
 
 
 	def init_db(self):
-		print list(_sql.q("drop table if exists "+i) for i in ["maininfo", "tabs", "cat", "subcat", "provider"]);
+		#print list(_sql.q("drop table if exists "+i) for i in ["maininfo", "tabs", "cat", "subcat", "provider"]);
 
-		print _sql.q("create table if not exists tabs (tabs_id int not null auto_increment, tabs varchar(50), primary key (tabs_id) )");
-		print _sql.q("create table if not exists cat (cat_id int not null auto_increment, cat varchar(50), primary key (cat_id) )");
-		print _sql.q("create table if not exists subcat (subcat_id int not null auto_increment, subcat varchar(50), primary key (subcat_id) )");
+		print _sql.q("create table if not exists tabs (tabs_id int not null auto_increment, tabs varchar(50), rank int, primary key (tabs_id) )");
+		print _sql.q("create table if not exists cat (cat_id int not null auto_increment, cat varchar(50), rank int,  primary key (cat_id) )");
+		print _sql.q("create table if not exists subcat (subcat_id int not null auto_increment, subcat varchar(50), rank int, primary key (subcat_id) )");
 		print _sql.q("create table if not exists provider (provider_id int not null auto_increment, name_provider varchar(200), phone varchar(20), email varchar(30), address varchar(200), website varchar(200), lat real not null, lng real not null, countrycode varchar(5), username varchar(50), primary key (provider_id))");
-		print _sql.q("create table maininfo (tabs_index int, cat_index int, subcat_index int, provider_index int, UNIQUE (tabs_index, cat_index, subcat_index, provider_index))");
+		print _sql.q("create table if not exists maininfo (tabs_index int, cat_index int, subcat_index int, provider_index int, UNIQUE (tabs_index, cat_index, subcat_index, provider_index))");
 
 		print _sql.q("create table if not exists providerform (id int not null auto_increment, form_catg varchar(200), form_subcatg varchar(200), form_prov varchar(200), form_email varchar(200), form_phone varchar(200), form_address varchar(300), form_web varchar(200), form_sechedule varchar(300), primary key(id))");
+
+		print _sql.q("alter table tabs add column rank int");
+		print _sql.q("alter table cat add column rank int");
+		print _sql.q("alter table subcat add column rank int");
+
 
 	def seeall(self):
 		pass

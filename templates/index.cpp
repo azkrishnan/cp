@@ -4,7 +4,7 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 	div(attr:{id: "map"}, style: {height: "100%"});
 	div(class: "catgselect hide-on-med-and-down", style: {"padding-bottom": "0px"}) {
 		div(id: "maincontrol", style: {"margin-bottom": "-30px"}) {
-			cp_filterform();
+//			cp_filterform();
 		}
 		div(id: "maincontrol1", style:{display: "none"}) {
 			div(class: "row") {
@@ -18,7 +18,7 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 	}
 	div(class: "modal", id: "commoncats") {
 		div(class: "modal-content") {
-			cp_selectallcatgs();
+//			cp_selectallcatgs();
 		}
 	}
 	div(id: "bcard1", class: "modal bottom-sheet") {
@@ -30,85 +30,47 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 		}
 	}
 
-	div(attr:{id: "myfavlist"}, class: "modal bottom-sheet") {
-		div(class: "container-fluid") {
-			div(class: "row"){
-				pkeys = provider.keys;
-				for(i, pkeys) {
-					pinfo = provider[i];
-					div(class: "col l12 m12 s12 favlistelm", data:{pid: i}) {
-						a1(text: pinfo["name_provider"]+" "+pinfo["address"], href: nhost+pinfo["username"], attr:{});
-					}
-				}
-			}
-		}
-	}
-	div(style: {display: ""}) {
-		pkeys = provider.keys;
-		for(i, pkeys) {
-			pinfo = provider[i];
-			div(attr:{id: "providerinfo_"+i}, class: "modal bottom-sheet") {
-				div(class: "container-fluid") {
-					div(class: "row"){
-						div(class: "col l12 m12 s12") {
-							h5() {
-								a1(href: pinfo["website"], text: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
-							}
-							div() {
-								a1(href: nhost+pinfo["username"], text: "Business Card", class: "truncate", attr:{});
-							}
-						}
-						// div(class: "col l4 m4 s12") {
-						// 	h5(class: "grey-text text-darken-2") {
-						// 		print("");
-						// 		icon(name: "navigation", aclass: "tiny");
-						// 	}
-						// 	div(class: "grey-text") {
-						// 		print(pinfo["address"]);
-						// 	}
-						// }
-						// div(class: "col l4 m4 s12") {
-						// 	h5(class: "grey-text text-darken-2") {
-						// 		print("");
-						// 		icon(name: "call", aclass: "tiny");
-						// 	}
-						// 	div(class: "grey-text") {
-						// 		print(pinfo["phone"]);
-						// 	}
-						// }
-						// div(class: "col l3 m3 s12") {
-						// 	button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
-						// 		print("Favorute");
-						// 	}
-						// }
+	// div(style: {display: ""}) {
+	// 	pkeys = provider.keys;
+	// 	for(i, pkeys) {
+	// 		pinfo = provider[i];
+	// 		div(attr:{id: "providerinfo_"+i}, class: "modal bottom-sheet") {
+	// 			div(class: "container-fluid") {
+	// 				div(class: "row"){
+	// 					div(class: "col l12 m12 s12") {
+	// 						h5() {
+	// 							a1(href: pinfo["website"], text: pinfo["name_provider"], class: "truncate", attr:{target:"_blank"});
+	// 						}
+	// 						div() {
+	// 							a1(href: nhost+pinfo["username"], text: "Business Card", class: "truncate", attr:{});
+	// 						}
+	// 					}
+	// 					div(class: "col l4 m4 s12") {
+	// 						div(class: "grey-text text-darken-2 p5") {
+	// 							icon(name: "navigation", aclass: "tiny");
+	// 							print(pinfo["address"]);
+	// 						}
+	// 					}
+	// 					div(class: "col l4 m4 s12") {
+	// 						div(class: "grey-text text-darken-2 p5") {
+	// 							icon(name: "call", aclass: "tiny");
+	// 							print(pinfo["phone"]);
+	// 						}
+	// 					}
+	// 					div(class: "col l3 m3 s12") {
+	// 						button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
+	// 							print("Favorute");
+	// 						}
+	// 					}
 
-
-						div(class: "col l4 m4 s12") {
-							div(class: "grey-text text-darken-2 p5") {
-								icon(name: "navigation", aclass: "tiny");
-								print(pinfo["address"]);
-							}
-						}
-						div(class: "col l4 m4 s12") {
-							div(class: "grey-text text-darken-2 p5") {
-								icon(name: "call", aclass: "tiny");
-								print(pinfo["phone"]);
-							}
-						}
-						div(class: "col l3 m3 s12") {
-							button(class: "waves-effect waves-light btn", data:{onclick: "addfav", pid: i}) {
-								print("Favorute");
-							}
-						}
-
-						div(class: "col l12 m12 s12") {
-							print(provider2[i]["mycats"]);
-						}
-					}
-				}
-			}
-		}
-	}
+	// 					div(class: "col l12 m12 s12") {
+	// 						print(provider2[i]["mycats"]);
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 	div(class: "modal", id: "providerform", style: {padding: "20px"}) {
 		div(style: {margin: "10px"}) {
 			form(data:{onsubmit: "sreq", bobj: "", action: "providerinfo", restext: "Submitted"}) {
@@ -139,7 +101,7 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 	}
 	div(class: "modal modal-fixed-footer", id: "searchform", style:{ padding: "0"}) {
 		div(class: "modal-content", style: {padding: "0px", margin: "0px"}) {
-			cp_filtertags(typ: "_1");
+//			cp_filtertags(typ: "_1");
 		}
 		div(class: "modal-footer", attr: {align: "right"}) {
 			button2(aclass: "realyes modal-action modal-close", text: "Go");

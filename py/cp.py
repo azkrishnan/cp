@@ -55,33 +55,11 @@ class cp:
 		return {"providers": list(set( mappl(lambda x: x["provider_id"] , matchedprov) )), "numclasses": len( set( mappl(lambda x: x["classtype"] , matchedprov) ) )};
 
 def catgtree():
-	sublists = ["tabs", "cat", "subcat", "provider"];
-	dictl = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), sublists, None, lambda x: sublists[x]);
-	dictl["provider2"] = mapp(lambda x: cod({"mycats": replaceall(x["mycats"], cod([(";,", "<br>"), ("\n,", "<br>"), ("\n", "<br>")]))}), catgxlx1(_sql.sval(gtable("provider3")), ["provider"+"_id"], True));
+	return catgxlx1(_sql.g("select tabs_index, cat_index, subcat_index, group_concat(provider_index) as providers from maininfo left join tabs on tabs_id=tabs_index left join cat on cat_id = cat_index left join subcat on subcat_id = subcat_index group by tabs_index, cat_index, subcat_index order by tabs.rank, cat.rank, subcat.rank"), ["tabs_index", "cat_index", "subcat_index"], True);
 
-	maininfocatg = catgxlx1( _sql.sval("maininfo"), ["tabs_index", "cat_index", "subcat_index"]);
-	icons = ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png", ""];
-	return {
-		"catg": mappl(lambda x,y: {
-				"name": g(g(dictl["tabs"], y), "tabs"), 
-				"id": y, "icon": icons[y-1], 
-				"child": mappl(lambda x1,y1: {
-					"name": dictl["cat"][y1]["cat"], 
-					"id": y1, 
-					"child": mappl(lambda x2,y2: {
-						"name": g(g(dictl["subcat"], y2), "subcat"), 
-						"id": y2, 
-						"child": mappl(lambda x3,y3: {
-							"id": x3["provider_index"], 
-							"info": g(g(dictl["provider"], x3), "provider_index") 
-						}, x2) 
-					}, x1)
-				} , x)
-		} , maininfocatg), 
-		"provider": dictl["provider"], 
-		"provider2": dictl["provider2"], 
-		"maininfocatg": maininfocatg
-	};
+
+def catgtree_shortlist(allcatgs, catlimit=None, subcatlimit=None):
+	return mapp(lambda x: pkey1(mapp(lambda y: pkey1(mapp(lambda z:z["providers"].split(","), y), y.keys()[:subcatlimit]), x), x.keys()[:catlimit]), allcatgs);
 
 
 
@@ -198,7 +176,7 @@ def catgxlx(data, depth = 0):
 
 def catgxlx1(data, keyl, isuniq = False):
 	listorrow = lambda x: x[0] if isuniq else x;
-	return data if (len(keyl) == 0) else dict(mapp(lambda v: listorrow(catgxlx1(v, keyl[1:])), fold(lambda x,y: r1(sifu(x, y[keyl[0]], []), x[y[keyl[0]]].append( r1(y.pop(keyl[0]), y) ), x), data, {})));
+	return listorrow(data) if (len(keyl) == 0) else mapp(lambda v: catgxlx1(v, keyl[1:], isuniq), fold(lambda x,y: r1(sifu(x, y[keyl[0]], []), x[y[keyl[0]]].append( r1(y.pop(keyl[0]), y) ), x), data, {}));
 
 def readxlx_val(fn):
 	return list(list(list(str(x.value.encode('utf-8')) for x in y) for y in z) for z in readxlx(fn));
@@ -292,3 +270,6 @@ def update_latlng():
 			print latlng, i["address"];
 		time.sleep(0.3);
 		print "Sleep";
+
+def update_tabsrank():
+	mappl(lambda x:_sql.q("update "+x+" set rank = "+x+"_id"), ["tabs", "cat", "subcat"]);

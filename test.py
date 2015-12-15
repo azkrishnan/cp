@@ -25,8 +25,18 @@ execfile(ROOT+"py/main.py");
 # print pagehandler("").init_db();
 
 
-readxlsx_insertdb();
+a = catgtree(5,None);
+for i in a:
+	print i,":";
+	for j in a[i]:
+		print "\t",j, "::"
+		for k in a[i][j]:
+			print "\t\t",k, a[i][j][k]
+
+
+#readxlsx_insertdb();
 #update_latlng()
+#update_tabsrank();
 
 # a=readxlx("data/FUN_Kids_08052015.xlsx");
 # print len(a);
