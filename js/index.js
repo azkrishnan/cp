@@ -3,18 +3,13 @@ var gmap = null;
 var curloc = null;
 var circle100km = null;
 var infowindow = null;
-var markers_density = 0.00300;
 
 var marker_icons = ["photo/found2.png", "photo/found4.png", "photo/favloc5.png"];
 
-
-var provider = jsdata.provider;
+var providers = {};//(provider_id -> marker)List
 var pid = jsdata.pid;
 
-if(pid == 0)
-	var activep = array_keys(provider);
-else
-	var activep = [pid];
+var activep = jsdata.activep;
 
 function choosevisiable(inp) {
 	return filter(function(x){
@@ -30,53 +25,60 @@ function getfilter() {
 	return $($("#catgselect").is(":visible") ? "#catgselect": "#searchform");
 }
 
-
-
 function init_cookies() {
 	var cookies = getCookie("myfav");
 	sifu(cookies, "plist", []);
 	setCookie("myfav", cookies);
 }
 
-
 function msgformatching(numclasses) {
-	var inmyrange = map(id, mapp(function(i) {
-		var ploc = provider[i];
-		return latlandist(curloc.position.lat(), curloc.position.lng(), ploc.lat, ploc.lng);
-	}, activep), function(x) { return (x<= circle100km.radius); });
-	var intrad = int(circle100km.radius/1000);
-	if(inmyrange.length > 0 )
-		runf("error", {"msg": (numclasses == null ? (inmyrange.length+" Locations"): inmyrange.length+" Locations, "+numclasses+" Classes"  )+" matching"+(numclasses == null ? " in "+intrad+" KM": "")  });
-	else
-		runf("error", {"msg": "No Location matching in "+intrad+" KM"});
-	return inmyrange;
+	// var inmyrange = map(id, mapp(function(i) {
+	// 	var ploc = provider[i];
+	// 	return latlandist(curloc.position.lat(), curloc.position.lng(), ploc.lat, ploc.lng);
+	// }, activep), function(x) { return (x<= circle100km.radius); });
+	// var intrad = int(circle100km.radius/1000);
+	// if(inmyrange.length > 0 )
+	// 	runf("error", {"msg": (numclasses == null ? (inmyrange.length+" Locations"): inmyrange.length+" Locations, "+numclasses+" Classes"  )+" matching"+(numclasses == null ? " in "+intrad+" KM": "")  });
+	// else
+	// 	runf("error", {"msg": "No Location matching in "+intrad+" KM"});
+	// return inmyrange;
 }
 
-function redisplay() {
+function drawgroups(groups) {
 	var myl = getCookie("myfav").plist;//List of Fav providers.
-	var plist = map(function(x) {
-		return [provider[x].lat, provider[x].lng, x];
-	}, activep);
-	mapp(function(x){
-		x.locmark.setVisible(false);
-	}, provider);
-	map(function(x) {//assuming x.length > 0
-		var thismarker = provider[x[0][2]];
-		var locmark = thismarker.locmark;
-		locmark.setIcon( (belongs(myl, x[0][2]) && x.length ==1) ? marker_icons[2]: "photo/numicons/marker"+x.length+".png");
-		var avgloc = mapp(function(x2) {
-			return x2/x.length;
-		}, fold(function (x1, y1) {
-			return [x1[0]+y1[0], x1[1]+y1[1]];
-		}, x, [0, 0]), null, function (x1) {
-			return ["lat", "lng"][x1];
-		});
-		locmark.setPosition(avgloc);
-		//thismarker.infow.setContent(x.toSource()+"\n\n----\n\n"+avgloc.toSource());
-		locmark.setVisible(true);
-	}, geolocgroup(plist, gmap.zoom, markers_density));
+	mapp(function(x) {
+		x.setVisible(false);
+	}, providers);
+	map(function(x) {// lat:x[0], lng:x[1], provider_id:x[2], num_of_providers:x[3]
+		if(!haskey(providers, x[2])) {
+			var prov_loc= new google.maps.Marker({
+				position: {lat: x[0], lng: x[1]},
+				icon: marker_icons[0]
+			});
+			google.maps.event.addListener(prov_loc, 'click', function() {
+				$("#providerinfo").openModal();
+			});
+			prov_loc.setMap(gmap);
+			providers[x[2]] = prov_loc;
+		}
+		var thismarker = providers[x[2]];
+		thismarker.setIcon( (belongs(myl, x[2]) && x[3] ==1) ? marker_icons[2]: "photo/numicons/marker"+x[3]+".png");
+		thismarker.setPosition({lat: x[0], lng: x[1]});
+		thismarker.setVisible(true);
+	}, groups);
 }
 
+function redisplay(needplist) {
+	var params = {action: "providergroup", zoom: gmap.zoom, viewport: placetoll(gmap.center), home: placetoll(curloc.position), radius: circle100km.radius/1000.0};
+	if(needplist == undefined)
+		params.plist = activep.join(",");
+	console.log(params.plist);
+	runf("req1", {params: params, callback: function(d){
+		drawgroups(d["data"]["groups"]);
+	}});
+}
+
+//geolocgroup(plist, gmap.zoom, markers_density)
 
 function setcurloc(place, showmsg) {
 	curloc.setVisible(true);
@@ -89,7 +91,7 @@ function setcurloc(place, showmsg) {
 	}
 }
 
-function placetoll() {
+function placetoll(place) {
 	return {'lat': place.lat(), 'lng': place.lng()};
 }
 
@@ -105,7 +107,7 @@ function initMap() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 	gmap.addListener("zoom_changed", function() {
-		redisplay();
+		redisplay(1);
 	});
 	$.get("http://ip-api.com/json", function(data){
 		if(pid == 0) {
@@ -127,27 +129,6 @@ function initMap() {
 		content: "<div>Hey mohit.</div>",
 		maxWidth: 500
 	});
-	mapp(function(info, i) {
-		 var prov_loc= new google.maps.Marker({
-			position: {lat: info.lat, lng: info.lng},
-			icon: marker_icons[0]
-		});
-		var prov_infow = new google.maps.InfoWindow({
-			content: "<div>Hey mohit.</div>",
-			maxWidth: 500
-		});
-		google.maps.event.addListener(prov_loc, 'click', function() {
-			$("#providerinfo_"+i).openModal();
-			//prov_infow.open(gmap, prov_loc);
-		});
-		if(pid>0 && i!=pid) {
-			prov_loc.setVisible(false);
-		}
-		prov_loc.setMap(gmap);
-		provider[i]["locmark"] = prov_loc;
-		provider[i]["infow"] = prov_infow;
-	}, provider);
-
 	circle100km = new google.maps.Circle({
 		strokeColor: '#FF0000',
 		strokeOpacity: 0.8,
@@ -164,7 +145,6 @@ function initMap() {
 		msgformatching();
 	});
 	curloc.setMap(gmap);
-	console.log(getsearchinput()[0]);
 	var autocomplete = new google.maps.places.Autocomplete( getsearchinput()[0] );
 	autocomplete.addListener('place_changed', function() {
 		if( haskey(autocomplete.getPlace(), "geometry")) {
@@ -226,13 +206,9 @@ function findselected() {
 }
 
 function draw_points(inp) {
-	// var tohide = listaminusb(array_keys(provider), providers);
-	// map(function(x){ provider[x].locmark.setVisible(false); }, tohide);
-	// map(function(x){ provider[x].locmark.setVisible(true); }, providers);
 	activep = inp.providers;
 	msgformatching(inp.numclasses);
 	redisplay();
-//	infowindow.close();
 }
 
 //draw_points( getallproviders( findselected() ) )
@@ -264,6 +240,17 @@ function minimaxifilter(i) {
 		$('#maincontrol').show(1000);
 	}
 }
+
+ms.searchparam = function() {
+	return {zoom: gmap.zoom, viewport: placetoll(gmap.center), home: placetoll(curloc.position), radius: circle100km.radius/1000.0};
+}
+
+ms.f1 = function(data) {
+	activep = data.data.activep;
+	drawgroups(data.data.groups);
+}
+
+
 
 init_cookies();
 dispfavlist();

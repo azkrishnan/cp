@@ -1,6 +1,14 @@
 
 #Assume _sql is declared already
 
+_config["markers_density"] = 0.00600;
+
+_config["sql_help"] = {};
+
+_config["sql_help"]["latlng"] = lambda lat1='lat',lng1='lng': "(((acos(sin(({lat}*pi()/180)) * sin(("+lat1+"*pi()/180))+cos(({lat}*pi()/180)) * cos(("+lat1+"*pi()/180)) * cos((({lng}- "+lng1+")* pi()/180))))*180/pi())*60*1.1515*1.609344)"
+
+_config["sql_help"]["latlng1"] = lambda lat1='lat',lng1='lng': "(((acos(sin(({lat1}*pi()/180)) * sin(("+lat1+"*pi()/180))+cos(({lat1}*pi()/180)) * cos(("+lat1+"*pi()/180)) * cos((({lng1}- "+lng1+")* pi()/180))))*180/pi())*60*1.1515*1.609344)"
+
 
 mifa(_ec, {
 	-1: "Incorrect password or OTP",
@@ -14,11 +22,15 @@ mifa(_ec, {
 
 _actions = {
 	"search": {
-		"need": ["keyw"],
+		"need": ["keyw", "zoom", "radius", "home", "viewport"],
 		"mapping": {},
 	},
 	"providerinfo": {
 		"need": ['form_catg', 'form_subcatg', 'form_prov', 'form_email', 'form_phone', 'form_address', 'form_web', 'form_sechedule']
+	},
+	"providergroup": {
+		"need": ["zoom", "radius", "home", "viewport"],
+		"ignoreother": False
 	}
 }
 
@@ -29,18 +41,32 @@ _config["sql"]["provider3"] = 'select provider_id, group_concat(tabs,":\\n", myc
 class cp:
 	def __init__(self):
 		self.ec = None;
-		self.mapping = {"search": self.search, "providerinfo": self.providerinfo};
+		self.mapping = eval("{"+", ".join(mappl((lambda x: '"'+x+'": self.'+x), _actions.keys()))+"}");
 
 	def handler(self, udata, specf):
 		self.ec = 1;
 		computed = None;
-		mifu(specf, {"need": [], "mapping":{}, "ignoreother": True});
+
+		mifu(specf, {"need": [], "mapping":{}, "ignoreother": True, "eadd": [], "whocan": "all"});
+
 		if(not(set(specf["need"]) <= set(udata.keys()))):
 			self.ec = -5;
+		elif(not(specf["whocan"] == "all") and not(islogin())):
+			self.ec = -13;
+		elif(not(specf["whocan"] == "all") and not( specf["whocan"] == "login") and not(islogin() in specf["whocan"])):
+			self.ec = -9;
 		else:
 			udata_f = mapp(idf, udata, lambda x,y: (not(specf["ignoreother"]) or (y in specf["need"])), lambda x,y: g(specf["mapping"], x, x));
+			mifu(udata_f, pkey1({"uid": loginid(), "time": tnow()}, specf["eadd"]), True);
 			computed = self.mapping[udata["action"]](udata_f);
 		return {"ec": self.ec, "data": computed };
+
+	def providergroup(self, data):
+		if(has_key(data, "plist")):
+			_session["plist"] = data["plist"];
+		else:
+			data["plist"] = g(_session, "plist", "");
+		return {"groups": getmarkergroup(data)};
 
 	def providerinfo(self, data):
 		return _sql.ival("providerform", dict(data));
@@ -52,14 +78,23 @@ class cp:
 		conds = "true" if len(conds) == 0 else " OR ".join(conds);
 		query = "select provider_id, classtype from "+gtable("maininfo1")+" where "+conds
 		matchedprov = _sql.g(query, darr)
-		return {"providers": list(set( mappl(lambda x: x["provider_id"] , matchedprov) )), "numclasses": len( set( mappl(lambda x: x["classtype"] , matchedprov) ) )};
+		providers = list(set(mappl(lambda x: x["provider_id"], matchedprov)));
+		_session["plist"] = ",".join(mappl(lambda x:str(x), providers));
+		return {"groups": getmarkergroup(sifu(data, "plist", _session["plist"])), "numclasses": len(set(mappl(lambda x: x["classtype"], matchedprov))), "activep": providers};
+
+
+def getmarkergroup(data):
+	query = "select provider_id,lat,lng, "+sqlhelp("latlng")+" as distance, "+sqlhelp("latlng1")+" as distance1 from provider where provider_id in ("+",".join(['0']+msplit(data["plist"], ","))+") AND lat*lng != 0 having (distance <= {distance} AND distance1 <= {distance1}) ";
+	plist = mappl(lambda x: [x["lat"], x["lng"], x["provider_id"]], _sql.g(query, mifu(data["home"], {"distance": data["radius"], "lat1": data["viewport"]["lat"], "lng1": data["viewport"]["lng"], "distance1": 80000*(2**(-int(data["zoom"])))})));
+	clusters = geolocgroup(plist, int(data["zoom"]), float(_config["markers_density"]));
+	return  mappl(lambda x: (lambda z: [z[0]*1.0/len(x), z[1]*1.0/len(x), x[0][2], len(x)])(fold(lambda y,z: [y[0]+z[0], y[1]+z[1]], x, [0,0])), clusters, lambda x:(len(x) > 0));
+
 
 def catgtree():
 	return catgxlx1(_sql.g("select tabs_index, cat_index, subcat_index, group_concat(provider_index) as providers from maininfo left join tabs on tabs_id=tabs_index left join cat on cat_id = cat_index left join subcat on subcat_id = subcat_index group by tabs_index, cat_index, subcat_index order by tabs.rank, cat.rank, subcat.rank"), ["tabs_index", "cat_index", "subcat_index"], True);
 
-
 def catgtree_shortlist(allcatgs, catlimit=None, subcatlimit=None):
-	return mapp(lambda x: pkey1(mapp(lambda y: pkey1(mapp(lambda z:z["providers"].split(","), y), y.keys()[:subcatlimit]), x), x.keys()[:catlimit]), allcatgs);
+	return mapp(lambda x: pkey1(mapp(lambda y: pkey1(mapp(lambda z:map(lambda x:int(x), z["providers"].split(",")) if False else z["providers"], y), y.keys()[:subcatlimit]), x), x.keys()[:catlimit]), allcatgs);
 
 
 
@@ -176,7 +211,7 @@ def catgxlx(data, depth = 0):
 
 def catgxlx1(data, keyl, isuniq = False):
 	listorrow = lambda x: x[0] if isuniq else x;
-	return listorrow(data) if (len(keyl) == 0) else mapp(lambda v: catgxlx1(v, keyl[1:], isuniq), fold(lambda x,y: r1(sifu(x, y[keyl[0]], []), x[y[keyl[0]]].append( r1(y.pop(keyl[0]), y) ), x), data, {}));
+	return listorrow(data) if (len(keyl) == 0) else mapp(lambda v: catgxlx1(v, keyl[1:], isuniq), fold(lambda x,y: r1(sifu(x, y[keyl[0]], []), x[y[keyl[0]]].append( r1(y.pop(keyl[0]), y) ), x), data, cod()));
 
 def readxlx_val(fn):
 	return list(list(list(str(x.value.encode('utf-8')) for x in y) for y in z) for z in readxlx(fn));

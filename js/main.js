@@ -66,7 +66,6 @@ function getCookie(cname) {
 }
 
 
-
 function f() {
 	return $("body").width();
 }

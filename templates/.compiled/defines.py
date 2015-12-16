@@ -487,29 +487,28 @@ def newtag_cp_filtertags(inp, ginp, innerHTML):
   outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search by address (Street, City, ZIP, etc)"), ("autofocus", "true")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")])), ("id", myadd("searchloc", inp["typ"]))]))));
   outpvar.close();
   outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("margin-top", "0px"), ("padding", "8px"), ("margin-bottom", "-5px")])), ("class", "card-panel")]))));
-  outpvar.open(htmlnode("form", extentattrs(cod([("data", cod([("onsubmit", "sreq"), ("bobj", ""), ("action", "search"), ("res", "draw_points(data.data);")]))]))));
+  outpvar.open(htmlnode("form", extentattrs(cod([("data", cod([("onsubmit", "sreq"), ("bobj", ""), ("params", "ms.searchparam();"), ("action", "search"), ("res", "ms.f1(data);")]))]))));
   outpvar.open(htmlnode("input", extentattrs(cod([("attr", cod([("placeholder", "Search using keywords (Eg: Piano)"), ("name", "keyw")])), ("class", "inputplaceholder mainsearch"), ("style", cod([("border-radius", "0px"), ("border", "solid black 0px"), ("font-size", "13px")]))]))));
   outpvar.open(htmlnode("button", extentattrs(cod([("attr", cod([("type", "submit")])), ("style", cod([("display", "none")]))]))));
   outpvar.close();
   outpvar.close();
   outpvar.close();
+  outpvar.open(htmlnode("div", extentattrs(cod([("style", cod([("max-height", "400px"), ("overflow-y", "auto")]))]))));
   outpvar.open(htmlnode("ul", extentattrs(cod([("class", "collapsible"), ("attr", cod([("data-collapsible", "accordion")])), ("style", cod([("margin-bottom", "0px")]))]))));
-  for ii in forlist(inp["catg"], True ) :
-    i = inp["catg"][ii];
+  for i in forlist(inp["catgtree"], False ) :
     outpvar.open(htmlnode("li", extentattrs(cod([]))));
     outpvar.open(htmlnode("div", extentattrs(cod([("class", "collapsible-header")]))));
     outpvar.cur.addfcdata("icon1");
-    outpvar.addchilds(newtag_icon1(cod([("img", i["icon"])]), ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
-    outpvar.addtext(i["name"]);
+    outpvar.addchilds(newtag_icon1(cod([("img", inp["icons"][i])]), ginp, outpvar.cur.fcalldata["icon1"].root.content).root.content);
+    outpvar.addtext(inp["dictl"]["tabs"][i]["tabs"]);
     outpvar.close();
     outpvar.open(htmlnode("div", extentattrs(cod([("class", "collapsible-body")]))));
     outpvar.open(htmlnode("div", extentattrs(cod([("class", "subcats1"), ("style", cod([("padding", "5px"), ("padding-left", "20px"), ("padding-bottom", "0px"), ("padding-top", "0px")]))]))));
     outpvar.open(htmlnode("ul", extentattrs(cod([("class", "collapsible_sub"), ("attr", cod([("data-collapsible", "accordion")]))]))));
-    for jj in forlist(i["child"], True ) :
-      j = i["child"][jj];
+    for j in forlist(inp["catgtree"][i], False ) :
       outpvar.open(htmlnode("li", extentattrs(cod([("class", "")]))));
       outpvar.open(htmlnode("div", extentattrs(cod([("class", "collapsible-header"), ("style", cod([("border-bottom", "solid black 0px"), ("border-top", "1px solid #DDD")]))]))));
-      outpvar.addtext(j["name"]);
+      outpvar.addtext(inp["dictl"]["cat"][j]["cat"]);
       outpvar.close();
       outpvar.open(htmlnode("div", extentattrs(cod([("class", "collapsible-body")]))));
       outpvar.open(htmlnode("div", extentattrs(cod([("class", "subcats2"), ("style", cod([("padding-left", "30px")]))]))));
@@ -517,15 +516,14 @@ def newtag_cp_filtertags(inp, ginp, innerHTML):
       outpvar.open(htmlnode("li", extentattrs(cod([]))));
       outpvar.open(htmlnode("div", extentattrs(cod([]))));
       outpvar.cur.addfcdata("checkbox1");
-      outpvar.addchilds(newtag_checkbox1(cod([("label", "Select All"), ("id", myadd(myadd(myadd(myadd(myadd(myadd("catsubcat", ii), "_"), jj), "_"), "selectall"), inp["typ"])), ("aclass", "selectall"), ("data", cod([("onclick", "selectall redraw"), ("catgtid", myadd(myadd(i["id"], "_"), j["id"]))])), ("labels", cod([("font-size", "12px")]))]), ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
+      outpvar.addchilds(newtag_checkbox1(cod([("label", "Select All"), ("id", myadd(myadd(myadd(myadd(myadd(myadd("catsubcat", i), "_"), j), "_"), "selectall"), inp["typ"])), ("aclass", "selectall"), ("data", cod([("onclick", "selectall redraw"), ("catgtid", myadd(myadd(i, "_"), j))])), ("labels", cod([("font-size", "12px")]))]), ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
       outpvar.close();
       outpvar.close();
-      for kk in forlist(j["child"], True ) :
-        k = j["child"][kk];
+      for k in forlist(inp["catgtree"][i][j], False ) :
         outpvar.open(htmlnode("li", extentattrs(cod([]))));
         outpvar.open(htmlnode("div", extentattrs(cod([]))));
         outpvar.cur.addfcdata("checkbox1");
-        outpvar.addchilds(newtag_checkbox1(cod([("label", k["name"]), ("id", myadd(myadd(myadd(myadd(myadd(myadd("catsubcat", ii), "_"), jj), "_"), kk), inp["typ"])), ("data", cod([("catgtid", myadd(myadd(myadd(myadd(i["id"], "_"), j["id"]), "_"), k["id"])), ("onclick", "redraw")])), ("labels", cod([("font-size", "12px")]))]), ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
+        outpvar.addchilds(newtag_checkbox1(cod([("label", inp["dictl"]["subcat"][k]["subcat"]), ("id", myadd(myadd(myadd(myadd(myadd(myadd("catsubcat", i), "_"), j), "_"), k), inp["typ"])), ("data", cod([("catgtid", myadd(myadd(myadd(myadd(i, "_"), j), "_"), k)), ("onclick", "redraw")])), ("labels", cod([("font-size", "12px")]))]), ginp, outpvar.cur.fcalldata["checkbox1"].root.content).root.content);
         outpvar.close();
         outpvar.close();
       outpvar.close();
@@ -536,6 +534,7 @@ def newtag_cp_filtertags(inp, ginp, innerHTML):
     outpvar.close();
     outpvar.close();
     outpvar.close();
+  outpvar.close();
   outpvar.close();
   return outpvar;
   

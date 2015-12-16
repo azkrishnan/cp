@@ -25,13 +25,15 @@ execfile(ROOT+"py/main.py");
 # print pagehandler("").init_db();
 
 
-a = catgtree(5,None);
-for i in a:
-	print i,":";
-	for j in a[i]:
-		print "\t",j, "::"
-		for k in a[i][j]:
-			print "\t\t",k, a[i][j][k]
+
+
+# a = catgtree(5,None);
+# for i in a:
+# 	print i,":";
+# 	for j in a[i]:
+# 		print "\t",j, "::"
+# 		for k in a[i][j]:
+# 			print "\t\t",k, a[i][j][k]
 
 
 #readxlsx_insertdb();

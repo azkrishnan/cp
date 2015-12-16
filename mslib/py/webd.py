@@ -129,7 +129,7 @@ def isuserexist(u, umatch = 'phone'):
 	return _sql.sval("users", "*", {umatch: u} , 1);
 
 
-def latlngdist(lat1, lng1, lat2, lng2) :
+def latlngdist(lat1, lng1, lat2, lng2):
 	degtorad = lambda x: x*(math.pi/180);
 	R = 6371000; # metres
 	ph1 = degtorad(lat1);
@@ -257,3 +257,5 @@ def geturlpath(inpurl):
 def convchars(inp):
 	return replaceall(inp, {"&": "&amp;", '"': "&quot;", "'": "&#039;", "<": "&lt;", ">": "&gt;"});
 
+
+execfile(_mslib+"py/algos.py");

@@ -6,6 +6,8 @@ outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("attr", 
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "catgselect hide-on-med-and-down"), ("style", cod([("padding-bottom", "0px")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("id", "maincontrol"), ("style", cod([("margin-bottom", "-30px")]))]))));
+outpvar.cur.fcalldata["main_cp"].cur.addfcdata("cp_filterform");
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_cp_filterform(cod([]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["cp_filterform"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("id", "maincontrol1"), ("style", cod([("display", "none")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "row")]))));
@@ -44,11 +46,11 @@ outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Sub-Cat
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");
 outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Provider"), ("id", "form_prov")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");
-outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Provider's Email"), ("id", "form_email")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Email"), ("id", "form_email")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");
-outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Provider's Phone"), ("id", "form_phone")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Phone"), ("id", "form_phone")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");
-outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Provider's Address"), ("id", "form_address"), ("aclass", "col l12")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Address"), ("id", "form_address"), ("aclass", "col l12")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");
 outpvar.cur.fcalldata["main_cp"].addchilds(newtag_input1(cod([("label", "Link to Website"), ("id", "form_web"), ("aclass", "col l12")]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["input1"].root.content).root.content);
 outpvar.cur.fcalldata["main_cp"].cur.addfcdata("input1");

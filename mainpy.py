@@ -1,7 +1,7 @@
 _agent = "poorvi";
 execfile("includes/setting.py");
 
-import time, sys, random, urllib, urlparse
+import time, sys, random, urllib, urlparse, math
 
 from msl import *
 from msl.help import *

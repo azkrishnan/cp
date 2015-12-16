@@ -103,40 +103,40 @@ define cp_filtertags(typ: "") {
 		input(attr:{placeholder: "Search by address (Street, City, ZIP, etc)", autofocus: "true"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"}, "id": "searchloc"+typ);
 	}
 	div(style:{"margin-top": "0px", "padding": "8px", "margin-bottom": "-5px"}, class: "card-panel") {
-		form(data: {onsubmit: "sreq", bobj: "", action: "search", res: "draw_points(data.data);"}) {
+		form(data: {onsubmit: "sreq", bobj: "", params: "ms.searchparam();", action: "search", res: "ms.f1(data);" }) {
 			input(attr:{placeholder: "Search using keywords (Eg: Piano)", name: "keyw"}, "class": "inputplaceholder mainsearch", style:{"border-radius":"0px", "border": "solid black 0px", "font-size": "13px"});
 			button(attr: {type: "submit"}, style: {display: "none"});
 		}
 	}
-	ul(class: "collapsible", attr:{"data-collapsible": "accordion"}, style: {"margin-bottom": "0px"}) {
-		for(i, ii, catg) {
-			li() {
-				div(class: "collapsible-header") {
-					icon1(img: i["icon"]);
-					// icon(name: "filter_drama");
-					print(i["name"]);
-				}
-				div(class: "collapsible-body") {
-					div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
-						ul(class: "collapsible_sub", attr:{"data-collapsible": "accordion"}) {
-							for(j, jj, i["child"]) {
-								li(class: "") {
-									div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
-										print(j["name"]);
-										// checkbox1(label: j["name"], id: "catsubcat"+ii+"_"+jj);
-									}
-									div(class: "collapsible-body") {
-										div(class: "subcats2", style:{"padding-left": "30px"}) {
-											ul() {
-												li() {
-													div() {
-														checkbox1(label: "Select All", id: "catsubcat"+ii+"_"+jj+"_"+"selectall"+typ, aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i["id"]+"_"+j["id"]}, labels:{"font-size": "12px"});
-													}
-												}
-												for(k, kk, j["child"]) {
+	div(style: {"max-height": "400px", "overflow-y": "auto"}) {
+		ul(class: "collapsible", attr:{"data-collapsible": "accordion"}, style: {"margin-bottom": "0px"}) {
+			for(i, catgtree) {
+				li() {
+					div(class: "collapsible-header") {
+						icon1(img: icons[i]);
+						print(dictl['tabs'][i]['tabs']);
+					}
+					div(class: "collapsible-body") {
+						div(class: "subcats1", style:{padding: "5px", "padding-left":"20px", "padding-bottom":"0px", "padding-top": "0px" }) {
+							ul(class: "collapsible_sub", attr:{"data-collapsible": "accordion"}) {
+								for(j, catgtree[i]) {
+									li(class: "") {
+										div(class: "collapsible-header", style:{"border-bottom": "solid black 0px", "border-top": "1px solid #DDD"}) {
+											print(dictl["cat"][j]['cat']);
+										}
+										div(class: "collapsible-body") {
+											div(class: "subcats2", style:{"padding-left": "30px"}) {
+												ul() {
 													li() {
 														div() {
-															checkbox1(label: k["name"], id: "catsubcat"+ii+"_"+jj+"_"+kk+typ, data:{catgtid: i["id"]+"_"+j["id"]+"_"+k["id"], onclick:"redraw"}, labels:{"font-size": "12px"});
+															checkbox1(label: "Select All", id: "catsubcat"+i+"_"+j+"_"+"selectall"+typ, aclass:"selectall", data:{onclick:"selectall redraw", catgtid: i+"_"+j}, labels:{"font-size": "12px"});
+														}
+													}
+													for(k, catgtree[i][j]) {
+														li() {
+															div() {
+																checkbox1(label: dictl['subcat'][k]['subcat'], id: "catsubcat"+i+"_"+j+"_"+k+typ, data:{catgtid: i+"_"+j+"_"+k, onclick:"redraw"}, labels:{"font-size": "12px"});
+															}
 														}
 													}
 												}
@@ -149,10 +149,10 @@ define cp_filtertags(typ: "") {
 					}
 				}
 			}
+			// div(style: {"background-color": "white", padding: "5px"}) {
+			// 	a1(text: "See all classes", attr:{onclick: '$("#commoncats").openModal();'});
+			// }
 		}
-		// div(style: {"background-color": "white", padding: "5px"}) {
-		// 	a1(text: "See all classes", attr:{onclick: '$("#commoncats").openModal();'});
-		// }
 	}
 }
 

@@ -17,12 +17,14 @@ class pagehandler:
 
 	def index(self):
 		pid = intf(g(_sql.sval("provider", "provider_id", {"username": _urlpath[0]}, 1), "provider_id") if _urlpath[0] != "" else 0);
-		outp = {"icons": ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png"], "pid": pid};
+		outp = {"icons": mapp(idf, ["photo/kid1.png", "photo/adult1.png", "photo/dog1.png"], None, lambda x: x+1), "pid": pid};
 		outp["dictl"] = mapp((lambda x: catgxlx1(_sql.sval(x), [x+"_id"], True)), ["tabs", "cat", "subcat"], None, lambda x,y: y);
-		outp["allcatgs"] = catgtree();
-		outp["catgtree"] = catgtree_shortlist(outp["allcatgs"], 5 ,5);
+		allcatgs = catgtree();
+		outp["catgtree"] = catgtree_shortlist(allcatgs, 5 ,5);
+		outp["allcatgs"] = catgtree_shortlist(allcatgs);
 		outp["our_story_content"] = read_file("data/aboutusc");
-		mifu(self.jsdata, pkey1(outp, ["pid", "allcatgs"]));
+		outp["activep"] = mappl(lambda x: x["provider_index"], _sql.g("select distinct provider_index from maininfo where tabs_index = 1")) if pid == 0 else [pid];
+		mifu(self.jsdata, pkey1(outp, ["pid", "allcatgs", "activep"]));
 		return outp;
 
 	def test(self):

@@ -4,7 +4,7 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 	div(attr:{id: "map"}, style: {height: "100%"});
 	div(class: "catgselect hide-on-med-and-down", style: {"padding-bottom": "0px"}) {
 		div(id: "maincontrol", style: {"margin-bottom": "-30px"}) {
-//			cp_filterform();
+			cp_filterform();
 		}
 		div(id: "maincontrol1", style:{display: "none"}) {
 			div(class: "row") {
@@ -81,9 +81,9 @@ main_cp(js:["js/index.js?reload", "https://maps.googleapis.com/maps/api/js?signe
 					input1(label: "Catageroy", id: "form_catg");
 					input1(label: "Sub-Catageroy", id: "form_subcatg");
 					input1(label: "Provider", id: "form_prov");
-					input1(label: "Provider's Email", id: "form_email");
-					input1(label: "Provider's Phone", id: "form_phone");
-					input1(label: "Provider's Address", id: "form_address", aclass: "col l12");
+					input1(label: "Email", id: "form_email");
+					input1(label: "Phone", id: "form_phone");
+					input1(label: "Address", id: "form_address", aclass: "col l12");
 					input1(label: "Link to Website", id: "form_web", aclass: "col l12");
 					input1(label: "Link to Class Sechedule", id: "form_sechedule", aclass: "col l12");
 				}
