@@ -8,7 +8,7 @@ _cp = cp();
 class pagehandler:
 	def __init__(self, name):
 		self.name = name;
-		self.jsdata = {"HOST": HOST, "BASE": BASE, "curpage": self.name, "_server": _server};
+		self.jsdata = {"HOST": HOST, "BASE": BASE, "curpage": self.name, "_server": _server, "_ec": _ec, "_formerror": _formerror};
 		self.methodmap = {"index": self.index, "test": self.test, "upload": self.upload, "seeall": self.seeall};
 		self.alltable = ["maininfo", "tabs", "cat", "subcat", "provider", "providerform"];
 

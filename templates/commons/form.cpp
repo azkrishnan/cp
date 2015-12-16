@@ -218,3 +218,68 @@ define cp_selectallcatgs() {
 		}
 	}
 }
+
+
+
+define businesscard() {
+	div(attr:{id: "providerinfo"}, class: "modal bottom-sheet") {
+		div(class: "container-fluid") {
+			div(class: "row"){
+				div(class: "col l4 m12 s12") {
+					h5() {
+						a1(class: "truncate info_name", attr:{target:"_blank"}, text: "New Age Pet");
+					}
+					div(class: "grey-text text-darken-2 p5") {
+						icon(name: "navigation", aclass: "tiny");
+						span(class: "info_address") {
+							print("C-15, Aravali hostel, IITD");
+						}
+					}
+					div(class: "grey-text text-darken-2 p5") {
+						icon(name: "navigation", aclass: "tiny");
+						span(class: "info_phone") {
+							print("+91 7503759053");
+						}
+					}
+				}
+				div(class: "col l4 m12 s12") {
+					h5() {
+						a1(class: "truncate info_website", attr:{target:"_blank"}, text: "Classes Offered");
+					}
+					div(class: "grey-text text-darken-2 p5") {
+						icon(name: "navigation", aclass: "tiny");
+						span(class: "info_address") {
+							print("C-15, Aravali hostel, IITD");
+						}
+					}
+					div(class: "grey-text text-darken-2 p5") {
+						icon(name: "navigation", aclass: "tiny");
+						span(class: "info_address") {
+							print("C-15, Aravali hostel, IITD");
+						}
+					}
+				}
+				div(class: "col l3 m12 s12") {
+					br();
+					div(class: "row") {
+						div(class: "col s2 cursp", attr: {onclick: "bcard.prevp();"}) {
+							icon(name: "skip_previous");
+						}
+						div(class: "col s7") {
+							span(class: "info_cardnum") {
+								print("Showing: 1/9");
+							}
+						}
+						div(class: "col s2 cursp", attr: {onclick: "bcard.nextp();"}) {
+							icon(name: "skip_next");
+						}
+					}
+					button(class: "waves-effect waves-light btn") {
+						print("Favorute");
+					}
+				}
+			}
+		}
+	}
+}
+

@@ -70,3 +70,34 @@ function f() {
 	return $("body").width();
 }
 
+
+var bcard = {
+	providers: [],
+	openbcard: function(providers) {
+		bcard.providers = providers;
+		bcard.curprov = 0;
+		bcard.showithp();
+	},
+	showithp: function() {
+		var curp = bcard.providers[bcard.curprov];
+		runf("req1", {params: {action: "getproviderinfo", "id": curp}, callback: function(d){
+			d = d.data;
+			$(".info_name").html(d.name_provider);
+			$(".info_name").attr("href", HOST+d.username);
+			$(".info_address").html(d.address);
+			$(".info_phone").html(d.phone);
+			$(".info_cardnum").html("Showing: "+(bcard.curprov+1)+"/"+bcard.providers.length);
+		}});
+	},
+	nextp: function() {
+		bcard.curprov = (bcard.curprov+1)%bcard.providers.length;
+		bcard.showithp();
+	},
+	prevp: function() {
+		var nump = bcard.providers.length;
+		bcard.curprov = (bcard.curprov-1+nump)%nump;
+		bcard.showithp();
+	}
+};
+
+

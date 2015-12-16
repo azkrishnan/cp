@@ -57,6 +57,7 @@ function drawgroups(groups) {
 			});
 			google.maps.event.addListener(prov_loc, 'click', function() {
 				$("#providerinfo").openModal();
+				bcard.openbcard(x[4].split(","));
 			});
 			prov_loc.setMap(gmap);
 			providers[x[2]] = prov_loc;
@@ -72,7 +73,7 @@ function redisplay(needplist) {
 	var params = {action: "providergroup", zoom: gmap.zoom, viewport: placetoll(gmap.center), home: placetoll(curloc.position), radius: circle100km.radius/1000.0};
 	if(needplist == undefined)
 		params.plist = activep.join(",");
-	console.log(params.plist);
+	
 	runf("req1", {params: params, callback: function(d){
 		drawgroups(d["data"]["groups"]);
 	}});
@@ -255,7 +256,7 @@ ms.f1 = function(data) {
 init_cookies();
 dispfavlist();
 
-
+$("#providerinfo").openModal();
 
 
 

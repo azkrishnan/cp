@@ -32,6 +32,10 @@ outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class",
 outpvar.cur.fcalldata["main_cp"].addtext("Saini");
 outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].close();
+outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("style", cod([("display", "")]))]))));
+outpvar.cur.fcalldata["main_cp"].cur.addfcdata("businesscard");
+outpvar.cur.fcalldata["main_cp"].addchilds(newtag_businesscard(cod([]), ginp, outpvar.cur.fcalldata["main_cp"].cur.fcalldata["businesscard"].root.content).root.content);
+outpvar.cur.fcalldata["main_cp"].close();
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("class", "modal"), ("id", "providerform"), ("style", cod([("padding", "20px")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("div", extentattrs(cod([("style", cod([("margin", "10px")]))]))));
 outpvar.cur.fcalldata["main_cp"].open(htmlnode("form", extentattrs(cod([("data", cod([("onsubmit", "sreq"), ("bobj", ""), ("action", "providerinfo"), ("restext", "Submitted")]))]))));

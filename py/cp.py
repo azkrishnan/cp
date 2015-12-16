@@ -31,6 +31,9 @@ _actions = {
 	"providergroup": {
 		"need": ["zoom", "radius", "home", "viewport"],
 		"ignoreother": False
+	},
+	"getproviderinfo": {
+		"need": ["id"],
 	}
 }
 
@@ -61,6 +64,9 @@ class cp:
 			computed = self.mapping[udata["action"]](udata_f);
 		return {"ec": self.ec, "data": computed };
 
+	def getproviderinfo(self, data):
+		return _sql.sval("provider", "*", {"provider_id": data["id"]}, limit=1);
+
 	def providergroup(self, data):
 		if(has_key(data, "plist")):
 			_session["plist"] = data["plist"];
@@ -87,7 +93,7 @@ def getmarkergroup(data):
 	query = "select provider_id,lat,lng, "+sqlhelp("latlng")+" as distance, "+sqlhelp("latlng1")+" as distance1 from provider where provider_id in ("+",".join(['0']+msplit(data["plist"], ","))+") AND lat*lng != 0 having (distance <= {distance} AND distance1 <= {distance1}) ";
 	plist = mappl(lambda x: [x["lat"], x["lng"], x["provider_id"]], _sql.g(query, mifu(data["home"], {"distance": data["radius"], "lat1": data["viewport"]["lat"], "lng1": data["viewport"]["lng"], "distance1": 80000*(2**(-int(data["zoom"])))})));
 	clusters = geolocgroup(plist, int(data["zoom"]), float(_config["markers_density"]));
-	return  mappl(lambda x: (lambda z: [z[0]*1.0/len(x), z[1]*1.0/len(x), x[0][2], len(x)])(fold(lambda y,z: [y[0]+z[0], y[1]+z[1]], x, [0,0])), clusters, lambda x:(len(x) > 0));
+	return  mappl(lambda x: (lambda z: [z[0]*1.0/len(x), z[1]*1.0/len(x), x[0][2], len(x), ",".join(mappl(lambda y: str(y[2]), x)) ])(fold(lambda y,z: [y[0]+z[0], y[1]+z[1]], x, [0,0])), clusters, lambda x:(len(x) > 0));
 
 
 def catgtree():
